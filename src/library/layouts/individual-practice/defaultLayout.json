@@ -1,0 +1,2572 @@
+{
+  "root": {
+    "props": {
+      "title": {
+        "field": "name",
+        "constantValue": "Yext Individual Practice Pages",
+        "constantValueEnabled": false
+      },
+      "version": 78,
+      "description": {
+        "field": "description",
+        "constantValue": "",
+        "constantValueEnabled": false
+      }
+    }
+  },
+  "zones": {},
+  "content": [
+    {
+      "type": "IndividualPracticeHeader",
+      "props": {
+        "id": "IndividualPracticeHeader-4055e14f-969c-44d9-a311-01f073ee87fb",
+        "cta": {
+          "show": true,
+          "items": [
+            {
+              "cta": {
+                "data": {
+                  "cta": {
+                    "field": "",
+                    "selectedType": "textAndLink",
+                    "constantValue": {
+                      "link": {
+                        "defaultValue": "#"
+                      },
+                      "label": {
+                        "defaultValue": "Book Appointment"
+                      },
+                      "ctaType": "textAndLink",
+                      "linkType": "URL"
+                    },
+                    "constantValueEnabled": true
+                  },
+                  "customId": "",
+                  "ariaLabel": {
+                    "defaultValue": "Book Appointment"
+                  },
+                  "actionType": "link",
+                  "buttonText": {
+                    "defaultValue": "Book Appointment"
+                  },
+                  "customClass": "",
+                  "openInNewTab": false,
+                  "dataAttributes": []
+                },
+                "styles": {
+                  "link": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "includeCaret": "default",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "color": {
+                    "selectedColor": "palette-primary",
+                    "contrastingColor": "palette-primary-contrast"
+                  },
+                  "button": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "borderRadius": "9999px",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "variant": "primary"
+                }
+              }
+            }
+          ]
+        },
+        "section": {
+          "backgroundColor": {
+            "selectedColor": "white",
+            "contrastingColor": "black"
+          },
+          "visibleOnLivePage": true
+        },
+        "variant": "logoLeftInlineNav",
+        "logoImage": {
+          "url": {
+            "field": "",
+            "constantValue": {
+              "defaultValue": ""
+            },
+            "constantValueEnabled": true
+          },
+          "show": true,
+          "image": {
+            "field": "",
+            "constantValue": {
+              "url": "https://a.mktgcdn.com/p/OLT2KExDEKhKlCmIobyRRHN6MFUS77fVs5gIt_FTnBI/450x450.jpg",
+              "width": 450,
+              "height": 450
+            },
+            "constantValueEnabled": true
+          },
+          "styles": {
+            "borderRadius": "default"
+          },
+          "aspectRatio": 1,
+          "imageConstrain": "fixed"
+        },
+        "utilities": {
+          "show": true,
+          "items": [
+            {
+              "link": "#",
+              "label": "Patient Portal",
+              "linkType": "URL",
+              "iconImage": {
+                "image": {
+                  "field": "",
+                  "constantValue": {
+                    "url": "",
+                    "width": 0,
+                    "height": 0
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "borderRadius": "default"
+                },
+                "aspectRatio": 1,
+                "imageConstrain": "fixed"
+              },
+              "openInNewTab": false,
+              "normalizeLink": false
+            }
+          ]
+        },
+        "navigation": {
+          "show": true,
+          "links": [
+            {
+              "link": "#specialties",
+              "label": "Specialties",
+              "linkType": "URL",
+              "openInNewTab": false,
+              "normalizeLink": false
+            },
+            {
+              "link": "#providers",
+              "label": "Providers",
+              "linkType": "URL",
+              "openInNewTab": false,
+              "normalizeLink": false
+            },
+            {
+              "link": "#insurance",
+              "label": "Insurance",
+              "linkType": "URL",
+              "openInNewTab": false,
+              "normalizeLink": false
+            },
+            {
+              "link": "#resources",
+              "label": "Patient Resources",
+              "linkType": "URL",
+              "openInNewTab": false,
+              "normalizeLink": false
+            },
+            {
+              "link": "#contact",
+              "label": "Contact",
+              "linkType": "URL",
+              "openInNewTab": false,
+              "normalizeLink": false
+            }
+          ],
+          "styles": {
+            "fontSize": "default",
+            "fontStyle": "default",
+            "fontFamily": "default",
+            "fontWeight": "default",
+            "includeCaret": "default",
+            "letterSpacing": "default",
+            "textTransform": "default"
+          }
+        }
+      }
+    },
+    {
+      "type": "MainContent",
+      "props": {
+        "id": "MainContent-default",
+        "content": [
+          {
+            "type": "IndividualPracticeBreadcrumbsSection",
+            "props": {
+              "id": "IndividualPracticeBreadcrumbsSection-8a468cb1-93b9-4fec-a1f0-1692817a7196",
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "black"
+                },
+                "visibleOnLivePage": true
+              },
+              "rootLabel": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "All Locations",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "0.8125rem",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "500",
+                  "textTransform": "uppercase"
+                },
+                "fontColor": {
+                  "selectedColor": "palette-primary",
+                  "contrastingColor": "palette-primary-contrast"
+                }
+              },
+              "separator": "/",
+              "includeCurrentLocation": true
+            }
+          },
+          {
+            "type": "IndividualPracticeHeroSection",
+            "props": {
+              "id": "IndividualPracticeHeroSection-f2929cf1-2dfc-4244-910b-3f56a66469e1",
+              "body": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": {
+                      "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>[[name]] provides high-acuity urgent care, comprehensive family medicine, and emergency stabilization services. Our state-of-the-art facility is staffed by board-certified emergency physicians and family practitioners dedicated to immediate, high-quality care for the South Shore community.</span></p>",
+                      "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"[[name]] provides high-acuity urgent care, comprehensive family medicine, and emergency stabilization services. Our state-of-the-art facility is staffed by board-certified emergency physicians and family practitioners dedicated to immediate, high-quality care for the South Shore community.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                    },
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                }
+              },
+              "hours": {
+                "field": "hours",
+                "constantValue": {},
+                "constantValueEnabled": false
+              },
+              "heading": {
+                "text": {
+                  "field": "name",
+                  "constantValue": {
+                    "defaultValue": ""
+                  },
+                  "constantValueEnabled": false
+                },
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "black"
+                },
+                "visibleOnLivePage": true
+              },
+              "heroImage": {
+                "image": {
+                  "field": "",
+                  "constantValue": {
+                    "url": "https://a.mktgcdn.com/p/vQqhmnexQfZueJGyh5M_j5W4EcTkTyZlW93eIoqjjvQ/1900x1267.jpg",
+                    "width": 1900,
+                    "height": 1267
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "borderRadius": "default"
+                },
+                "aspectRatio": 1.5,
+                "imageConstrain": "filled"
+              },
+              "primaryCta": {
+                "data": {
+                  "cta": {
+                    "field": "",
+                    "selectedType": "textAndLink",
+                    "constantValue": {
+                      "link": {
+                        "defaultValue": "#"
+                      },
+                      "label": {
+                        "defaultValue": "Get Directions"
+                      },
+                      "ctaType": "textAndLink",
+                      "linkType": "URL"
+                    },
+                    "constantValueEnabled": true
+                  },
+                  "customId": "",
+                  "ariaLabel": {
+                    "defaultValue": "Get Directions"
+                  },
+                  "actionType": "link",
+                  "buttonText": {
+                    "defaultValue": "Get Directions"
+                  },
+                  "customClass": "",
+                  "openInNewTab": false,
+                  "dataAttributes": []
+                },
+                "styles": {
+                  "link": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "includeCaret": "default",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "color": {
+                    "selectedColor": "palette-primary",
+                    "contrastingColor": "palette-primary-contrast"
+                  },
+                  "button": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "borderRadius": "9999px",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "variant": "primary"
+                }
+              },
+              "subheading": {
+                "text": {
+                  "field": "geomodifier",
+                  "constantValue": {
+                    "defaultValue": ""
+                  },
+                  "constantValueEnabled": false
+                },
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                },
+                "fontColor": {
+                  "selectedColor": "palette-primary",
+                  "contrastingColor": "palette-primary-contrast"
+                }
+              },
+              "hoursStyles": {
+                "timeFormat": "12h",
+                "showDayNames": true,
+                "dayOfWeekFormat": "long",
+                "showCurrentStatus": true
+              },
+              "tertiaryCta": {
+                "data": {
+                  "cta": {
+                    "field": "",
+                    "selectedType": "textAndLink",
+                    "constantValue": {
+                      "link": {
+                        "defaultValue": "#resources"
+                      },
+                      "label": {
+                        "defaultValue": "Find Patient Resources"
+                      },
+                      "ctaType": "textAndLink",
+                      "linkType": "URL"
+                    },
+                    "constantValueEnabled": true
+                  },
+                  "customId": "",
+                  "ariaLabel": {
+                    "defaultValue": "Find Patient Resources"
+                  },
+                  "actionType": "link",
+                  "buttonText": {
+                    "defaultValue": "Find Patient Resources"
+                  },
+                  "customClass": "",
+                  "openInNewTab": false,
+                  "dataAttributes": []
+                },
+                "styles": {
+                  "link": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "includeCaret": "default",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "color": {
+                    "selectedColor": "white",
+                    "contrastingColor": "black"
+                  },
+                  "button": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "borderRadius": "9999px",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "variant": "primary"
+                }
+              },
+              "secondaryCta": {
+                "data": {
+                  "cta": {
+                    "field": "",
+                    "selectedType": "textAndLink",
+                    "constantValue": {
+                      "link": {
+                        "defaultValue": "#"
+                      },
+                      "label": {
+                        "defaultValue": "Find Care"
+                      },
+                      "ctaType": "textAndLink",
+                      "linkType": "URL"
+                    },
+                    "constantValueEnabled": true
+                  },
+                  "customId": "",
+                  "ariaLabel": {
+                    "defaultValue": "Find Care"
+                  },
+                  "actionType": "link",
+                  "buttonText": {
+                    "defaultValue": "Find Care"
+                  },
+                  "customClass": "",
+                  "openInNewTab": false,
+                  "dataAttributes": []
+                },
+                "styles": {
+                  "link": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "includeCaret": "default",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "color": {
+                    "selectedColor": "palette-secondary",
+                    "contrastingColor": "palette-secondary-contrast"
+                  },
+                  "button": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "borderRadius": "9999px",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "variant": "primary"
+                }
+              },
+              "cardBackgroundColor": {
+                "selectedColor": "white",
+                "contrastingColor": "black"
+              },
+              "hoursStatusBackgroundColor": {
+                "selectedColor": "palette-secondary",
+                "contrastingColor": "palette-secondary-contrast"
+              }
+            }
+          },
+          {
+            "type": "IndividualPracticeFacilitySummarySection",
+            "props": {
+              "id": "IndividualPracticeFacilitySummarySection-18612d6c-fc39-4782-a03e-46c7d79a7680",
+              "hours": {
+                "field": "hours",
+                "constantValue": {},
+                "constantValueEnabled": false
+              },
+              "phones": {
+                "items": [
+                  {
+                    "label": "Main Phone:",
+                    "number": {
+                      "field": "mainPhone",
+                      "constantValue": "",
+                      "constantValueEnabled": false
+                    }
+                  }
+                ],
+                "phoneFormat": "domestic",
+                "includeHyperlink": true
+              },
+              "address": {
+                "field": "address",
+                "constantValue": {
+                  "city": "",
+                  "line1": "",
+                  "region": "",
+                  "postalCode": "",
+                  "countryCode": ""
+                },
+                "constantValueEnabled": false
+              },
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "🏥 Facility Summary",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                },
+                "fontColor": {
+                  "selectedColor": "palette-primary",
+                  "contrastingColor": "palette-primary-contrast"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "black"
+                },
+                "visibleOnLivePage": true
+              },
+              "showRegion": true,
+              "hoursStyles": {
+                "alignment": "items-start",
+                "startOfWeek": "today",
+                "collapseDays": false,
+                "showAdditionalHoursText": false
+              },
+              "showCountry": false,
+              "hoursHeading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Opening Hours",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                }
+              },
+              "contactHeading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Contact Us",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                }
+              },
+              "directionsLink": {
+                "data": {
+                  "cta": {
+                    "field": "",
+                    "selectedType": "textAndLink",
+                    "constantValue": {
+                      "link": {
+                        "defaultValue": "#"
+                      },
+                      "label": {
+                        "defaultValue": "Get directions"
+                      },
+                      "ctaType": "textAndLink",
+                      "linkType": "URL"
+                    },
+                    "constantValueEnabled": true
+                  },
+                  "customId": "",
+                  "ariaLabel": {
+                    "defaultValue": "Get directions"
+                  },
+                  "actionType": "link",
+                  "buttonText": {
+                    "defaultValue": "Get directions"
+                  },
+                  "customClass": "",
+                  "openInNewTab": false,
+                  "dataAttributes": []
+                },
+                "styles": {
+                  "link": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "includeCaret": "default",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "button": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "borderRadius": "9999px",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "variant": "secondary"
+                }
+              },
+              "appointmentLink": {
+                "data": {
+                  "cta": {
+                    "field": "",
+                    "selectedType": "textAndLink",
+                    "constantValue": {
+                      "link": {
+                        "defaultValue": "#"
+                      },
+                      "label": {
+                        "defaultValue": "Make an appointment"
+                      },
+                      "ctaType": "textAndLink",
+                      "linkType": "URL"
+                    },
+                    "constantValueEnabled": true
+                  },
+                  "customId": "",
+                  "ariaLabel": {
+                    "defaultValue": "Make an appointment"
+                  },
+                  "actionType": "link",
+                  "buttonText": {
+                    "defaultValue": "Make an appointment"
+                  },
+                  "customClass": "",
+                  "openInNewTab": false,
+                  "dataAttributes": []
+                },
+                "styles": {
+                  "link": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "includeCaret": "default",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "button": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "borderRadius": "9999px",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "variant": "secondary"
+                }
+              },
+              "accessibilityBody": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": {
+                      "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Wheelchair accessible entrances, mobility accessible routes, elevators, accessible restrooms, and patient drop-off.</span></p>",
+                      "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Wheelchair accessible entrances, mobility accessible routes, elevators, accessible restrooms, and patient drop-off.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                    },
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "fontColor": {
+                  "selectedColor": "#6f594c",
+                  "contrastingColor": "black"
+                }
+              },
+              "accessibilityHeading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Accessibility",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                }
+              },
+              "showTextLinkUnderline": true
+            }
+          },
+          {
+            "type": "IndividualPracticeMedicalServicesSection",
+            "props": {
+              "id": "IndividualPracticeMedicalServicesSection-dc26889a-3658-4f89-8f52-288e0d25a2a3",
+              "items": {
+                "field": "",
+                "mappings": {
+                  "image": {
+                    "field": "",
+                    "constantValueEnabled": false
+                  },
+                  "title": {
+                    "text": {
+                      "field": "",
+                      "constantValueEnabled": false
+                    }
+                  },
+                  "description": {
+                    "text": {
+                      "field": "",
+                      "constantValueEnabled": false
+                    }
+                  }
+                },
+                "constantValue": [
+                  {
+                    "cta": {
+                      "field": "",
+                      "selectedType": "textAndLink",
+                      "constantValue": {
+                        "link": {
+                          "defaultValue": "#"
+                        },
+                        "label": {
+                          "defaultValue": "Check In Online"
+                        },
+                        "ctaType": "textAndLink",
+                        "linkType": "URL",
+                        "openInNewTab": false
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "image": {
+                      "field": "",
+                      "constantValue": {
+                        "url": "https://a.mktgcdn.com/p/Qdlacb36DqN5Lt3q6V9jw-qSMmbPyl_AeMEI_CyDkHc/1267x1900.jpg",
+                        "width": 1900,
+                        "height": 1267
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "title": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Urgent Care & Express Care",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "description": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": {
+                            "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Immediate treatment for non-life-threatening illnesses and injuries including fractures, lacerations requiring stitches, infections, and respiratory issues. No appointment necessary.</span></p>",
+                            "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Immediate treatment for non-life-threatening illnesses and injuries including fractures, lacerations requiring stitches, infections, and respiratory issues. No appointment necessary.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                          },
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    }
+                  },
+                  {
+                    "cta": {
+                      "field": "",
+                      "selectedType": "textAndLink",
+                      "constantValue": {
+                        "link": {
+                          "defaultValue": "#"
+                        },
+                        "label": {
+                          "defaultValue": "Schedule a New Patient Visit"
+                        },
+                        "ctaType": "textAndLink",
+                        "linkType": "URL",
+                        "openInNewTab": false
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "image": {
+                      "field": "",
+                      "constantValue": {
+                        "url": "https://a.mktgcdn.com/p/UHR6VTEvcR-yDMqPSOS7LyK87Qt56EOrmfNbhLQxI08/1267x1900.jpg",
+                        "width": 1900,
+                        "height": 1267
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "title": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Primary & Family Medicine",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "description": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": {
+                            "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Comprehensive longitudinal care for the whole family, from newborn pediatrics to geriatric medicine, focusing on wellness and chronic disease management.</span></p>",
+                            "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Comprehensive longitudinal care for the whole family, from newborn pediatrics to geriatric medicine, focusing on wellness and chronic disease management.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                          },
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    }
+                  },
+                  {
+                    "cta": {
+                      "field": "",
+                      "selectedType": "textAndLink",
+                      "constantValue": {
+                        "link": {
+                          "defaultValue": "#"
+                        },
+                        "label": {
+                          "defaultValue": "Employer Resources"
+                        },
+                        "ctaType": "textAndLink",
+                        "linkType": "URL",
+                        "openInNewTab": false
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "image": {
+                      "field": "",
+                      "constantValue": {
+                        "url": "https://a.mktgcdn.com/p/fbSbItkZpsHpkc8qHH7GxvQkWzxsfm6mGc0k4Lmfl-A/1267x1900.jpg",
+                        "width": 1900,
+                        "height": 1267
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "title": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Occupational Health",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "description": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": {
+                            "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Work-related injury care, DOT physicals, pre-employment screenings, and drug testing for local businesses.</span></p>",
+                            "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Work-related injury care, DOT physicals, pre-employment screenings, and drug testing for local businesses.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                          },
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    }
+                  },
+                  {
+                    "cta": {
+                      "field": "",
+                      "selectedType": "textAndLink",
+                      "constantValue": {
+                        "link": {
+                          "defaultValue": "#"
+                        },
+                        "label": {
+                          "defaultValue": "View Test Preparation Guide"
+                        },
+                        "ctaType": "textAndLink",
+                        "linkType": "URL",
+                        "openInNewTab": false
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "image": {
+                      "field": "",
+                      "constantValue": {
+                        "url": "https://a.mktgcdn.com/p/Qdlacb36DqN5Lt3q6V9jw-qSMmbPyl_AeMEI_CyDkHc/1267x1900.jpg",
+                        "width": 1900,
+                        "height": 1267
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "title": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Laboratory & Imaging",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "description": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": {
+                            "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Fast-turnaround diagnostic services. Most lab results are available within 24 hours via the Patient Portal.</span></p>",
+                            "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Fast-turnaround diagnostic services. Most lab results are available within 24 hours via the Patient Portal.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                          },
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    }
+                  }
+                ],
+                "constantValueEnabled": true
+              },
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Medical Services",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "black"
+                },
+                "visibleOnLivePage": true
+              },
+              "cardStyles": {
+                "ctaStyles": {
+                  "link": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "includeCaret": "default",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "button": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "borderRadius": "9999px",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "variant": "secondary"
+                },
+                "imageStyles": {
+                  "borderRadius": "default"
+                },
+                "imageConstrain": "filled",
+                "titleTextStyles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                },
+                "imageAspectRatio": 1.5,
+                "cardBackgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "black"
+                }
+              }
+            }
+          },
+          {
+            "type": "IndividualPracticeInsuranceAcceptedSection",
+            "props": {
+              "id": "IndividualPracticeInsuranceAcceptedSection-78bd4d5e-18bc-49a6-ac67-f346959d888a",
+              "groups": {
+                "field": "",
+                "mappings": {
+                  "items": {
+                    "field": "",
+                    "constantValue": [],
+                    "constantValueEnabled": false
+                  },
+                  "title": {
+                    "field": "",
+                    "constantValueEnabled": false
+                  }
+                },
+                "constantValue": [
+                  {
+                    "items": {
+                      "field": "",
+                      "constantValue": [
+                        "Medicare Part B",
+                        "MassHealth (as plated)",
+                        "Tricare Prime & Select"
+                      ],
+                      "constantValueEnabled": true
+                    },
+                    "title": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Government Programs",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "backgroundColor": {
+                      "selectedColor": "white",
+                      "contrastingColor": "black"
+                    }
+                  },
+                  {
+                    "items": {
+                      "field": "",
+                      "constantValue": [
+                        "Blue Cross Blue Shield (PPO, HMO)",
+                        "Aetna Choice POS II, Select, Open Access",
+                        "Cigna Open Access Plus, PPO",
+                        "UnitedHealthcare Choice, Choice Plus, PPO",
+                        "Harvard Pilgrim HMO, POS, Flex",
+                        "Tufts Health Plan Commercial & Public",
+                        "Humana"
+                      ],
+                      "constantValueEnabled": true
+                    },
+                    "title": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Private / Commercial Insurance",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "backgroundColor": {
+                      "selectedColor": "palette-quaternary-light",
+                      "contrastingColor": "black"
+                    }
+                  },
+                  {
+                    "items": {
+                      "field": "",
+                      "constantValue": [
+                        "Workers' Compensation",
+                        "Motor Vehicle Accident (MVA) Insurance",
+                        "HSA/FSA cards at point of service"
+                      ],
+                      "constantValueEnabled": true
+                    },
+                    "title": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Other",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "backgroundColor": {
+                      "selectedColor": "white",
+                      "contrastingColor": "black"
+                    }
+                  }
+                ],
+                "constantValueEnabled": true
+              },
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Insurance Accepted",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                },
+                "fontColor": {
+                  "selectedColor": "palette-primary",
+                  "contrastingColor": "palette-primary-contrast"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "black"
+                },
+                "visibleOnLivePage": true
+              },
+              "subtitle": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": {
+                      "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>[[name]] is proud to be an in-network provider for a wide range of insurance carriers, as well as the following plans.</span></p>",
+                      "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"[[name]] is proud to be an in-network provider for a wide range of insurance carriers, as well as the following plans.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                    },
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "fontColor": {
+                  "selectedColor": "#6f594c",
+                  "contrastingColor": "white"
+                }
+              },
+              "groupStyles": {
+                "items": {
+                  "styles": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "textTransform": "default"
+                  },
+                  "fontColor": {
+                    "selectedColor": "#6f594c",
+                    "contrastingColor": "white"
+                  }
+                },
+                "title": {
+                  "styles": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "textTransform": "default"
+                  },
+                  "fontColor": {
+                    "selectedColor": "palette-primary",
+                    "contrastingColor": "palette-primary-contrast"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "type": "IndividualPracticeAboutLocationSection",
+            "props": {
+              "id": "IndividualPracticeAboutLocationSection-4a2618db-9298-4a63-9229-9d957ec9ff42",
+              "body": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": {
+                      "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>[[name]] is [[address.city]]’s premier destination for integrated medical services. Located conveniently on Meridian Ave, we bridge the gap between a standard doctor’s office and a hospital emergency room.</span></p><p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Our facility is designed for efficiency and patient comfort. By housing advanced imaging, a high-complexity lab, and a diverse team of specialists under one roof, we ensure that diagnosis and treatment happen in hours, not days. We are committed to reducing ER wait times and providing the [[address.city]] community with a higher standard of local healthcare.</span></p>",
+                      "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"[[name]] is [[address.city]]’s premier destination for integrated medical services. Located conveniently on Meridian Ave, we bridge the gap between a standard doctor’s office and a hospital emergency room.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1},{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Our facility is designed for efficiency and patient comfort. By housing advanced imaging, a high-complexity lab, and a diverse team of specialists under one roof, we ensure that diagnosis and treatment happen in hours, not days. We are committed to reducing ER wait times and providing the [[address.city]] community with a higher standard of local healthcare.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                    },
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                }
+              },
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "About this location",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "100",
+                  "textTransform": "default"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "black"
+                },
+                "visibleOnLivePage": true
+              }
+            }
+          },
+          {
+            "type": "IndividualPracticeProvidersSection",
+            "props": {
+              "id": "IndividualPracticeProvidersSection-782022be-0e72-4f08-9629-ab7262a38805",
+              "items": {
+                "field": "",
+                "mappings": {
+                  "name": {
+                    "text": {
+                      "field": "",
+                      "constantValueEnabled": false
+                    }
+                  },
+                  "role": {
+                    "text": {
+                      "field": "",
+                      "constantValueEnabled": false
+                    }
+                  },
+                  "image": {
+                    "field": "",
+                    "constantValueEnabled": false
+                  },
+                  "credentials": {
+                    "text": {
+                      "field": "",
+                      "constantValueEnabled": false
+                    }
+                  },
+                  "specialties": {
+                    "text": {
+                      "field": "",
+                      "constantValue": [],
+                      "constantValueEnabled": false
+                    }
+                  },
+                  "credentialsLabel": {
+                    "field": "",
+                    "constantValueEnabled": false
+                  },
+                  "specialtiesLabel": {
+                    "field": "",
+                    "constantValueEnabled": false
+                  }
+                },
+                "constantValue": [
+                  {
+                    "name": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Dr Elena Rodriguez, MD",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "role": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Chief of Medicine",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "image": {
+                      "field": "",
+                      "constantValue": {
+                        "url": "https://a.mktgcdn.com/p/UHR6VTEvcR-yDMqPSOS7LyK87Qt56EOrmfNbhLQxI08/1267x1900.jpg",
+                        "width": 1900,
+                        "height": 1267
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "credentials": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "American Board of Family Medicine",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "specialties": {
+                      "text": {
+                        "field": "",
+                        "constantValue": [
+                          "Emergency medicine",
+                          "acute care stabilization",
+                          "chronic disease management"
+                        ],
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "credentialsLabel": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Board Certification",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "specialtiesLabel": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Specialties",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    }
+                  },
+                  {
+                    "name": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Dr Thomas Hayes, DO",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "role": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Urgent Care Director",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "image": {
+                      "field": "",
+                      "constantValue": {
+                        "url": "https://a.mktgcdn.com/p/fbSbItkZpsHpkc8qHH7GxvQkWzxsfm6mGc0k4Lmfl-A/1267x1900.jpg",
+                        "width": 1900,
+                        "height": 1267
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "credentials": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "American Board of Emergency Medicine",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "specialties": {
+                      "text": {
+                        "field": "",
+                        "constantValue": [
+                          "Minor trauma",
+                          "orthopedics",
+                          "laceration repair",
+                          "pediatric urgent care"
+                        ],
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "credentialsLabel": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Board Certification",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "specialtiesLabel": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Specialties",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    }
+                  },
+                  {
+                    "name": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Laura Croft, FNP-BC",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "role": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Family Nurse Practitioner",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "image": {
+                      "field": "",
+                      "constantValue": {
+                        "url": "https://a.mktgcdn.com/p/Qdlacb36DqN5Lt3q6V9jw-qSMmbPyl_AeMEI_CyDkHc/1267x1900.jpg",
+                        "width": 1900,
+                        "height": 1267
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "credentials": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "ANCC Certified",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "specialties": {
+                      "text": {
+                        "field": "",
+                        "constantValue": [
+                          "Preventive health",
+                          "chronic disease management",
+                          "wellness coaching"
+                        ],
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "credentialsLabel": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Board Certification",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "specialtiesLabel": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Specialties",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    }
+                  },
+                  {
+                    "name": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Stephen Merriack, PA-C",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "role": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "Physician Assistant",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "image": {
+                      "field": "",
+                      "constantValue": {
+                        "url": "https://a.mktgcdn.com/p/UHR6VTEvcR-yDMqPSOS7LyK87Qt56EOrmfNbhLQxI08/1267x1900.jpg",
+                        "width": 1900,
+                        "height": 1267
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "credentials": {
+                      "text": {
+                        "field": "",
+                        "constantValue": {
+                          "defaultValue": "NCCPA Certified",
+                          "hasLocalizedValue": "true"
+                        },
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "specialties": {
+                      "text": {
+                        "field": "",
+                        "constantValue": [
+                          "Sports medicine",
+                          "wound care",
+                          "occupational health"
+                        ],
+                        "constantValueEnabled": true
+                      }
+                    },
+                    "credentialsLabel": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Board Certification",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "specialtiesLabel": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Specialties",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    }
+                  }
+                ],
+                "constantValueEnabled": true
+              },
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Meet Our Providers",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "black"
+                },
+                "visibleOnLivePage": true
+              },
+              "cardStyles": {
+                "imageStyles": {
+                  "borderRadius": "default"
+                },
+                "imageConstrain": "filled",
+                "nameTextStyles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                },
+                "roleTextStyles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                },
+                "imageAspectRatio": 1.5,
+                "cardBackgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "black"
+                },
+                "credentialsFontColor": {
+                  "selectedColor": "#6f594c",
+                  "contrastingColor": "white"
+                },
+                "specialtiesFontColor": {
+                  "selectedColor": "#6f594c",
+                  "contrastingColor": "white"
+                },
+                "credentialsTextStyles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                },
+                "specialtiesTextStyles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                }
+              }
+            }
+          },
+          {
+            "type": "IndividualPracticeFaqSection",
+            "props": {
+              "id": "IndividualPracticeFaqSection-411f723e-1d48-4671-a326-67ffeb51719b",
+              "items": {
+                "field": "",
+                "mappings": {
+                  "answer": {
+                    "field": "",
+                    "constantValueEnabled": false
+                  },
+                  "question": {
+                    "field": "",
+                    "constantValueEnabled": false
+                  }
+                },
+                "constantValue": [
+                  {
+                    "answer": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": {
+                          "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Urgent care is for conditions that need immediate attention but are not life-threatening, such as sprains, sore throats, or minor cuts. For chest pain, difficulty breathing, or severe trauma, please call 911 or go to the nearest ER.</span></p>",
+                          "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Urgent care is for conditions that need immediate attention but are not life-threatening, such as sprains, sore throats, or minor cuts. For chest pain, difficulty breathing, or severe trauma, please call 911 or go to the nearest ER.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                        },
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "question": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "When should I go to Urgent Care vs. the ER?",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    }
+                  },
+                  {
+                    "answer": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": {
+                          "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>No, all patients enter through the main lobby. Urgent Care patients are triaged immediately upon arrival to ensure those with acute needs are seen quickly.</span></p>",
+                          "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"No, all patients enter through the main lobby. Urgent Care patients are triaged immediately upon arrival to ensure those with acute needs are seen quickly.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                        },
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "question": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Is there a separate entrance for Urgent Care?",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    }
+                  },
+                  {
+                    "answer": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": {
+                          "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>No, walk-ins are always welcome. However, you can use our “Save My Spot” online check-in to reduce your wait time in the clinic.</span></p>",
+                          "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"No, walk-ins are always welcome. However, you can use our “Save My Spot” online check-in to reduce your wait time in the clinic.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                        },
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "question": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Do I need an appointment for Urgent Care?",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    }
+                  },
+                  {
+                    "answer": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": {
+                          "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Yes. Our secure bill-pay portal is available through the [[name]] website and the Patient Portal.</span></p>",
+                          "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Yes. Our secure bill-pay portal is available through the [[name]] website and the Patient Portal.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                        },
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "question": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "Can I pay my bill online?",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    }
+                  },
+                  {
+                    "answer": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": {
+                          "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>Most routine blood work and rapid tests (Flu, Strep, COVID-19) are processed on-site. Results are typically uploaded to the Patient Portal within 4 to 24 hours.</span></p>",
+                          "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Most routine blood work and rapid tests (Flu, Strep, COVID-19) are processed on-site. Results are typically uploaded to the Patient Portal within 4 to 24 hours.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                        },
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    },
+                    "question": {
+                      "field": "",
+                      "constantValue": {
+                        "defaultValue": "How long does it take to get lab results?",
+                        "hasLocalizedValue": "true"
+                      },
+                      "constantValueEnabled": true
+                    }
+                  }
+                ],
+                "constantValueEnabled": true
+              },
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Frequently asked questions",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "black"
+                },
+                "visibleOnLivePage": true
+              },
+              "answerStyles": {},
+              "questionStyles": {
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                }
+              },
+              "openBackgroundColor": {
+                "selectedColor": "palette-primary",
+                "contrastingColor": "palette-primary-contrast"
+              },
+              "closedBackgroundColor": {
+                "selectedColor": "palette-quaternary-light",
+                "contrastingColor": "black"
+              }
+            }
+          },
+          {
+            "type": "IndividualPracticePatientResourcesSection",
+            "props": {
+              "id": "IndividualPracticePatientResourcesSection-1bbf641b-ac5c-4e52-817e-7979e454f17a",
+              "body": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": {
+                      "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>View these resources before your appointment to streamline your visit.</span></p>",
+                      "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"View these resources before your appointment to streamline your visit.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                    },
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                }
+              },
+              "image": {
+                "image": {
+                  "field": "",
+                  "constantValue": {
+                    "url": "https://a.mktgcdn.com/p/UHR6VTEvcR-yDMqPSOS7LyK87Qt56EOrmfNbhLQxI08/1267x1900.jpg",
+                    "width": 1900,
+                    "height": 1267
+                  },
+                  "constantValueEnabled": true
+                }
+              },
+              "items": [
+                {
+                  "cta": {
+                    "data": {
+                      "cta": {
+                        "field": "",
+                        "selectedType": "textAndLink",
+                        "constantValue": {
+                          "link": {
+                            "defaultValue": "#"
+                          },
+                          "label": {
+                            "defaultValue": "Online Registration Forms"
+                          },
+                          "ctaType": "textAndLink",
+                          "linkType": "URL"
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "customId": "",
+                      "ariaLabel": {
+                        "defaultValue": "Online Registration Forms"
+                      },
+                      "actionType": "link",
+                      "buttonText": {
+                        "defaultValue": "Online Registration Forms"
+                      },
+                      "customClass": "",
+                      "openInNewTab": false,
+                      "dataAttributes": []
+                    },
+                    "styles": {
+                      "link": {
+                        "fontSize": "default",
+                        "fontStyle": "default",
+                        "fontFamily": "default",
+                        "fontWeight": "default",
+                        "includeCaret": "default",
+                        "letterSpacing": "default",
+                        "textTransform": "default"
+                      },
+                      "button": {
+                        "fontSize": "default",
+                        "fontStyle": "default",
+                        "fontFamily": "default",
+                        "fontWeight": "default",
+                        "borderRadius": "default",
+                        "letterSpacing": "default",
+                        "textTransform": "default"
+                      },
+                      "variant": "secondary"
+                    }
+                  }
+                },
+                {
+                  "cta": {
+                    "data": {
+                      "cta": {
+                        "field": "",
+                        "selectedType": "textAndLink",
+                        "constantValue": {
+                          "link": {
+                            "defaultValue": "#"
+                          },
+                          "label": {
+                            "defaultValue": "Comprehensive Insurance List"
+                          },
+                          "ctaType": "textAndLink",
+                          "linkType": "URL"
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "customId": "",
+                      "ariaLabel": {
+                        "defaultValue": "Comprehensive Insurance List"
+                      },
+                      "actionType": "link",
+                      "buttonText": {
+                        "defaultValue": "Comprehensive Insurance List"
+                      },
+                      "customClass": "",
+                      "openInNewTab": false,
+                      "dataAttributes": []
+                    },
+                    "styles": {
+                      "link": {
+                        "fontSize": "default",
+                        "fontStyle": "default",
+                        "fontFamily": "default",
+                        "fontWeight": "default",
+                        "includeCaret": "default",
+                        "letterSpacing": "default",
+                        "textTransform": "default"
+                      },
+                      "button": {
+                        "fontSize": "default",
+                        "fontStyle": "default",
+                        "fontFamily": "default",
+                        "fontWeight": "default",
+                        "borderRadius": "default",
+                        "letterSpacing": "default",
+                        "textTransform": "default"
+                      },
+                      "variant": "secondary"
+                    }
+                  }
+                },
+                {
+                  "cta": {
+                    "data": {
+                      "cta": {
+                        "field": "",
+                        "selectedType": "textAndLink",
+                        "constantValue": {
+                          "link": {
+                            "defaultValue": "#"
+                          },
+                          "label": {
+                            "defaultValue": "Financial Assistance Policy"
+                          },
+                          "ctaType": "textAndLink",
+                          "linkType": "URL"
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "customId": "",
+                      "ariaLabel": {
+                        "defaultValue": "Financial Assistance Policy"
+                      },
+                      "actionType": "link",
+                      "buttonText": {
+                        "defaultValue": "Financial Assistance Policy"
+                      },
+                      "customClass": "",
+                      "openInNewTab": false,
+                      "dataAttributes": []
+                    },
+                    "styles": {
+                      "link": {
+                        "fontSize": "default",
+                        "fontStyle": "default",
+                        "fontFamily": "default",
+                        "fontWeight": "default",
+                        "includeCaret": "default",
+                        "letterSpacing": "default",
+                        "textTransform": "default"
+                      },
+                      "button": {
+                        "fontSize": "default",
+                        "fontStyle": "default",
+                        "fontFamily": "default",
+                        "fontWeight": "default",
+                        "borderRadius": "default",
+                        "letterSpacing": "default",
+                        "textTransform": "default"
+                      },
+                      "variant": "secondary"
+                    }
+                  }
+                },
+                {
+                  "cta": {
+                    "data": {
+                      "cta": {
+                        "field": "",
+                        "selectedType": "textAndLink",
+                        "constantValue": {
+                          "link": {
+                            "defaultValue": "#"
+                          },
+                          "label": {
+                            "defaultValue": "Telehealth Sign-In"
+                          },
+                          "ctaType": "textAndLink",
+                          "linkType": "URL"
+                        },
+                        "constantValueEnabled": true
+                      },
+                      "customId": "",
+                      "ariaLabel": {
+                        "defaultValue": "Telehealth Sign-In"
+                      },
+                      "actionType": "link",
+                      "buttonText": {
+                        "defaultValue": "Telehealth Sign-In"
+                      },
+                      "customClass": "",
+                      "openInNewTab": false,
+                      "dataAttributes": []
+                    },
+                    "styles": {
+                      "link": {
+                        "fontSize": "default",
+                        "fontStyle": "default",
+                        "fontFamily": "default",
+                        "fontWeight": "default",
+                        "includeCaret": "default",
+                        "letterSpacing": "default",
+                        "textTransform": "default"
+                      },
+                      "button": {
+                        "fontSize": "default",
+                        "fontStyle": "default",
+                        "fontFamily": "default",
+                        "fontWeight": "default",
+                        "borderRadius": "default",
+                        "letterSpacing": "default",
+                        "textTransform": "default"
+                      },
+                      "variant": "secondary"
+                    }
+                  }
+                }
+              ],
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Patient Resources",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "100",
+                  "textTransform": "default"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "black"
+                },
+                "visibleOnLivePage": true
+              },
+              "panelBackgroundColor": {
+                "selectedColor": "palette-primary",
+                "contrastingColor": "palette-primary-contrast"
+              }
+            }
+          },
+          {
+            "type": "IndividualPracticePatientReviewsSection",
+            "props": {
+              "id": "IndividualPracticePatientReviewsSection-3faa3ea1-2a5e-4225-9f79-d15e20adcb9a",
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Patient Reviews",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "100",
+                  "textTransform": "default"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "black"
+                },
+                "visibleOnLivePage": true
+              },
+              "iconColor": {
+                "selectedColor": "palette-primary",
+                "contrastingColor": "palette-primary-contrast"
+              },
+              "cardBackgroundColor": {
+                "selectedColor": "white",
+                "contrastingColor": "black"
+              }
+            }
+          },
+          {
+            "type": "IndividualPracticeCommunityOutreachSection",
+            "props": {
+              "id": "IndividualPracticeCommunityOutreachSection-c665b95a-ce4d-47ae-aaf2-e8648c32c684",
+              "cta": {
+                "data": {
+                  "cta": {
+                    "field": "",
+                    "selectedType": "textAndLink",
+                    "constantValue": {
+                      "link": {
+                        "defaultValue": "#"
+                      },
+                      "label": {
+                        "defaultValue": "View Community Calendar"
+                      },
+                      "ctaType": "textAndLink",
+                      "linkType": "URL"
+                    },
+                    "constantValueEnabled": true
+                  },
+                  "customId": "",
+                  "ariaLabel": {
+                    "defaultValue": "View Community Calendar"
+                  },
+                  "actionType": "link",
+                  "buttonText": {
+                    "defaultValue": "View Community Calendar"
+                  },
+                  "customClass": "",
+                  "openInNewTab": false,
+                  "dataAttributes": []
+                },
+                "styles": {
+                  "link": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "includeCaret": "default",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "button": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "borderRadius": "9999px",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "variant": "secondary"
+                }
+              },
+              "body": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": {
+                      "html": "<p dir=\"ltr\" style=\"font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;\"><span>[[name]] is more than a clinic; we are a community partner. We provide medical support for [[address.city]] high school athletics and host monthly “Walk with a Doc” sessions at local parks to encourage heart health.</span></p>",
+                      "json": "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"[[name]] is more than a clinic; we are a community partner. We provide medical support for [[address.city]] high school athletics and host monthly “Walk with a Doc” sessions at local parks to encourage heart health.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}"
+                    },
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "fontColor": {
+                  "selectedColor": "#260e01",
+                  "contrastingColor": "white"
+                }
+              },
+              "image": {
+                "image": {
+                  "field": "",
+                  "constantValue": {
+                    "url": "https://a.mktgcdn.com/p/fbSbItkZpsHpkc8qHH7GxvQkWzxsfm6mGc0k4Lmfl-A/1267x1900.jpg",
+                    "width": 1900,
+                    "height": 1267
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "borderRadius": "default"
+                },
+                "aspectRatio": 1.5,
+                "imageConstrain": "filled"
+              },
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "🌿 Community Outreach",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                },
+                "fontColor": {
+                  "selectedColor": "palette-primary",
+                  "contrastingColor": "palette-primary-contrast"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "black"
+                },
+                "visibleOnLivePage": true
+              }
+            }
+          },
+          {
+            "type": "IndividualPracticeNearbyFacilitiesSection",
+            "props": {
+              "id": "IndividualPracticeNearbyFacilitiesSection-82ed4196-0ade-4a00-9bff-052919ac7d89",
+              "map": {
+                "zoom": 12,
+                "mapStyle": "streets-v12",
+                "coordinate": {
+                  "field": "yextDisplayCoordinate",
+                  "constantValue": {
+                    "latitude": 0,
+                    "longitude": 0
+                  },
+                  "constantValueEnabled": false
+                }
+              },
+              "limit": 3,
+              "phone": {
+                "phoneFormat": "domestic",
+                "includeHyperlink": true
+              },
+              "radius": 10,
+              "address": {
+                "showRegion": true,
+                "showCountry": false
+              },
+              "heading": {
+                "text": {
+                  "field": "",
+                  "constantValue": {
+                    "defaultValue": "Nearby Facilities",
+                    "hasLocalizedValue": "true"
+                  },
+                  "constantValueEnabled": true
+                },
+                "styles": {
+                  "fontSize": "default",
+                  "fontStyle": "default",
+                  "fontFamily": "default",
+                  "fontWeight": "default",
+                  "textTransform": "default"
+                },
+                "fontColor": {
+                  "selectedColor": "palette-primary",
+                  "contrastingColor": "palette-primary-contrast"
+                }
+              },
+              "section": {
+                "backgroundColor": {
+                  "selectedColor": "white",
+                  "contrastingColor": "black"
+                },
+                "visibleOnLivePage": true
+              },
+              "showPhone": true,
+              "primaryCta": {
+                "label": {
+                  "defaultValue": "More Details"
+                },
+                "styles": {
+                  "link": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "includeCaret": "default",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "button": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "borderRadius": "9999px",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "variant": "secondary"
+                }
+              },
+              "showAddress": true,
+              "secondaryCta": {
+                "label": {
+                  "defaultValue": "Get Directions"
+                },
+                "styles": {
+                  "link": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "includeCaret": "default",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "button": {
+                    "fontSize": "default",
+                    "fontStyle": "default",
+                    "fontFamily": "default",
+                    "fontWeight": "default",
+                    "borderRadius": "9999px",
+                    "letterSpacing": "default",
+                    "textTransform": "default"
+                  },
+                  "variant": "secondary"
+                }
+              },
+              "cardBackgroundColor": {
+                "selectedColor": "white",
+                "contrastingColor": "black"
+              },
+              "addressPanelBackgroundColor": {
+                "selectedColor": "palette-quaternary-light",
+                "contrastingColor": "black"
+              }
+            }
+          }
+        ]
+      }
+    },
+    {
+      "type": "IndividualPracticeFooter",
+      "props": {
+        "id": "IndividualPracticeFooter-9cc6d393-3161-4eec-8ace-b516cf72dadb",
+        "phone": {
+          "items": [
+            {
+              "label": "",
+              "number": {
+                "field": "mainPhone",
+                "constantValue": "",
+                "constantValueEnabled": false
+              }
+            }
+          ],
+          "phoneFormat": "domestic",
+          "includeHyperlink": true
+        },
+        "address": {
+          "field": "address",
+          "constantValue": {
+            "city": "",
+            "line1": "",
+            "region": "",
+            "postalCode": "",
+            "countryCode": ""
+          },
+          "constantValueEnabled": false
+        },
+        "section": {
+          "backgroundColor": {
+            "selectedColor": "white",
+            "contrastingColor": "black"
+          },
+          "visibleOnLivePage": true
+        },
+        "navLinks": [
+          {
+            "cta": {
+              "field": "",
+              "constantValue": {
+                "link": {
+                  "defaultValue": "#specialties"
+                },
+                "label": {
+                  "defaultValue": "Specialties"
+                },
+                "linkType": "URL",
+                "openInNewTab": false
+              },
+              "constantValueEnabled": true
+            }
+          },
+          {
+            "cta": {
+              "field": "",
+              "constantValue": {
+                "link": {
+                  "defaultValue": "#providers"
+                },
+                "label": {
+                  "defaultValue": "Providers"
+                },
+                "linkType": "URL",
+                "openInNewTab": false
+              },
+              "constantValueEnabled": true
+            }
+          },
+          {
+            "cta": {
+              "field": "",
+              "constantValue": {
+                "link": {
+                  "defaultValue": "#insurance"
+                },
+                "label": {
+                  "defaultValue": "Insurance"
+                },
+                "linkType": "URL",
+                "openInNewTab": false
+              },
+              "constantValueEnabled": true
+            }
+          },
+          {
+            "cta": {
+              "field": "",
+              "constantValue": {
+                "link": {
+                  "defaultValue": "#resources"
+                },
+                "label": {
+                  "defaultValue": "Patient Resources"
+                },
+                "linkType": "URL",
+                "openInNewTab": false
+              },
+              "constantValueEnabled": true
+            }
+          },
+          {
+            "cta": {
+              "field": "",
+              "constantValue": {
+                "link": {
+                  "defaultValue": "#contact"
+                },
+                "label": {
+                  "defaultValue": "Contact"
+                },
+                "linkType": "URL",
+                "openInNewTab": false
+              },
+              "constantValueEnabled": true
+            }
+          }
+        ],
+        "logoImage": {
+          "image": {
+            "field": "",
+            "constantValue": {
+              "url": "https://a.mktgcdn.com/p/OLT2KExDEKhKlCmIobyRRHN6MFUS77fVs5gIt_FTnBI/450x450.jpg",
+              "width": 450,
+              "height": 450
+            },
+            "constantValueEnabled": true
+          },
+          "styles": {
+            "borderRadius": "default"
+          },
+          "aspectRatio": 1,
+          "imageConstrain": "fixed"
+        },
+        "navHeading": {
+          "text": {
+            "field": "",
+            "constantValue": {
+              "defaultValue": "Main Pages",
+              "hasLocalizedValue": "true"
+            },
+            "constantValueEnabled": true
+          },
+          "styles": {
+            "fontSize": "default",
+            "fontStyle": "default",
+            "fontFamily": "default",
+            "fontWeight": "default",
+            "textTransform": "default"
+          }
+        },
+        "showRegion": true,
+        "showCountry": false,
+        "socialLinks": [
+          {
+            "cta": {
+              "field": "",
+              "constantValue": {
+                "link": {
+                  "defaultValue": "#"
+                },
+                "label": {
+                  "defaultValue": "Facebook"
+                },
+                "linkType": "URL",
+                "openInNewTab": false
+              },
+              "constantValueEnabled": true
+            },
+            "icon": "facebook",
+            "ariaLabel": "Facebook"
+          },
+          {
+            "cta": {
+              "field": "",
+              "constantValue": {
+                "link": {
+                  "defaultValue": "#"
+                },
+                "label": {
+                  "defaultValue": "Instagram"
+                },
+                "linkType": "URL",
+                "openInNewTab": false
+              },
+              "constantValueEnabled": true
+            },
+            "icon": "instagram",
+            "ariaLabel": "Instagram"
+          },
+          {
+            "cta": {
+              "field": "",
+              "constantValue": {
+                "link": {
+                  "defaultValue": "#"
+                },
+                "label": {
+                  "defaultValue": "Yelp"
+                },
+                "linkType": "URL",
+                "openInNewTab": false
+              },
+              "constantValueEnabled": true
+            },
+            "icon": "yelp",
+            "ariaLabel": "Yelp"
+          }
+        ]
+      }
+    }
+  ]
+}
