@@ -1,5 +1,5 @@
 {
   "id": "individual-practice-locator",
   "displayName": "Locator",
-  "pageGroupType": "LOCATOR"
+  "pageSetType": "LOCATOR"
 }
