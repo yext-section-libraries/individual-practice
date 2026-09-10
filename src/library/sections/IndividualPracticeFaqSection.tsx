@@ -3,12 +3,13 @@ import type { SectionConfig } from "@yext/visual-editor";
 import * as React from "react";
 import { AnalyticsScopeProvider, useAnalytics } from "@yext/pages-components";
 import {
+  Background,
   createItemSource,
   EntityField,
   getDefaultRTF,
   getAnalyticsScopeHash,
+  getSurfaceColorStyle,
   getThemeColorCssValue,
-  MaybeRTF,
   resolveComponentData,
   type StyledTextValue,
   type ThemeColor,
@@ -20,6 +21,13 @@ import {
   type YextComponentConfig,
   type YextFields,
 } from "@yext/visual-editor";
+import {
+  defaultTextStyles,
+  renderRichText,
+  resolvePlainText,
+  sectionField,
+  whiteBackground,
+} from "../shared/sectionHelpers";
 
 type StyledTextProps = {
   text: YextEntityField<TranslatableString>;
@@ -53,11 +61,6 @@ type IndividualPracticeFaqSectionProps = {
   items: typeof faqItemsSource.value;
 };
 
-const whiteBackground: ThemeColor = {
-  selectedColor: "white",
-  contrastingColor: "black",
-};
-
 const closedBackground: ThemeColor = {
   selectedColor: "palette-quaternary-light",
   contrastingColor: "black",
@@ -66,14 +69,6 @@ const closedBackground: ThemeColor = {
 const openBackground: ThemeColor = {
   selectedColor: "palette-primary",
   contrastingColor: "palette-primary-contrast",
-};
-
-const defaultTextStyles: StyledTextValue = {
-  fontFamily: "default",
-  fontSize: "default",
-  fontWeight: "default",
-  fontStyle: "default",
-  textTransform: "default",
 };
 
 const faqItemsSource = createItemSource<FaqItemFields>({
@@ -196,25 +191,7 @@ const faqItemsSource = createItemSource<FaqItemFields>({
 
 const IndividualPracticeFaqSectionFields: YextFields<IndividualPracticeFaqSectionProps> =
   {
-    section: {
-      label: "Section",
-      type: "object",
-      objectFields: {
-        visibleOnLivePage: {
-          label: "Visible on Live Page",
-          type: "radio",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-        backgroundColor: {
-          label: "Background Color",
-          type: "basicSelector",
-          options: "BACKGROUND_COLOR",
-        },
-      },
-    },
+    section: sectionField,
     closedBackgroundColor: {
       label: "Closed Background Color",
       type: "basicSelector",
@@ -276,13 +253,7 @@ const IndividualPracticeFaqSectionFields: YextFields<IndividualPracticeFaqSectio
     items: faqItemsSource.field,
   };
 
-const resolveText = (
-  value: YextEntityField<TranslatableString>,
-  locale: string,
-  streamDocument: Record<string, unknown>,
-): string => {
-  return resolveComponentData(value, locale, streamDocument)?.toString() ?? "";
-};
+const resolveText = resolvePlainText;
 
 const IndividualPracticeFaqSectionComponent: React.FC<
   IndividualPracticeFaqSectionProps & { puck: { isEditing: boolean } }
@@ -408,10 +379,12 @@ const IndividualPracticeFaqSectionComponent: React.FC<
           }
         }
       `}</style>
-      <section
+      <Background
+        as="section"
+        background={props.section.backgroundColor}
         className="yip-faq-root px-4 py-pageSection-verticalPadding"
         style={{
-          backgroundColor: getThemeColorCssValue(props.section.backgroundColor),
+          ...getSurfaceColorStyle(props.section.backgroundColor, streamDocument),
         }}
       >
         <div
@@ -498,16 +471,17 @@ const IndividualPracticeFaqSectionComponent: React.FC<
                     : currentForeground,
                 };
                 const resolvedAnswer = item.answer
-                  ? resolveComponentData(item.answer, locale, streamDocument, {
-                      richTextStyleOverrides: answerStyleOverrides,
-                    })
+                  ? resolveComponentData(item.answer, locale, streamDocument)
                   : undefined;
 
                 return (
                   <article
                     key={index}
                     style={{
-                      backgroundColor: getThemeColorCssValue(currentBackground),
+                      ...getSurfaceColorStyle(
+                        currentBackground,
+                        streamDocument,
+                      ),
                       border: `1px solid color-mix(in srgb, ${sectionForeground} 6%, transparent)`,
                       borderRadius: "24px",
                       overflow: "hidden",
@@ -582,18 +556,7 @@ const IndividualPracticeFaqSectionComponent: React.FC<
                           padding: "0 28px 24px",
                         }}
                       >
-                        {React.isValidElement(resolvedAnswer) ? (
-                          resolvedAnswer
-                        ) : (
-                          <MaybeRTF
-                            data={
-                              typeof resolvedAnswer === "string"
-                                ? resolvedAnswer
-                                : ""
-                            }
-                            richTextStyleOverrides={answerStyleOverrides}
-                          />
-                        )}
+                        {renderRichText(resolvedAnswer, answerStyleOverrides)}
                       </div>
                     ) : null}
                   </article>
@@ -602,7 +565,7 @@ const IndividualPracticeFaqSectionComponent: React.FC<
             </div>
           </EntityField>
         </div>
-      </section>
+      </Background>
     </VisibilityWrapper>
   );
 };

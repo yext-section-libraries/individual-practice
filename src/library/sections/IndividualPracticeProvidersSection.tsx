@@ -8,9 +8,11 @@ import {
   type ImageType,
 } from "@yext/pages-components";
 import {
+  Background,
   createItemSource,
   EntityField,
   getAnalyticsScopeHash,
+  getSurfaceColorStyle,
   getThemeColorCssValue,
   Image,
   resolveComponentData,
@@ -25,6 +27,14 @@ import {
   type YextEntityField,
   type YextFields,
 } from "@yext/visual-editor";
+import {
+  aspectRatioOptions,
+  createTextField as createEntityTextField,
+  defaultTextStyles,
+  resolvePlainText,
+  sectionField,
+  whiteBackground,
+} from "../shared/sectionHelpers";
 
 type StyledTextProps = {
   text: YextEntityField<TranslatableString>;
@@ -75,11 +85,6 @@ type IndividualPracticeProvidersSectionProps = {
   items: typeof providerItemsSource.value;
 };
 
-const whiteBackground: ThemeColor = {
-  selectedColor: "white",
-  contrastingColor: "black",
-};
-
 const bodyTextColor: ThemeColor = {
   selectedColor: "#6f594c",
   contrastingColor: "white",
@@ -87,14 +92,6 @@ const bodyTextColor: ThemeColor = {
 
 const defaultImageStyles: StyledImageValue = {
   borderRadius: "default",
-};
-
-const defaultTextStyles: StyledTextValue = {
-  fontFamily: "default",
-  fontSize: "default",
-  fontWeight: "default",
-  fontStyle: "default",
-  textTransform: "default",
 };
 
 const createImageField = (
@@ -115,39 +112,18 @@ const createTextField = (
   defaultValue: string,
   fontColor?: ThemeColor,
 ): StyledTextProps => ({
-  text: {
-    field: "",
-    constantValue: {
-      defaultValue,
-      hasLocalizedValue: "true",
-    },
-    constantValueEnabled: true,
-  },
+  text: createEntityTextField(defaultValue),
   styles: defaultTextStyles,
   fontColor,
 });
 
 const createProviderTextField = (defaultValue: string): ProviderTextProps => ({
-  text: {
-    field: "",
-    constantValue: {
-      defaultValue,
-      hasLocalizedValue: "true",
-    },
-    constantValueEnabled: true,
-  },
+  text: createEntityTextField(defaultValue),
 });
 
 const createProviderLabelField = (
   defaultValue: string,
-): YextEntityField<TranslatableString> => ({
-  field: "",
-  constantValue: {
-    defaultValue,
-    hasLocalizedValue: "true",
-  },
-  constantValueEnabled: true,
-});
+): YextEntityField<TranslatableString> => createEntityTextField(defaultValue);
 
 const createTextListField = (
   defaultValue: string[],
@@ -159,15 +135,7 @@ const createTextListField = (
   },
 });
 
-const resolveText = (
-  value: YextEntityField<TranslatableString> | TranslatableString | undefined,
-  locale: string,
-  streamDocument: Record<string, unknown>,
-): string => {
-  return resolveComponentData(value, locale, streamDocument, {
-    output: "plainText",
-  });
-};
+const resolveText = resolvePlainText;
 
 const providerItemsSource = createItemSource<ProviderItem>({
   label: "Providers",
@@ -309,25 +277,7 @@ const providerItemsSource = createItemSource<ProviderItem>({
 
 const IndividualPracticeProvidersSectionFields: YextFields<IndividualPracticeProvidersSectionProps> =
   {
-    section: {
-      label: "Section",
-      type: "object",
-      objectFields: {
-        backgroundColor: {
-          label: "Background Color",
-          type: "basicSelector",
-          options: "BACKGROUND_COLOR",
-        },
-        visibleOnLivePage: {
-          label: "Visible on Live Page",
-          type: "radio",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-      },
-    },
+    section: sectionField,
     heading: {
       label: "Heading",
       type: "object",
@@ -402,7 +352,7 @@ const IndividualPracticeProvidersSectionFields: YextFields<IndividualPracticePro
         imageAspectRatio: {
           label: "Image Aspect Ratio",
           type: "basicSelector",
-          options: "ASPECT_RATIO",
+          options: aspectRatioOptions,
         },
         imageConstrain: {
           label: "Image Constrain",
@@ -542,11 +492,13 @@ const IndividualPracticeProvidersSectionComponent: PuckComponent<
             }
           }
         `}</style>
-      <section
+      <Background
+        as="section"
+        background={props.section.backgroundColor}
         id="providers"
         className="yip-providers-root px-4 py-pageSection-verticalPadding"
         style={{
-          backgroundColor: getThemeColorCssValue(props.section.backgroundColor),
+          ...getSurfaceColorStyle(props.section.backgroundColor, streamDocument),
         }}
       >
         <div
@@ -675,8 +627,9 @@ const IndividualPracticeProvidersSectionComponent: PuckComponent<
                     key={`${name}-${index}`}
                     style={{
                       alignItems: "stretch",
-                      backgroundColor: getThemeColorCssValue(
+                      ...getSurfaceColorStyle(
                         props.cardStyles.cardBackgroundColor,
+                        streamDocument,
                       ),
                       borderRadius: "20px",
                       boxShadow: cardShadow,
@@ -891,7 +844,7 @@ const IndividualPracticeProvidersSectionComponent: PuckComponent<
             </div>
           </EntityField>
         </div>
-      </section>
+      </Background>
     </VisibilityWrapper>
   );
 };

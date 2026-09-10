@@ -4,12 +4,13 @@ import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider } from "@yext/pages-components";
 import {
+  Background,
   createItemSource,
   EntityField,
   getDefaultRTF,
   getAnalyticsScopeHash,
+  getSurfaceColorStyle,
   getThemeColorCssValue,
-  MaybeRTF,
   resolveComponentData,
   type StyledTextValue,
   type ThemeColor,
@@ -21,6 +22,14 @@ import {
   type YextEntityField,
   type YextFields,
 } from "@yext/visual-editor";
+import {
+  createTextField as createEntityTextField,
+  defaultTextStyles,
+  primaryColor,
+  renderRichText,
+  sectionField,
+  whiteBackground,
+} from "../shared/sectionHelpers";
 
 type StyledTextProps = {
   text: YextEntityField<TranslatableString>;
@@ -61,19 +70,9 @@ type IndividualPracticeInsuranceAcceptedSectionProps = {
   groupStyles: InsuranceGroupStyles;
 };
 
-const whiteBackground: ThemeColor = {
-  selectedColor: "white",
-  contrastingColor: "black",
-};
-
 const featuredBackground: ThemeColor = {
   selectedColor: "palette-quaternary-light",
   contrastingColor: "black",
-};
-
-const primaryColor: ThemeColor = {
-  selectedColor: "palette-primary",
-  contrastingColor: "palette-primary-contrast",
 };
 
 const bodyTextColor: ThemeColor = {
@@ -81,26 +80,11 @@ const bodyTextColor: ThemeColor = {
   contrastingColor: "white",
 };
 
-const defaultTextStyles: StyledTextValue = {
-  fontFamily: "default",
-  fontSize: "default",
-  fontWeight: "default",
-  fontStyle: "default",
-  textTransform: "default",
-};
-
 const createTextField = (
   defaultValue: string,
   fontColor?: ThemeColor,
 ): StyledTextProps => ({
-  text: {
-    field: "",
-    constantValue: {
-      defaultValue,
-      hasLocalizedValue: "true",
-    },
-    constantValueEnabled: true,
-  },
+  text: createEntityTextField(defaultValue),
   styles: defaultTextStyles,
   fontColor,
 });
@@ -189,25 +173,7 @@ const insuranceGroupsSource = createItemSource<InsuranceGroupFields>({
 
 const IndividualPracticeInsuranceAcceptedSectionFields: YextFields<IndividualPracticeInsuranceAcceptedSectionProps> =
   {
-    section: {
-      label: "Section",
-      type: "object",
-      objectFields: {
-        backgroundColor: {
-          label: "Background Color",
-          type: "basicSelector",
-          options: "BACKGROUND_COLOR",
-        },
-        visibleOnLivePage: {
-          label: "Visible on Live Page",
-          type: "radio",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-      },
-    },
+    section: sectionField,
     heading: {
       label: "Heading",
       type: "object",
@@ -304,9 +270,6 @@ const IndividualPracticeInsuranceAcceptedSectionComponent: PuckComponent<
     props.subtitle.text,
     locale,
     streamDocument,
-    {
-      richTextStyleOverrides: subtitleStyleOverrides,
-    },
   );
   const groups = insuranceGroupsSource.resolveItems(
     props.groups,
@@ -403,11 +366,13 @@ const IndividualPracticeInsuranceAcceptedSectionComponent: PuckComponent<
             letter-spacing: var(--letterSpacing-link-letterSpacing);
           }
         `}</style>
-      <section
+      <Background
+        as="section"
+        background={props.section.backgroundColor}
         id="insurance"
         className="yip-insurance-root px-4 py-pageSection-verticalPadding"
         style={{
-          backgroundColor: getThemeColorCssValue(props.section.backgroundColor),
+          ...getSurfaceColorStyle(props.section.backgroundColor, streamDocument),
         }}
       >
         <div
@@ -473,14 +438,7 @@ const IndividualPracticeInsuranceAcceptedSectionComponent: PuckComponent<
                   maxWidth: "42rem",
                 }}
               >
-                {React.isValidElement(subtitle) ? (
-                  subtitle
-                ) : (
-                  <MaybeRTF
-                    data={typeof subtitle === "string" ? subtitle : ""}
-                    richTextStyleOverrides={subtitleStyleOverrides}
-                  />
-                )}
+                {renderRichText(subtitle, subtitleStyleOverrides)}
               </div>
             </EntityField>
           </div>
@@ -542,8 +500,9 @@ const IndividualPracticeInsuranceAcceptedSectionComponent: PuckComponent<
                   <article
                     key={`${title}-${index}`}
                     style={{
-                      backgroundColor: getThemeColorCssValue(
+                      ...getSurfaceColorStyle(
                         group.backgroundColor,
+                        streamDocument,
                       ),
                       border: `1px solid color-mix(in srgb, ${groupForeground} 4%, transparent)`,
                       borderRadius: "20px",
@@ -608,7 +567,7 @@ const IndividualPracticeInsuranceAcceptedSectionComponent: PuckComponent<
             </div>
           </EntityField>
         </div>
-      </section>
+      </Background>
     </VisibilityWrapper>
   );
 };

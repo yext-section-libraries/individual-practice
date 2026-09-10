@@ -12,14 +12,15 @@ import {
   type HoursType,
 } from "@yext/pages-components";
 import {
+  Background,
   ComprehensiveCTA,
   type ComprehensiveCTAValue,
   EntityField,
   getDefaultForegroundColor,
   getDefaultRTF,
   getAnalyticsScopeHash,
+  getSurfaceColorStyle,
   getThemeColorCssValue,
-  MaybeRTF,
   resolveComponentData,
   type StyledTextValue,
   type ThemeColor,
@@ -31,6 +32,13 @@ import {
   type YextEntityField,
   type YextFields,
 } from "@yext/visual-editor";
+import {
+  defaultTextStyles,
+  renderRichText,
+  resolvePlainText,
+  sectionField,
+  whiteBackground,
+} from "../shared/sectionHelpers";
 
 type PhoneItem = {
   number: YextEntityField<string>;
@@ -88,11 +96,6 @@ type IndividualPracticeFacilitySummarySectionProps = {
   hoursStyles: SummaryHoursStyles;
 };
 
-const whiteBackground: ThemeColor = {
-  selectedColor: "white",
-  contrastingColor: "black",
-};
-
 const primaryTextColor: ThemeColor = {
   selectedColor: "palette-primary",
   contrastingColor: "palette-primary-contrast",
@@ -101,14 +104,6 @@ const primaryTextColor: ThemeColor = {
 const bodyTextColor: ThemeColor = {
   selectedColor: "#6f594c",
   contrastingColor: "black",
-};
-
-const defaultTextStyles: StyledTextValue = {
-  fontFamily: "default",
-  fontSize: "default",
-  fontWeight: "default",
-  fontStyle: "default",
-  textTransform: "default",
 };
 
 const formatPhone = (
@@ -125,13 +120,7 @@ const formatPhone = (
     : parsed.number.national;
 };
 
-const resolveText = (
-  value: YextEntityField<TranslatableString>,
-  locale: string,
-  streamDocument: Record<string, unknown>,
-): string => {
-  return resolveComponentData(value, locale, streamDocument)?.toString() ?? "";
-};
+const resolveText = resolvePlainText;
 
 const createTextCta = (label: string): Partial<ComprehensiveCTAValue> => ({
   data: {
@@ -179,25 +168,7 @@ const createTextCta = (label: string): Partial<ComprehensiveCTAValue> => ({
 
 const IndividualPracticeFacilitySummarySectionFields: YextFields<IndividualPracticeFacilitySummarySectionProps> =
   {
-    section: {
-      label: "Section",
-      type: "object",
-      objectFields: {
-        backgroundColor: {
-          label: "Background Color",
-          type: "basicSelector",
-          options: "BACKGROUND_COLOR",
-        },
-        visibleOnLivePage: {
-          label: "Visible on Live Page",
-          type: "radio",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-      },
-    },
+    section: sectionField,
     heading: {
       label: "Heading",
       type: "object",
@@ -528,9 +499,6 @@ const IndividualPracticeFacilitySummarySectionComponent: PuckComponent<Individua
       props.accessibilityBody.text,
       locale,
       streamDocument,
-      {
-        richTextStyleOverrides: accessibilityBodyStyleOverrides,
-      },
     );
     const phones = (props.phones.items ?? [])
       .map((item) => {
@@ -661,11 +629,16 @@ const IndividualPracticeFacilitySummarySectionComponent: PuckComponent<Individua
             text-decoration: underline;
           }
         `}</style>
-        <section
+        <Background
+          as="section"
+          background={props.section.backgroundColor}
           id="contact"
           className="yip-facility-summary-root px-4 py-pageSection-verticalPadding"
           style={{
-            backgroundColor: getThemeColorCssValue(props.section.backgroundColor),
+            ...getSurfaceColorStyle(
+              props.section.backgroundColor,
+              streamDocument,
+            ),
           }}
         >
           <div
@@ -899,17 +872,9 @@ const IndividualPracticeFacilitySummarySectionComponent: PuckComponent<Individua
                       className="yip-facility-summary-rich-text"
                       style={{ lineHeight: 1.6 }}
                     >
-                      {React.isValidElement(resolvedAccessibilityBody) ? (
-                        resolvedAccessibilityBody
-                      ) : (
-                        <MaybeRTF
-                          data={
-                            typeof resolvedAccessibilityBody === "string"
-                              ? resolvedAccessibilityBody
-                              : ""
-                          }
-                          richTextStyleOverrides={accessibilityBodyStyleOverrides}
-                        />
+                      {renderRichText(
+                        resolvedAccessibilityBody,
+                        accessibilityBodyStyleOverrides,
                       )}
                     </div>
                   </EntityField>
@@ -984,7 +949,7 @@ const IndividualPracticeFacilitySummarySectionComponent: PuckComponent<Individua
               </div>
             </div>
           </div>
-        </section>
+        </Background>
       </VisibilityWrapper>
     );
   };

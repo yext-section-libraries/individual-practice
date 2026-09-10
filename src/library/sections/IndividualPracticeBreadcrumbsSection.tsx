@@ -4,8 +4,10 @@ import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider, Link } from "@yext/pages-components";
 import {
+  Background,
   EntityField,
   getAnalyticsScopeHash,
+  getSurfaceColorStyle,
   getThemeColorCssValue,
   resolveBreadcrumbs,
   resolveComponentData,
@@ -19,6 +21,11 @@ import {
   type YextEntityField,
   type YextFields,
 } from "@yext/visual-editor";
+import {
+  primaryColor,
+  sectionField,
+  whiteBackground,
+} from "../shared/sectionHelpers";
 
 type StyledTextProps = {
   text: YextEntityField<TranslatableString>;
@@ -50,16 +57,6 @@ type IndividualPracticeBreadcrumbsSectionProps = {
   separator: string;
 };
 
-const whiteBackground: ThemeColor = {
-  selectedColor: "white",
-  contrastingColor: "black",
-};
-
-const primaryColor: ThemeColor = {
-  selectedColor: "palette-primary",
-  contrastingColor: "palette-primary-contrast",
-};
-
 const defaultTextStyles: StyledTextValue = {
   fontFamily: "default",
   fontSize: "0.8125rem",
@@ -70,25 +67,7 @@ const defaultTextStyles: StyledTextValue = {
 
 const IndividualPracticeBreadcrumbsSectionFields: YextFields<IndividualPracticeBreadcrumbsSectionProps> =
   {
-    section: {
-      label: "Section",
-      type: "object",
-      objectFields: {
-        backgroundColor: {
-          label: "Background Color",
-          type: "basicSelector",
-          options: "BACKGROUND_COLOR",
-        },
-        visibleOnLivePage: {
-          label: "Visible on Live Page",
-          type: "radio",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-      },
-    },
+    section: sectionField,
     rootLabel: {
       label: "Root Label",
       type: "object",
@@ -203,10 +182,15 @@ const IndividualPracticeBreadcrumbsSectionComponent: PuckComponent<
         isEditing={props.puck.isEditing}
         liveVisibility={props.section.visibleOnLivePage}
       >
-        <section
+        <Background
+          as="section"
+          background={props.section.backgroundColor}
           className="yip-breadcrumbs-root px-4 py-4"
           style={{
-            backgroundColor: getThemeColorCssValue(props.section.backgroundColor),
+            ...getSurfaceColorStyle(
+              props.section.backgroundColor,
+              streamDocument,
+            ),
             borderBottom: `1px solid color-mix(in srgb, ${currentPageColor} 10%, transparent)`,
           }}
         >
@@ -295,7 +279,7 @@ const IndividualPracticeBreadcrumbsSectionComponent: PuckComponent<
               })}
             </ol>
           </div>
-        </section>
+        </Background>
       </VisibilityWrapper>
     );
   };

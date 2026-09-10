@@ -22,16 +22,17 @@ import {
   type ImageType,
 } from "@yext/pages-components";
 import {
+  Background,
   type EnhancedTranslatableCTA,
   EntityField,
   getAnalyticsScopeHash,
+  getSurfaceColorStyle,
   getThemeColorCssValue,
   Image,
   resolveComponentData,
   type StyledTextValue,
   type StyledImageValue,
   type ThemeColor,
-  ThemeOptions,
   type TranslatableAssetImage,
   type TranslatableString,
   useDocument,
@@ -41,6 +42,13 @@ import {
   type YextEntityField,
   type YextFields,
 } from "@yext/visual-editor";
+import {
+  aspectRatioOptions,
+  createTextField as createEntityTextField,
+  defaultTextStyles,
+  sectionField,
+  whiteBackground,
+} from "../shared/sectionHelpers";
 
 type FooterImage = {
   image: YextEntityField<ImageType | ComplexImageType | TranslatableAssetImage>;
@@ -108,21 +116,8 @@ type IndividualPracticeFooterProps = {
   socialLinks: SocialLink[];
 };
 
-const whiteBackground: ThemeColor = {
-  selectedColor: "white",
-  contrastingColor: "black",
-};
-
 const defaultImageStyles: StyledImageValue = {
   borderRadius: "default",
-};
-
-const defaultTextStyles: StyledTextValue = {
-  fontFamily: "default",
-  fontSize: "default",
-  fontWeight: "default",
-  fontStyle: "default",
-  textTransform: "default",
 };
 
 const socialIcons: Record<
@@ -163,14 +158,7 @@ const createTextField = (
   defaultValue: string,
   fontColor?: ThemeColor,
 ): StyledTextProps => ({
-  text: {
-    field: "",
-    constantValue: {
-      defaultValue,
-      hasLocalizedValue: "true",
-    },
-    constantValueEnabled: true,
-  },
+  text: createEntityTextField(defaultValue),
   styles: defaultTextStyles,
   fontColor,
 });
@@ -215,25 +203,7 @@ const formatPhoneNumber = (
 
 const IndividualPracticeFooterFields: YextFields<IndividualPracticeFooterProps> =
   {
-    section: {
-      label: "Section",
-      type: "object",
-      objectFields: {
-        backgroundColor: {
-          label: "Background Color",
-          type: "basicSelector",
-          options: "BACKGROUND_COLOR",
-        },
-        visibleOnLivePage: {
-          label: "Visible on Live Page",
-          type: "radio",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-      },
-    },
+    section: sectionField,
     logoImage: {
       label: "Logo Image",
       type: "object",
@@ -248,7 +218,7 @@ const IndividualPracticeFooterFields: YextFields<IndividualPracticeFooterProps> 
         aspectRatio: {
           label: "Aspect Ratio",
           type: "basicSelector",
-          options: ThemeOptions.ASPECT_RATIO,
+          options: aspectRatioOptions,
         },
         imageConstrain: {
           label: "Image Constrain",
@@ -653,10 +623,15 @@ const IndividualPracticeFooterComponent: PuckComponent<IndividualPracticeFooterP
             }
           }
         `}</style>
-        <footer
+        <Background
+          as="footer"
+          background={props.section.backgroundColor}
           className="yip-footer-root"
           style={{
-            backgroundColor: getThemeColorCssValue(props.section.backgroundColor),
+            ...getSurfaceColorStyle(
+              props.section.backgroundColor,
+              streamDocument,
+            ),
             padding: "24px 0 48px",
           }}
         >
@@ -909,7 +884,7 @@ const IndividualPracticeFooterComponent: PuckComponent<IndividualPracticeFooterP
               </div>
             </div>
           </div>
-        </footer>
+        </Background>
       </VisibilityWrapper>
     );
   };

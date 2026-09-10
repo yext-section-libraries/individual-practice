@@ -34,9 +34,9 @@ import {
   normalizeLink,
   normalizeThemeColorToken,
   resolveComponentData,
-  ThemeOptions,
   useDocument,
 } from "@yext/visual-editor";
+import { aspectRatioOptions } from "../shared/sectionHelpers";
 
 type SharedHeaderVariant =
   | "centerLogoSplitNav"
@@ -418,7 +418,7 @@ const IndividualPracticeHeaderFields: YextFields<IndividualPracticeHeaderProps> 
               aspectRatio: {
                 label: "Aspect Ratio",
                 type: "basicSelector",
-                options: ThemeOptions.ASPECT_RATIO,
+                options: aspectRatioOptions,
               },
               imageConstrain: {
                 label: "Image Constrain",
@@ -568,7 +568,7 @@ const IndividualPracticeHeaderFields: YextFields<IndividualPracticeHeaderProps> 
       aspectRatio: {
         label: "Aspect Ratio",
         type: "basicSelector",
-        options: ThemeOptions.ASPECT_RATIO,
+        options: aspectRatioOptions,
       },
       imageConstrain: {
         label: "Image Constrain",

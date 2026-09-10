@@ -8,20 +8,20 @@ import {
   type ImageType,
 } from "@yext/pages-components";
 import {
+  Background,
   ComprehensiveCTA,
   type ComprehensiveCTAValue,
   EntityField,
   getDefaultForegroundColor,
   getDefaultRTF,
   getAnalyticsScopeHash,
+  getSurfaceColorStyle,
   getThemeColorCssValue,
   Image,
-  MaybeRTF,
   resolveComponentData,
   type StyledImageValue,
   type StyledTextValue,
   type ThemeColor,
-  ThemeOptions,
   type TranslatableAssetImage,
   type TranslatableRichText,
   type TranslatableString,
@@ -31,6 +31,13 @@ import {
   type YextEntityField,
   type YextFields,
 } from "@yext/visual-editor";
+import {
+  aspectRatioOptions,
+  defaultTextStyles,
+  renderRichText,
+  sectionField,
+  whiteBackground,
+} from "../shared/sectionHelpers";
 
 type OutreachImage = {
   image: YextEntityField<ImageType | ComplexImageType | TranslatableAssetImage>;
@@ -61,11 +68,6 @@ type IndividualPracticeCommunityOutreachSectionProps = {
   cta: Partial<ComprehensiveCTAValue>;
 };
 
-const whiteBackground: ThemeColor = {
-  selectedColor: "white",
-  contrastingColor: "black",
-};
-
 const primaryTextColor: ThemeColor = {
   selectedColor: "palette-primary",
   contrastingColor: "palette-primary-contrast",
@@ -78,14 +80,6 @@ const bodyTextColor: ThemeColor = {
 
 const defaultImageStyles: StyledImageValue = {
   borderRadius: "default",
-};
-
-const defaultTextStyles: StyledTextValue = {
-  fontFamily: "default",
-  fontSize: "default",
-  fontWeight: "default",
-  fontStyle: "default",
-  textTransform: "default",
 };
 
 const createImageField = (): OutreachImage => ({
@@ -149,25 +143,7 @@ const createOutlineCta = (): Partial<ComprehensiveCTAValue> => ({
 
 const IndividualPracticeCommunityOutreachSectionFields: YextFields<IndividualPracticeCommunityOutreachSectionProps> =
   {
-    section: {
-      label: "Section",
-      type: "object",
-      objectFields: {
-        backgroundColor: {
-          label: "Background Color",
-          type: "basicSelector",
-          options: "BACKGROUND_COLOR",
-        },
-        visibleOnLivePage: {
-          label: "Visible on Live Page",
-          type: "radio",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-      },
-    },
+    section: sectionField,
     heading: {
       label: "Heading",
       type: "object",
@@ -222,7 +198,7 @@ const IndividualPracticeCommunityOutreachSectionFields: YextFields<IndividualPra
         aspectRatio: {
           label: "Aspect Ratio",
           type: "basicSelector",
-          options: ThemeOptions.ASPECT_RATIO,
+          options: aspectRatioOptions,
         },
         imageConstrain: {
           label: "Image Constrain",
@@ -278,9 +254,7 @@ const IndividualPracticeCommunityOutreachSectionComponent: PuckComponent<Individ
         ? getThemeColorCssValue(props.body.fontColor)
         : sectionForeground,
     };
-    const body = resolveComponentData(props.body.text, locale, streamDocument, {
-      richTextStyleOverrides: bodyStyleOverrides,
-    });
+    const body = resolveComponentData(props.body.text, locale, streamDocument);
     const image = resolveComponentData(
       props.image.image,
       locale,
@@ -404,10 +378,15 @@ const IndividualPracticeCommunityOutreachSectionComponent: PuckComponent<Individ
             }
           }
         `}</style>
-        <section
+        <Background
+          as="section"
+          background={props.section.backgroundColor}
           className="yip-outreach-root px-4 py-pageSection-verticalPadding"
           style={{
-            backgroundColor: getThemeColorCssValue(props.section.backgroundColor),
+            ...getSurfaceColorStyle(
+              props.section.backgroundColor,
+              streamDocument,
+            ),
           }}
         >
           <div
@@ -468,14 +447,7 @@ const IndividualPracticeCommunityOutreachSectionComponent: PuckComponent<Individ
                     maxWidth: "49rem",
                   }}
                 >
-                  {React.isValidElement(body) ? (
-                    body
-                  ) : (
-                    <MaybeRTF
-                      data={typeof body === "string" ? body : ""}
-                      richTextStyleOverrides={bodyStyleOverrides}
-                    />
-                  )}
+                  {renderRichText(body, bodyStyleOverrides)}
                 </div>
               </EntityField>
             </div>
@@ -526,7 +498,7 @@ const IndividualPracticeCommunityOutreachSectionComponent: PuckComponent<Individ
               </EntityField>
             </div>
           </div>
-        </section>
+        </Background>
       </VisibilityWrapper>
     );
   };

@@ -1,13 +1,13 @@
 import type { SectionConfig } from "@yext/visual-editor";
 
-import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider } from "@yext/pages-components";
 import {
+  Background,
   EntityField,
   getAnalyticsScopeHash,
+  getSurfaceColorStyle,
   getThemeColorCssValue,
-  MaybeRTF,
   resolveComponentData,
   type StyledTextValue,
   type ThemeColor,
@@ -19,6 +19,13 @@ import {
   type YextComponentConfig,
   type YextFields,
 } from "@yext/visual-editor";
+import {
+  lightTextStyles as defaultTextStyles,
+  getScopedTypographyStyles,
+  renderRichText,
+  sectionField,
+  whiteBackground,
+} from "../shared/sectionHelpers";
 
 type StyledTextProps = {
   text: YextEntityField<TranslatableString>;
@@ -40,19 +47,6 @@ type IndividualPracticeAboutLocationSectionProps = {
   body: StyledRtfProps;
 };
 
-const whiteBackground: ThemeColor = {
-  selectedColor: "white",
-  contrastingColor: "black",
-};
-
-const defaultTextStyles: StyledTextValue = {
-  fontFamily: "default",
-  fontSize: "default",
-  fontWeight: "100",
-  fontStyle: "default",
-  textTransform: "default",
-};
-
 const aboutLocationBodyDefaultValue = {
   html:
     '<p dir="ltr" style="font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;"><span>[[name]] is [[address.city]]’s premier destination for integrated medical services. Located conveniently on Meridian Ave, we bridge the gap between a standard doctor’s office and a hospital emergency room.</span></p><p dir="ltr" style="font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;"><span>Our facility is designed for efficiency and patient comfort. By housing advanced imaging, a high-complexity lab, and a diverse team of specialists under one roof, we ensure that diagnosis and treatment happen in hours, not days. We are committed to reducing ER wait times and providing the [[address.city]] community with a higher standard of local healthcare.</span></p>',
@@ -61,25 +55,7 @@ const aboutLocationBodyDefaultValue = {
 
 const IndividualPracticeAboutLocationSectionFields: YextFields<IndividualPracticeAboutLocationSectionProps> =
   {
-    section: {
-      label: "Section",
-      type: "object",
-      objectFields: {
-        backgroundColor: {
-          label: "Background Color",
-          type: "basicSelector",
-          options: "BACKGROUND_COLOR",
-        },
-        visibleOnLivePage: {
-          label: "Visible on Live Page",
-          type: "radio",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-      },
-    },
+    section: sectionField,
     heading: {
       label: "Heading",
       type: "object",
@@ -141,14 +117,7 @@ const IndividualPracticeAboutLocationSectionComponent: PuckComponent<IndividualP
         ? getThemeColorCssValue(props.body.fontColor)
         : sectionForeground,
     };
-    const body = resolveComponentData(
-      props.body.text,
-      locale,
-      streamDocument,
-      {
-        richTextStyleOverrides: bodyStyleOverrides,
-      },
-    );
+    const body = resolveComponentData(props.body.text, locale, streamDocument);
 
     return (
       <VisibilityWrapper
@@ -156,90 +125,7 @@ const IndividualPracticeAboutLocationSectionComponent: PuckComponent<IndividualP
         liveVisibility={props.section.visibleOnLivePage}
       >
         <style>{`
-          .yip-about-root p {
-            font-family: var(--fontFamily-body-fontFamily);
-            font-size: var(--fontSize-body-fontSize);
-            line-height: 1.5;
-            font-weight: var(--fontWeight-body-fontWeight);
-            font-style: var(--fontStyle-body-fontStyle);
-            text-transform: var(--textTransform-body-textTransform);
-          }
-
-          .yip-about-root li {
-            font-family: var(--fontFamily-body-fontFamily);
-            font-size: var(--fontSize-body-fontSize);
-            line-height: 1.5;
-            font-weight: var(--fontWeight-body-fontWeight);
-            font-style: var(--fontStyle-body-fontStyle);
-            text-transform: var(--textTransform-body-textTransform);
-          }
-
-          .yip-about-root h1 {
-            font-family: var(--fontFamily-h1-fontFamily);
-            font-size: var(--fontSize-h1-fontSize);
-            line-height: 1.2;
-            font-weight: var(--fontWeight-h1-fontWeight);
-            font-style: var(--fontStyle-h1-fontStyle);
-            text-transform: var(--textTransform-h1-textTransform);
-          }
-
-          .yip-about-root h2 {
-            font-family: var(--fontFamily-h2-fontFamily);
-            font-size: var(--fontSize-h2-fontSize);
-            line-height: 1.2;
-            font-weight: var(--fontWeight-h2-fontWeight);
-            font-style: var(--fontStyle-h2-fontStyle);
-            text-transform: var(--textTransform-h2-textTransform);
-          }
-
-          .yip-about-root h3 {
-            font-family: var(--fontFamily-h3-fontFamily);
-            font-size: var(--fontSize-h3-fontSize);
-            line-height: 1.2;
-            font-weight: var(--fontWeight-h3-fontWeight);
-            font-style: var(--fontStyle-h3-fontStyle);
-            text-transform: var(--textTransform-h3-textTransform);
-          }
-
-          .yip-about-root h4 {
-            font-family: var(--fontFamily-h4-fontFamily);
-            font-size: var(--fontSize-h4-fontSize);
-            line-height: 1.2;
-            font-weight: var(--fontWeight-h4-fontWeight);
-            font-style: var(--fontStyle-h4-fontStyle);
-            text-transform: var(--textTransform-h4-textTransform);
-          }
-
-          .yip-about-root h5 {
-            font-family: var(--fontFamily-h5-fontFamily);
-            font-size: var(--fontSize-h5-fontSize);
-            line-height: 1.2;
-            font-weight: var(--fontWeight-h5-fontWeight);
-            font-style: var(--fontStyle-h5-fontStyle);
-            text-transform: var(--textTransform-h5-textTransform);
-          }
-
-          .yip-about-root h6 {
-            font-family: var(--fontFamily-h6-fontFamily);
-            font-size: var(--fontSize-h6-fontSize);
-            line-height: 1.2;
-            font-weight: var(--fontWeight-h6-fontWeight);
-            font-style: var(--fontStyle-h6-fontStyle);
-            text-transform: var(--textTransform-h6-textTransform);
-          }
-
-          .yip-about-root a.yip-about-text-link,
-          .yip-about-root .yip-about-rich-text a {
-            font-family: var(--fontFamily-link-fontFamily);
-            font-size: var(--fontSize-link-fontSize);
-            font-weight: var(--fontWeight-link-fontWeight);
-            font-style: var(--fontStyle-link-fontStyle);
-            line-height: 1.5;
-            text-decoration: underline;
-            text-transform: var(--textTransform-link-textTransform);
-            letter-spacing: var(--letterSpacing-link-letterSpacing);
-          }
-
+          ${getScopedTypographyStyles("yip-about-root")}
           @media (max-width: 48rem) {
             .yip-about-grid {
               gap: 1rem !important;
@@ -252,10 +138,15 @@ const IndividualPracticeAboutLocationSectionComponent: PuckComponent<IndividualP
             }
           }
         `}</style>
-        <section
+        <Background
+          as="section"
+          background={props.section.backgroundColor}
           className="yip-about-root px-4 py-pageSection-verticalPadding"
           style={{
-            backgroundColor: getThemeColorCssValue(props.section.backgroundColor),
+            ...getSurfaceColorStyle(
+              props.section.backgroundColor,
+              streamDocument,
+            ),
           }}
         >
           <div
@@ -322,18 +213,11 @@ const IndividualPracticeAboutLocationSectionComponent: PuckComponent<IndividualP
                   lineHeight: 1.65,
                 }}
               >
-                {React.isValidElement(body) ? (
-                  body
-                ) : (
-                  <MaybeRTF
-                    data={typeof body === "string" ? body : ""}
-                    richTextStyleOverrides={bodyStyleOverrides}
-                  />
-                )}
+                {renderRichText(body, bodyStyleOverrides)}
               </div>
             </EntityField>
           </div>
-        </section>
+        </Background>
       </VisibilityWrapper>
     );
   };

@@ -8,14 +8,15 @@ import {
   type ImageType,
 } from "@yext/pages-components";
 import {
+  Background,
   ComprehensiveCTA,
   type ComprehensiveCTAValue,
   EntityField,
   getDefaultForegroundColor,
   getDefaultRTF,
   getAnalyticsScopeHash,
+  getSurfaceColorStyle,
   getThemeColorCssValue,
-  MaybeRTF,
   resolveComponentData,
   type StyledTextValue,
   type ThemeColor,
@@ -28,6 +29,13 @@ import {
   type YextEntityField,
   type YextFields,
 } from "@yext/visual-editor";
+import {
+  getImageData,
+  lightTextStyles as defaultTextStyles,
+  renderRichText,
+  sectionField,
+  whiteBackground,
+} from "../shared/sectionHelpers";
 
 type ResourceImage = {
   image: YextEntityField<ImageType | ComplexImageType | TranslatableAssetImage>;
@@ -60,22 +68,9 @@ type IndividualPracticePatientResourcesSectionProps = {
   items: ResourceItem[];
 };
 
-const whiteBackground: ThemeColor = {
-  selectedColor: "white",
-  contrastingColor: "black",
-};
-
 const primaryBackground: ThemeColor = {
   selectedColor: "palette-primary",
   contrastingColor: "palette-primary-contrast",
-};
-
-const defaultTextStyles: StyledTextValue = {
-  fontFamily: "default",
-  fontSize: "default",
-  fontWeight: "100",
-  fontStyle: "default",
-  textTransform: "default",
 };
 
 const createImageField = (): ResourceImage => ({
@@ -134,81 +129,9 @@ const createChipCta = (label: string): Partial<ComprehensiveCTAValue> => ({
   },
 });
 
-const getImageSource = (
-  image: ImageType | ComplexImageType | TranslatableAssetImage | undefined,
-): string | undefined => {
-  if (!image || typeof image !== "object") {
-    return undefined;
-  }
-
-  if ("url" in image && typeof image.url === "string" && image.url.trim()) {
-    return image.url;
-  }
-
-  if (
-    "image" in image &&
-    image.image &&
-    typeof image.image === "object" &&
-    "url" in image.image &&
-    typeof image.image.url === "string" &&
-    image.image.url.trim()
-  ) {
-    return image.image.url;
-  }
-
-  return undefined;
-};
-
-const getImageAlt = (
-  image: ImageType | ComplexImageType | TranslatableAssetImage | undefined,
-): string => {
-  if (!image || typeof image !== "object") {
-    return "";
-  }
-
-  if (
-    "alternateText" in image &&
-    typeof image.alternateText === "string" &&
-    image.alternateText.trim()
-  ) {
-    return image.alternateText;
-  }
-
-  if (
-    "image" in image &&
-    image.image &&
-    typeof image.image === "object" &&
-    "alternateText" in image.image &&
-    typeof image.image.alternateText === "string" &&
-    image.image.alternateText.trim()
-  ) {
-    return image.image.alternateText;
-  }
-
-  return "";
-};
-
 const IndividualPracticePatientResourcesSectionFields: YextFields<IndividualPracticePatientResourcesSectionProps> =
   {
-    section: {
-      label: "Section",
-      type: "object",
-      objectFields: {
-        backgroundColor: {
-          label: "Background Color",
-          type: "basicSelector",
-          options: "BACKGROUND_COLOR",
-        },
-        visibleOnLivePage: {
-          label: "Visible on Live Page",
-          type: "radio",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-      },
-    },
+    section: sectionField,
     panelBackgroundColor: {
       label: "Panel Background Color",
       type: "basicSelector",
@@ -306,21 +229,13 @@ const IndividualPracticePatientResourcesSectionComponent: PuckComponent<Individu
         ? getThemeColorCssValue(props.body.fontColor)
         : panelForeground,
     };
-    const body = resolveComponentData(
-      props.body.text,
-      locale,
-      streamDocument,
-      {
-        richTextStyleOverrides: bodyStyleOverrides,
-      },
-    );
+    const body = resolveComponentData(props.body.text, locale, streamDocument);
     const image = resolveComponentData(
       props.image.image,
       locale,
       streamDocument,
     ) as ImageType | ComplexImageType | TranslatableAssetImage | undefined;
-    const imageSource = getImageSource(image);
-    const imageAlt = getImageAlt(image);
+    const { src: imageSource, alt: imageAlt } = getImageData(image);
 
     return (
       <VisibilityWrapper
@@ -464,11 +379,16 @@ const IndividualPracticePatientResourcesSectionComponent: PuckComponent<Individu
             }
           }
         `}</style>
-        <section
+        <Background
+          as="section"
+          background={props.section.backgroundColor}
           id="resources"
           className="yip-patient-resources-root px-4 py-pageSection-verticalPadding"
           style={{
-            backgroundColor: getThemeColorCssValue(props.section.backgroundColor),
+            ...getSurfaceColorStyle(
+              props.section.backgroundColor,
+              streamDocument,
+            ),
           }}
         >
           <div
@@ -480,8 +400,9 @@ const IndividualPracticePatientResourcesSectionComponent: PuckComponent<Individu
             <div
               className="yip-resources-panel"
               style={{
-                backgroundColor: getThemeColorCssValue(
+                ...getSurfaceColorStyle(
                   props.panelBackgroundColor,
+                  streamDocument,
                 ),
                 borderRadius: "16px",
                 display: "grid",
@@ -567,14 +488,7 @@ const IndividualPracticePatientResourcesSectionComponent: PuckComponent<Individu
                       margin: 0,
                     }}
                   >
-                    {React.isValidElement(body) ? (
-                      body
-                    ) : (
-                      <MaybeRTF
-                        data={typeof body === "string" ? body : ""}
-                        richTextStyleOverrides={bodyStyleOverrides}
-                      />
-                    )}
+                    {renderRichText(body, bodyStyleOverrides)}
                   </div>
                 </EntityField>
                 <div
@@ -622,7 +536,7 @@ const IndividualPracticePatientResourcesSectionComponent: PuckComponent<Individu
               </div>
             </div>
           </div>
-        </section>
+        </Background>
       </VisibilityWrapper>
     );
   };

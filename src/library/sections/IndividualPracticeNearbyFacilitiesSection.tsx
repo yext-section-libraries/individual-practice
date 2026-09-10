@@ -10,11 +10,13 @@ import {
   type AddressType,
 } from "@yext/pages-components";
 import {
+  Background,
   ComprehensiveCTA,
   type ComprehensiveCTAValue,
   EntityField,
   getAnalyticsScopeHash,
   getDefaultForegroundColor,
+  getSurfaceColorStyle,
   getThemeColorCssValue,
   MapboxStaticMapComponent,
   mapboxStaticMapStyleOptions,
@@ -34,6 +36,11 @@ import {
   type YextEntityField,
   type YextFields,
 } from "@yext/visual-editor";
+import {
+  defaultTextStyles,
+  sectionField,
+  whiteBackground,
+} from "../shared/sectionHelpers";
 
 type CoordinateValue = {
   latitude: number;
@@ -104,11 +111,6 @@ type IndividualPracticeNearbyFacilitiesSectionProps = {
   secondaryCta: NearbyConfiguredCtaProps;
 };
 
-const whiteBackground: ThemeColor = {
-  selectedColor: "white",
-  contrastingColor: "black",
-};
-
 const titleColor: ThemeColor = {
   selectedColor: "palette-primary",
   contrastingColor: "palette-primary-contrast",
@@ -117,14 +119,6 @@ const titleColor: ThemeColor = {
 const lightPanelBackground: ThemeColor = {
   selectedColor: "palette-quaternary-light",
   contrastingColor: "black",
-};
-
-const defaultTextStyles: StyledTextValue = {
-  fontFamily: "default",
-  fontSize: "default",
-  fontWeight: "default",
-  fontStyle: "default",
-  textTransform: "default",
 };
 
 const EARTH_RADIUS_MI = 3958.7613;
@@ -257,25 +251,7 @@ const formatPhone = (
 
 const IndividualPracticeNearbyFacilitiesSectionFields: YextFields<IndividualPracticeNearbyFacilitiesSectionProps> =
   {
-    section: {
-      label: "Section",
-      type: "object",
-      objectFields: {
-        backgroundColor: {
-          label: "Background Color",
-          type: "basicSelector",
-          options: "BACKGROUND_COLOR",
-        },
-        visibleOnLivePage: {
-          label: "Visible on Live Page",
-          type: "radio",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-      },
-    },
+    section: sectionField,
     heading: {
       label: "Heading",
       type: "object",
@@ -671,10 +647,15 @@ const IndividualPracticeNearbyFacilitiesSectionComponent: PuckComponent<Individu
             }
           }
         `}</style>
-        <section
+        <Background
+          as="section"
+          background={props.section.backgroundColor}
           className="yip-nearby-root px-4 py-pageSection-verticalPadding"
           style={{
-            backgroundColor: getThemeColorCssValue(props.section.backgroundColor),
+            ...getSurfaceColorStyle(
+              props.section.backgroundColor,
+              streamDocument,
+            ),
           }}
         >
           <div
@@ -842,8 +823,9 @@ const IndividualPracticeNearbyFacilitiesSectionComponent: PuckComponent<Individu
                         <article
                           key={locationData.id ?? locationData.name ?? index}
                           style={{
-                            backgroundColor: getThemeColorCssValue(
+                            ...getSurfaceColorStyle(
                               props.cardBackgroundColor,
+                              streamDocument,
                             ),
                             border: `1px solid color-mix(in srgb, ${cardForeground} 8%, transparent)`,
                             borderRadius: "8px",
@@ -881,8 +863,9 @@ const IndividualPracticeNearbyFacilitiesSectionComponent: PuckComponent<Individu
                           {address || showPhone ? (
                             <div
                               style={{
-                                backgroundColor: getThemeColorCssValue(
+                                ...getSurfaceColorStyle(
                                   props.addressPanelBackgroundColor,
+                                  streamDocument,
                                 ),
                                 color: addressPanelForeground,
                                 padding: "12px",
@@ -967,7 +950,7 @@ const IndividualPracticeNearbyFacilitiesSectionComponent: PuckComponent<Individu
               </div>
             </div>
           </div>
-        </section>
+        </Background>
       </VisibilityWrapper>
     );
   };

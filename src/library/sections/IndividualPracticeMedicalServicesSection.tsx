@@ -8,6 +8,7 @@ import {
   type ImageType,
 } from "@yext/pages-components";
 import {
+  Background,
   ComprehensiveCTA,
   createItemSource,
   type EnhancedTranslatableCTA,
@@ -16,9 +17,9 @@ import {
   getDefaultForegroundColor,
   getDefaultRTF,
   getAnalyticsScopeHash,
+  getSurfaceColorStyle,
   getThemeColorCssValue,
   Image,
-  MaybeRTF,
   resolveComponentData,
   type StyledButtonValue,
   type StyledLinkValue,
@@ -35,6 +36,14 @@ import {
   type YextEntityField,
   type YextFields,
 } from "@yext/visual-editor";
+import {
+  aspectRatioOptions,
+  createTextField as createEntityTextField,
+  defaultTextStyles,
+  renderRichText,
+  sectionField,
+  whiteBackground,
+} from "../shared/sectionHelpers";
 
 type StyledTextProps = {
   text: YextEntityField<TranslatableString>;
@@ -85,21 +94,8 @@ type IndividualPracticeMedicalServicesSectionProps = {
   items: typeof serviceItemsSource.value;
 };
 
-const whiteBackground: ThemeColor = {
-  selectedColor: "white",
-  contrastingColor: "black",
-};
-
 const defaultImageStyles: StyledImageValue = {
   borderRadius: "default",
-};
-
-const defaultTextStyles: StyledTextValue = {
-  fontFamily: "default",
-  fontSize: "default",
-  fontWeight: "default",
-  fontStyle: "default",
-  textTransform: "default",
 };
 
 const createImageField = (
@@ -120,27 +116,13 @@ const createTextField = (
   defaultValue: string,
   fontColor?: ThemeColor,
 ): StyledTextProps => ({
-  text: {
-    field: "",
-    constantValue: {
-      defaultValue,
-      hasLocalizedValue: "true",
-    },
-    constantValueEnabled: true,
-  },
+  text: createEntityTextField(defaultValue),
   styles: defaultTextStyles,
   fontColor,
 });
 
 const createServiceTextField = (defaultValue: string): ServiceTextProps => ({
-  text: {
-    field: "",
-    constantValue: {
-      defaultValue,
-      hasLocalizedValue: "true",
-    },
-    constantValueEnabled: true,
-  },
+  text: createEntityTextField(defaultValue),
 });
 
 const createRtfField = (defaultValue: string): ServiceRtfProps => ({
@@ -275,25 +257,7 @@ const serviceItemsSource = createItemSource<ServiceItem>({
 
 const IndividualPracticeMedicalServicesSectionFields: YextFields<IndividualPracticeMedicalServicesSectionProps> =
   {
-    section: {
-      label: "Section",
-      type: "object",
-      objectFields: {
-        backgroundColor: {
-          label: "Background Color",
-          type: "basicSelector",
-          options: "BACKGROUND_COLOR",
-        },
-        visibleOnLivePage: {
-          label: "Visible on Live Page",
-          type: "radio",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-      },
-    },
+    section: sectionField,
     heading: {
       label: "Heading",
       type: "object",
@@ -346,7 +310,7 @@ const IndividualPracticeMedicalServicesSectionFields: YextFields<IndividualPract
         imageAspectRatio: {
           label: "Image Aspect Ratio",
           type: "basicSelector",
-          options: "ASPECT_RATIO",
+          options: aspectRatioOptions,
         },
         imageConstrain: {
           label: "Image Constrain",
@@ -436,11 +400,13 @@ const IndividualPracticeMedicalServicesSectionComponent: PuckComponent<
       streamDocument,
     )?.toString() ?? "";
   const titleStyles = props.cardStyles.titleTextStyles;
-  const sectionBackground = getThemeColorCssValue(
+  const sectionSurfaceStyle = getSurfaceColorStyle(
     props.section.backgroundColor,
+    streamDocument,
   );
-  const cardBackground = getThemeColorCssValue(
+  const cardSurfaceStyle = getSurfaceColorStyle(
     props.cardStyles.cardBackgroundColor,
+    streamDocument,
   );
   const cardForeground = getThemeColorCssValue(
     props.cardStyles.cardBackgroundColor.contrastingColor,
@@ -548,11 +514,13 @@ const IndividualPracticeMedicalServicesSectionComponent: PuckComponent<
             }
           }
         `}</style>
-      <section
+      <Background
+        as="section"
+        background={props.section.backgroundColor}
         id="specialties"
         className="yip-medical-services-root px-4 py-pageSection-verticalPadding"
         style={{
-          backgroundColor: sectionBackground,
+          ...sectionSurfaceStyle,
         }}
       >
         <div
@@ -639,9 +607,6 @@ const IndividualPracticeMedicalServicesSectionComponent: PuckComponent<
                       item.description.text,
                       locale,
                       streamDocument,
-                      {
-                        richTextStyleOverrides: descriptionStyleOverrides,
-                      },
                     )
                   : undefined;
                 const image = item.image as
@@ -671,7 +636,7 @@ const IndividualPracticeMedicalServicesSectionComponent: PuckComponent<
                   <article
                     key={`${title}-${index}`}
                     style={{
-                      backgroundColor: cardBackground,
+                      ...cardSurfaceStyle,
                       borderRadius: "20px",
                       boxShadow: cardShadow,
                       display: "flex",
@@ -729,15 +694,9 @@ const IndividualPracticeMedicalServicesSectionComponent: PuckComponent<
                           margin: 0,
                         }}
                       >
-                        {React.isValidElement(description) ? (
-                          description
-                        ) : (
-                          <MaybeRTF
-                            data={
-                              typeof description === "string" ? description : ""
-                            }
-                            richTextStyleOverrides={descriptionStyleOverrides}
-                          />
+                        {renderRichText(
+                          description,
+                          descriptionStyleOverrides,
                         )}
                       </div>
                     </div>
@@ -799,7 +758,7 @@ const IndividualPracticeMedicalServicesSectionComponent: PuckComponent<
             </div>
           </EntityField>
         </div>
-      </section>
+      </Background>
     </VisibilityWrapper>
   );
 };

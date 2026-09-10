@@ -1,13 +1,11 @@
 import type { SectionConfig } from "@yext/visual-editor";
 
-import { isValidElement } from "react";
 import { PuckComponent } from "@puckeditor/core";
 import { CircleSlash2 } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import {
   Body,
   EntityField,
-  MaybeRTF,
   PageSection,
   type StyledTextValue,
   type ThemeColor,
@@ -20,9 +18,13 @@ import {
   getDefaultRTF,
   resolveComponentData,
   resolveYextEntityField,
-  toPuckFields,
   useDocument,
 } from "@yext/visual-editor";
+import {
+  isRichTextEmpty,
+  renderRichText,
+  sectionField,
+} from "../shared/sectionHelpers";
 
 type IndividualPracticeBannerProps = {
   data: {
@@ -37,23 +39,6 @@ type IndividualPracticeBannerProps = {
     backgroundColor: ThemeColor;
     visibleOnLivePage: boolean;
   };
-};
-
-const isRichTextEmpty = (value: unknown): boolean => {
-  if (!value) {
-    return true;
-  }
-
-  if (typeof value === "string") {
-    return value.trim() === "";
-  }
-
-  if (typeof value === "object" && "html" in value) {
-    const html = (value as { html?: unknown }).html;
-    return typeof html !== "string" || html.trim() === "";
-  }
-
-  return false;
 };
 
 const IndividualPracticeBannerFields: YextFields<IndividualPracticeBannerProps> = {
@@ -94,25 +79,7 @@ const IndividualPracticeBannerFields: YextFields<IndividualPracticeBannerProps> 
       },
     },
   },
-  section: {
-    label: "Section",
-    type: "object",
-    objectFields: {
-      backgroundColor: {
-        label: "Background Color",
-        type: "basicSelector",
-        options: "BACKGROUND_COLOR",
-      },
-      visibleOnLivePage: {
-        label: "Visible on Live Page",
-        type: "radio",
-        options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
-        ],
-      },
-    },
-  },
+  section: sectionField,
 };
 
 const IndividualPracticeBannerComponent: PuckComponent<IndividualPracticeBannerProps> = ({
@@ -165,7 +132,6 @@ const IndividualPracticeBannerComponent: PuckComponent<IndividualPracticeBannerP
     data.text,
     i18n.language,
     streamDocument,
-    { richTextStyleOverrides },
   );
 
   if (!resolvedText) {
@@ -189,14 +155,7 @@ const IndividualPracticeBannerComponent: PuckComponent<IndividualPracticeBannerP
         displayName="Banner Text"
         fieldId={data.text.field}
       >
-        {isValidElement(resolvedText) ? (
-          resolvedText
-        ) : typeof resolvedText === "string" ? (
-          <MaybeRTF
-            data={resolvedText}
-            richTextStyleOverrides={richTextStyleOverrides}
-          />
-        ) : null}
+        {renderRichText(resolvedText, richTextStyleOverrides)}
       </EntityField>
     </PageSection>
   );
@@ -207,7 +166,7 @@ const IndividualPracticeBannerComponent: PuckComponent<IndividualPracticeBannerP
  */
 export const IndividualPracticeBanner: YextComponentConfig<IndividualPracticeBannerProps> = {
   label: "Banner",
-  fields: toPuckFields(IndividualPracticeBannerFields),
+  fields: IndividualPracticeBannerFields,
   defaultProps: {
     data: {
       text: {

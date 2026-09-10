@@ -11,20 +11,20 @@ import {
   type StatusParams,
 } from "@yext/pages-components";
 import {
+  Background,
   ComprehensiveCTA,
   type ComprehensiveCTAValue,
   EntityField,
   getDefaultForegroundColor,
   getAnalyticsScopeHash,
   getDefaultRTF,
+  getSurfaceColorStyle,
   getThemeColorCssValue,
   Image,
-  MaybeRTF,
   resolveComponentData,
   type StyledTextValue,
   type StyledImageValue,
   type ThemeColor,
-  ThemeOptions,
   type TranslatableAssetImage,
   type TranslatableRichText,
   type TranslatableString,
@@ -34,6 +34,14 @@ import {
   type YextEntityField,
   type YextFields,
 } from "@yext/visual-editor";
+import {
+  aspectRatioOptions,
+  defaultTextStyles,
+  primaryColor,
+  renderRichText,
+  sectionField,
+  whiteBackground,
+} from "../shared/sectionHelpers";
 
 type HeroImage = {
   image: YextEntityField<ImageType | ComplexImageType | TranslatableAssetImage>;
@@ -78,26 +86,8 @@ type IndividualPracticeHeroSectionProps = {
   tertiaryCta: Partial<ComprehensiveCTAValue>;
 };
 
-const whiteBackground: ThemeColor = {
-  selectedColor: "white",
-  contrastingColor: "black",
-};
-
 const defaultImageStyles: StyledImageValue = {
   borderRadius: "default",
-};
-
-const defaultTextStyles: StyledTextValue = {
-  fontFamily: "default",
-  fontSize: "default",
-  fontWeight: "default",
-  fontStyle: "default",
-  textTransform: "default",
-};
-
-const primaryColor: ThemeColor = {
-  selectedColor: "palette-primary",
-  contrastingColor: "palette-primary-contrast",
 };
 
 const secondaryColor: ThemeColor = {
@@ -171,25 +161,7 @@ const createHeroCta = (
 
 const IndividualPracticeHeroSectionFields: YextFields<IndividualPracticeHeroSectionProps> =
   {
-    section: {
-      label: "Section",
-      type: "object",
-      objectFields: {
-        backgroundColor: {
-          label: "Background Color",
-          type: "basicSelector",
-          options: "BACKGROUND_COLOR",
-        },
-        visibleOnLivePage: {
-          label: "Visible on Live Page",
-          type: "radio",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-      },
-    },
+    section: sectionField,
     cardBackgroundColor: {
       label: "Card Background Color",
       type: "basicSelector",
@@ -322,7 +294,7 @@ const IndividualPracticeHeroSectionFields: YextFields<IndividualPracticeHeroSect
         aspectRatio: {
           label: "Aspect Ratio",
           type: "basicSelector",
-          options: ThemeOptions.ASPECT_RATIO,
+          options: aspectRatioOptions,
         },
         imageConstrain: {
           label: "Image Constrain",
@@ -406,14 +378,7 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
       resolvedHeading;
     const subheading =
       resolvedSubheading;
-    const body = resolveComponentData(
-      props.body.text,
-      locale,
-      streamDocument,
-      {
-        richTextStyleOverrides: heroBodyStyleOverrides,
-      },
-    );
+    const body = resolveComponentData(props.body.text, locale, streamDocument);
     const resolvedHours = resolveComponentData(
       props.hours,
       locale,
@@ -422,7 +387,7 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
     const currentStatusTemplate = ({ isOpen }: StatusParams) => (
       <span
         style={{
-          backgroundColor: getThemeColorCssValue(hoursStatusBackgroundColor),
+          ...getSurfaceColorStyle(hoursStatusBackgroundColor, streamDocument),
           borderRadius: "999px",
           color: hoursStatusForeground,
           display: "inline-flex",
@@ -554,10 +519,15 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
             }
           }
         `}</style>
-        <section
+        <Background
+          as="section"
+          background={props.section.backgroundColor}
           className="yip-hero-root px-4 py-pageSection-verticalPadding"
           style={{
-            backgroundColor: getThemeColorCssValue(props.section.backgroundColor),
+            ...getSurfaceColorStyle(
+              props.section.backgroundColor,
+              streamDocument,
+            ),
           }}
         >
           <div
@@ -570,7 +540,10 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
               className="yip-hero-card"
               style={{
                 alignItems: "center",
-                backgroundColor: getThemeColorCssValue(props.cardBackgroundColor),
+                ...getSurfaceColorStyle(
+                  props.cardBackgroundColor,
+                  streamDocument,
+                ),
                 borderRadius: "20px",
                 display: "grid",
                 gap: "clamp(1.5rem, 3vw, 3.75rem)",
@@ -713,14 +686,7 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
                       maxWidth: "40rem",
                     }}
                   >
-                    {React.isValidElement(body) ? (
-                      body
-                    ) : (
-                      <MaybeRTF
-                        data={typeof body === "string" ? body : ""}
-                        richTextStyleOverrides={heroBodyStyleOverrides}
-                      />
-                    )}
+                    {renderRichText(body, heroBodyStyleOverrides)}
                   </div>
                 </EntityField>
                 <div
@@ -818,7 +784,7 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
               ) : null}
             </div>
           </div>
-        </section>
+        </Background>
       </VisibilityWrapper>
     );
   };

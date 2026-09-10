@@ -1,13 +1,14 @@
 import type { SectionConfig } from "@yext/visual-editor";
 
-import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider } from "@yext/pages-components";
 import {
+  Background,
   EntityField,
   getAggregateRating,
   getAnalyticsScopeHash,
   getDefaultForegroundColor,
+  getSurfaceColorStyle,
   getThemeColorCssValue,
   resolveComponentData,
   type StyledTextValue,
@@ -19,6 +20,13 @@ import {
   type YextEntityField,
   type YextFields,
 } from "@yext/visual-editor";
+import {
+  getScopedTypographyStyles,
+  lightTextStyles as defaultTextStyles,
+  primaryColor,
+  sectionField,
+  whiteBackground,
+} from "../shared/sectionHelpers";
 
 type FirstPartyReview = {
   authorName?: string;
@@ -55,45 +63,9 @@ type IndividualPracticePatientReviewsSectionProps = {
   iconColor: ThemeColor;
 };
 
-const whiteBackground: ThemeColor = {
-  selectedColor: "white",
-  contrastingColor: "black",
-};
-
-const primaryColor: ThemeColor = {
-  selectedColor: "palette-primary",
-  contrastingColor: "palette-primary-contrast",
-};
-
-const defaultTextStyles: StyledTextValue = {
-  fontFamily: "default",
-  fontSize: "default",
-  fontWeight: "100",
-  fontStyle: "default",
-  textTransform: "default",
-};
-
 const IndividualPracticePatientReviewsSectionFields: YextFields<IndividualPracticePatientReviewsSectionProps> =
   {
-    section: {
-      label: "Section",
-      type: "object",
-      objectFields: {
-        backgroundColor: {
-          label: "Background Color",
-          type: "basicSelector",
-          options: "BACKGROUND_COLOR",
-        },
-        visibleOnLivePage: {
-          label: "Visible on Live Page",
-          type: "radio",
-          options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
-          ],
-        },
-      },
-    },
+    section: sectionField,
     heading: {
       label: "Heading",
       type: "object",
@@ -164,95 +136,16 @@ const IndividualPracticePatientReviewsSectionComponent: PuckComponent<Individual
         isEditing={props.puck.isEditing}
         liveVisibility={props.section.visibleOnLivePage}
       >
-        <style>{`
-          .yip-patient-reviews-root p {
-            font-family: var(--fontFamily-body-fontFamily);
-            font-size: var(--fontSize-body-fontSize);
-            line-height: 1.5;
-            font-weight: var(--fontWeight-body-fontWeight);
-            font-style: var(--fontStyle-body-fontStyle);
-            text-transform: var(--textTransform-body-textTransform);
-          }
-
-          .yip-patient-reviews-root li {
-            font-family: var(--fontFamily-body-fontFamily);
-            font-size: var(--fontSize-body-fontSize);
-            line-height: 1.5;
-            font-weight: var(--fontWeight-body-fontWeight);
-            font-style: var(--fontStyle-body-fontStyle);
-            text-transform: var(--textTransform-body-textTransform);
-          }
-
-          .yip-patient-reviews-root h1 {
-            font-family: var(--fontFamily-h1-fontFamily);
-            font-size: var(--fontSize-h1-fontSize);
-            line-height: 1.2;
-            font-weight: var(--fontWeight-h1-fontWeight);
-            font-style: var(--fontStyle-h1-fontStyle);
-            text-transform: var(--textTransform-h1-textTransform);
-          }
-
-          .yip-patient-reviews-root h2 {
-            font-family: var(--fontFamily-h2-fontFamily);
-            font-size: var(--fontSize-h2-fontSize);
-            line-height: 1.2;
-            font-weight: var(--fontWeight-h2-fontWeight);
-            font-style: var(--fontStyle-h2-fontStyle);
-            text-transform: var(--textTransform-h2-textTransform);
-          }
-
-          .yip-patient-reviews-root h3 {
-            font-family: var(--fontFamily-h3-fontFamily);
-            font-size: var(--fontSize-h3-fontSize);
-            line-height: 1.2;
-            font-weight: var(--fontWeight-h3-fontWeight);
-            font-style: var(--fontStyle-h3-fontStyle);
-            text-transform: var(--textTransform-h3-textTransform);
-          }
-
-          .yip-patient-reviews-root h4 {
-            font-family: var(--fontFamily-h4-fontFamily);
-            font-size: var(--fontSize-h4-fontSize);
-            line-height: 1.2;
-            font-weight: var(--fontWeight-h4-fontWeight);
-            font-style: var(--fontStyle-h4-fontStyle);
-            text-transform: var(--textTransform-h4-textTransform);
-          }
-
-          .yip-patient-reviews-root h5 {
-            font-family: var(--fontFamily-h5-fontFamily);
-            font-size: var(--fontSize-h5-fontSize);
-            line-height: 1.2;
-            font-weight: var(--fontWeight-h5-fontWeight);
-            font-style: var(--fontStyle-h5-fontStyle);
-            text-transform: var(--textTransform-h5-textTransform);
-          }
-
-          .yip-patient-reviews-root h6 {
-            font-family: var(--fontFamily-h6-fontFamily);
-            font-size: var(--fontSize-h6-fontSize);
-            line-height: 1.2;
-            font-weight: var(--fontWeight-h6-fontWeight);
-            font-style: var(--fontStyle-h6-fontStyle);
-            text-transform: var(--textTransform-h6-textTransform);
-          }
-
-          .yip-patient-reviews-root a.yip-patient-reviews-text-link,
-          .yip-patient-reviews-root .yip-patient-reviews-rich-text a {
-            font-family: var(--fontFamily-link-fontFamily);
-            font-size: var(--fontSize-link-fontSize);
-            font-weight: var(--fontWeight-link-fontWeight);
-            font-style: var(--fontStyle-link-fontStyle);
-            line-height: 1.5;
-            text-decoration: underline;
-            text-transform: var(--textTransform-link-textTransform);
-            letter-spacing: var(--letterSpacing-link-letterSpacing);
-          }
-        `}</style>
-        <section
+        <style>{getScopedTypographyStyles("yip-patient-reviews-root")}</style>
+        <Background
+          as="section"
+          background={props.section.backgroundColor}
           className="yip-patient-reviews-root px-4 py-pageSection-verticalPadding"
           style={{
-            backgroundColor: getThemeColorCssValue(props.section.backgroundColor),
+            ...getSurfaceColorStyle(
+              props.section.backgroundColor,
+              streamDocument,
+            ),
           }}
         >
           <div
@@ -329,8 +222,9 @@ const IndividualPracticePatientReviewsSectionComponent: PuckComponent<Individual
                   <blockquote
                     key={`${review.authorName ?? "review"}-${index}`}
                     style={{
-                      backgroundColor: getThemeColorCssValue(
+                      ...getSurfaceColorStyle(
                         props.cardBackgroundColor,
+                        streamDocument,
                       ),
                       borderRadius: "20px",
                       margin: 0,
@@ -417,7 +311,7 @@ const IndividualPracticePatientReviewsSectionComponent: PuckComponent<Individual
               </p>
             )}
           </div>
-        </section>
+        </Background>
       </VisibilityWrapper>
     );
   };
