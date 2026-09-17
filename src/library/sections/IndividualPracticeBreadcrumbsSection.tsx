@@ -4,6 +4,7 @@ import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider, Link } from "@yext/pages-components";
 import {
+  msg,
   Background,
   EntityField,
   getAnalyticsScopeHash,
@@ -20,6 +21,7 @@ import {
   type YextComponentConfig,
   type YextEntityField,
   type YextFields,
+  pt,
 } from "@yext/visual-editor";
 import {
   primaryColor,
@@ -69,37 +71,37 @@ const IndividualPracticeBreadcrumbsSectionFields: YextFields<IndividualPracticeB
   {
     section: sectionField,
     rootLabel: {
-      label: "Root Label",
+      label: msg("fields.rootLabel", "Root Label"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.string"],
           },
         },
         styles: {
-          label: "Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     includeCurrentLocation: {
-      label: "Include Current Location",
+      label: msg("fields.includeCurrentLocation", "Include Current Location"),
       type: "radio",
       options: [
-        { label: "Yes", value: true },
-        { label: "No", value: false },
+        { label: msg("fields.options.yes", "Yes"), value: true },
+        { label: msg("fields.options.no", "No"), value: false },
       ],
     },
     separator: {
-      label: "Separator",
+      label: msg("fields.separator", "Separator"),
       type: "text",
     },
   };
@@ -123,8 +125,10 @@ const IndividualPracticeBreadcrumbsSectionComponent: PuckComponent<
           padding: "18px 24px",
         }}
       >
-        No breadcrumbs available (section will be hidden on live page). Create a
-        directory to enable breadcrumbs.
+        {pt(
+          "noBreadcrumbsAvailable",
+          "No breadcrumbs available (section will be hidden on live page). Create a directory to enable breadcrumbs.",
+        )}
       </p>
     ) : (
       <></>

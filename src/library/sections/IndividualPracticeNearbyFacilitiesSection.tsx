@@ -3,6 +3,7 @@ import type { SectionConfig } from "@yext/visual-editor";
 import * as React from "react";
 import { parsePhoneNumber } from "awesome-phonenumber";
 import type { PuckComponent } from "@puckeditor/core";
+import { useTranslation } from "react-i18next";
 import {
   Address,
   AnalyticsScopeProvider,
@@ -10,6 +11,7 @@ import {
   type AddressType,
 } from "@yext/pages-components";
 import {
+  msg,
   Background,
   ComprehensiveCTA,
   type ComprehensiveCTAValue,
@@ -35,6 +37,7 @@ import {
   type YextComponentConfig,
   type YextEntityField,
   type YextFields,
+  pt,
 } from "@yext/visual-editor";
 import {
   defaultTextStyles,
@@ -199,7 +202,9 @@ const createNearbyCtaStyles = (): NearbyCtaStyles => ({
   },
 });
 
-const createNearbyConfiguredCta = (label: string): NearbyConfiguredCtaProps => ({
+const createNearbyConfiguredCta = (
+  label: string,
+): NearbyConfiguredCtaProps => ({
   label: { defaultValue: label },
   styles: createNearbyCtaStyles(),
 });
@@ -253,43 +258,43 @@ const IndividualPracticeNearbyFacilitiesSectionFields: YextFields<IndividualPrac
   {
     section: sectionField,
     heading: {
-      label: "Heading",
+      label: msg("fields.heading", "Heading"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.string"],
           },
         },
         styles: {
-          label: "Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     map: {
-      label: "Map",
+      label: msg("fields.map", "Map"),
       type: "object",
       objectFields: {
         coordinate: {
           type: "entityField",
-          label: "Coordinates",
+          label: msg("fields.coordinates", "Coordinates"),
           filter: { types: ["type.coordinate"] },
         },
         mapStyle: {
-          label: "Mapbox Map Style",
+          label: msg("fields.mapboxMapStyle", "Mapbox Map Style"),
           type: "select",
           options: mapboxStaticMapStyleOptions,
         },
         zoom: {
-          label: "Zoom",
+          label: msg("fields.zoom", "Zoom"),
           type: "number",
           min: 0,
           max: 22,
@@ -297,124 +302,136 @@ const IndividualPracticeNearbyFacilitiesSectionFields: YextFields<IndividualPrac
       },
     },
     radius: {
-      label: "Radius",
+      label: msg("fields.radius", "Radius"),
       type: "number",
       min: 1,
       max: 50,
     },
     limit: {
-      label: "Limit",
+      label: msg("fields.limit", "Limit"),
       type: "number",
       min: 1,
       max: 10,
     },
     cardBackgroundColor: {
-      label: "Card Background Color",
+      label: msg("fields.cardBackgroundColor", "Card Background Color"),
       type: "basicSelector",
       options: "BACKGROUND_COLOR",
     },
     cardTitleColor: {
-      label: "Card Title Color",
+      label: msg("fields.fontColor", "Font Color"),
       type: "basicSelector",
       options: "SITE_COLOR",
     },
     showPhone: {
-      label: "Show Phone",
+      label: msg("fields.showPhone", "Show Phone"),
       type: "radio",
       options: [
-        { label: "Yes", value: true },
-        { label: "No", value: false },
+        { label: msg("fields.options.yes", "Yes"), value: true },
+        { label: msg("fields.options.no", "No"), value: false },
       ],
     },
     showAddress: {
-      label: "Show Address",
+      label: msg("fields.showAddress", "Show Address"),
       type: "radio",
       options: [
-        { label: "Yes", value: true },
-        { label: "No", value: false },
+        { label: msg("fields.options.yes", "Yes"), value: true },
+        { label: msg("fields.options.no", "No"), value: false },
       ],
     },
     phone: {
-      label: "Phone",
+      label: msg("fields.phone", "Phone"),
       type: "object",
       objectFields: {
         phoneFormat: {
-          label: "Phone Number Format",
+          label: msg("fields.phoneNumberFormat", "Phone Number Format"),
           type: "radio",
           options: [
-            { label: "Domestic", value: "domestic" },
-            { label: "International", value: "international" },
+            {
+              label: msg("fields.options.domestic", "Domestic"),
+              value: "domestic",
+            },
+            {
+              label: msg("fields.options.international", "International"),
+              value: "international",
+            },
           ],
         },
         includeHyperlink: {
-          label: "Include Phone Hyperlink",
+          label: msg("fields.includePhoneHyperlink", "Include Phone Hyperlink"),
           type: "radio",
           options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
+            { label: msg("fields.options.yes", "Yes"), value: true },
+            { label: msg("fields.options.no", "No"), value: false },
           ],
         },
       },
     },
     address: {
-      label: "Address",
+      label: msg("fields.address", "Address"),
       type: "object",
       objectFields: {
         showRegion: {
-          label: "Show Region",
+          label: msg("fields.showRegion", "Show Region"),
           type: "radio",
           options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
+            { label: msg("fields.options.yes", "Yes"), value: true },
+            { label: msg("fields.options.no", "No"), value: false },
           ],
         },
         showCountry: {
-          label: "Show Country",
+          label: msg("fields.showCountry", "Show Country"),
           type: "radio",
           options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
+            { label: msg("fields.options.yes", "Yes"), value: true },
+            { label: msg("fields.options.no", "No"), value: false },
           ],
         },
       },
     },
     addressPanelBackgroundColor: {
-      label: "Address Panel Background Color",
+      label: msg("fields.backgroundColor", "Background Color"),
       type: "basicSelector",
       options: "BACKGROUND_COLOR",
     },
     primaryCta: {
-      label: "Primary CTA",
+      label: msg("fields.primaryCTA", "Primary CTA"),
       type: "object",
       objectFields: {
         label: {
-          label: "Label",
+          label: msg("fields.label", "Label"),
           type: "translatableString",
         },
         styles: {
-          label: "Styles",
+          label: msg("fields.styles", "Styles"),
           type: "object",
           objectFields: {
             variant: {
-              label: "Variant",
+              label: msg("fields.variant", "Variant"),
               type: "radio",
               options: [
-                { label: "Solid", value: "primary" },
-                { label: "Outline", value: "secondary" },
-                { label: "Link", value: "link" },
+                {
+                  label: msg("fields.options.solid", "Solid"),
+                  value: "primary",
+                },
+                {
+                  label: msg("fields.options.outline", "Outline"),
+                  value: "secondary",
+                },
+                { label: msg("fields.options.link", "Link"), value: "link" },
               ],
             },
             color: {
-              label: "Color",
+              label: msg("fields.color", "Color"),
               type: "basicSelector",
               options: "SITE_COLOR",
             },
             button: {
-              label: "Button Styles",
+              label: msg("fields.buttonStyles", "Button Styles"),
               type: "styledButton",
             },
             link: {
-              label: "Link Styles",
+              label: msg("fields.linkStyles", "Link Styles"),
               type: "styledLink",
               showIncludeCaretField: true,
             },
@@ -423,37 +440,43 @@ const IndividualPracticeNearbyFacilitiesSectionFields: YextFields<IndividualPrac
       },
     },
     secondaryCta: {
-      label: "Secondary CTA",
+      label: msg("fields.secondaryCTA", "Secondary CTA"),
       type: "object",
       objectFields: {
         label: {
-          label: "Label",
+          label: msg("fields.label", "Label"),
           type: "translatableString",
         },
         styles: {
-          label: "Styles",
+          label: msg("fields.styles", "Styles"),
           type: "object",
           objectFields: {
             variant: {
-              label: "Variant",
+              label: msg("fields.variant", "Variant"),
               type: "radio",
               options: [
-                { label: "Solid", value: "primary" },
-                { label: "Outline", value: "secondary" },
-                { label: "Link", value: "link" },
+                {
+                  label: msg("fields.options.solid", "Solid"),
+                  value: "primary",
+                },
+                {
+                  label: msg("fields.options.outline", "Outline"),
+                  value: "secondary",
+                },
+                { label: msg("fields.options.link", "Link"), value: "link" },
               ],
             },
             color: {
-              label: "Color",
+              label: msg("fields.color", "Color"),
               type: "basicSelector",
               options: "SITE_COLOR",
             },
             button: {
-              label: "Button Styles",
+              label: msg("fields.buttonStyles", "Button Styles"),
               type: "styledButton",
             },
             link: {
-              label: "Link Styles",
+              label: msg("fields.linkStyles", "Link Styles"),
               type: "styledLink",
               showIncludeCaretField: true,
             },
@@ -463,71 +486,75 @@ const IndividualPracticeNearbyFacilitiesSectionFields: YextFields<IndividualPrac
     },
   };
 
-const IndividualPracticeNearbyFacilitiesSectionComponent: PuckComponent<IndividualPracticeNearbyFacilitiesSectionProps> =
-  (props) => {
-    const streamDocument = useDocument<Record<string, unknown>>();
-    const locale = streamDocument.locale?.toString() ?? "en";
-    const { relativePrefixToRoot } = useTemplateProps<{
-      relativePrefixToRoot?: string;
-    }>();
-    const configuredCoordinate = resolveComponentData(
-      props.map.coordinate,
+const IndividualPracticeNearbyFacilitiesSectionComponent: PuckComponent<
+  IndividualPracticeNearbyFacilitiesSectionProps
+> = (props) => {
+  const { t } = useTranslation();
+  const streamDocument = useDocument<Record<string, unknown>>();
+  const locale = streamDocument.locale?.toString() ?? "en";
+  const { relativePrefixToRoot } = useTemplateProps<{
+    relativePrefixToRoot?: string;
+  }>();
+  const configuredCoordinate = resolveComponentData(
+    props.map.coordinate,
+    locale,
+    streamDocument,
+  ) as CoordinateValue | undefined;
+  const documentCoordinate = streamDocument.yextDisplayCoordinate as
+    | CoordinateValue
+    | undefined;
+  const coordinate = documentCoordinate ?? configuredCoordinate;
+  const enabled =
+    coordinate?.latitude !== undefined &&
+    coordinate?.longitude !== undefined &&
+    Boolean(props.radius) &&
+    Boolean(props.limit);
+
+  const { data, status } = useNearbyLocations({
+    streamDocument,
+    latitude: coordinate?.latitude,
+    longitude: coordinate?.longitude,
+    radiusMi: props.radius,
+    limit: props.limit,
+    enabled,
+  });
+
+  const docs = (data?.response?.docs ?? []) as NearbyLocationDocument[];
+  const heading =
+    resolveComponentData(
+      props.heading.text,
       locale,
       streamDocument,
-    ) as CoordinateValue | undefined;
-    const documentCoordinate = streamDocument.yextDisplayCoordinate as
-      | CoordinateValue
-      | undefined;
-    const coordinate = documentCoordinate ?? configuredCoordinate;
-    const enabled =
-      coordinate?.latitude !== undefined &&
-      coordinate?.longitude !== undefined &&
-      Boolean(props.radius) &&
-      Boolean(props.limit);
+    )?.toString() ?? "";
+  const cardForeground = getThemeColorCssValue(
+    props.cardBackgroundColor.contrastingColor,
+  );
+  const cardCtaForegroundColor = getDefaultForegroundColor(
+    props.cardBackgroundColor,
+    streamDocument,
+  );
+  const cardTitleColor =
+    !props.cardTitleColor || props.cardTitleColor.selectedColor === "default"
+      ? cardForeground
+      : getThemeColorCssValue(props.cardTitleColor);
+  const addressPanelForeground = getThemeColorCssValue(
+    props.addressPanelBackgroundColor.contrastingColor,
+  );
 
-    const { data, status } = useNearbyLocations({
-      streamDocument,
-      latitude: coordinate?.latitude,
-      longitude: coordinate?.longitude,
-      radiusMi: props.radius,
-      limit: props.limit,
-      enabled,
-    });
+  if (!enabled && !props.puck.isEditing) {
+    return <></>;
+  }
 
-    const docs = (data?.response?.docs ?? []) as NearbyLocationDocument[];
-    const heading =
-      resolveComponentData(props.heading.text, locale, streamDocument)?.toString() ??
-      "";
-    const cardForeground = getThemeColorCssValue(
-      props.cardBackgroundColor.contrastingColor,
-    );
-    const cardCtaForegroundColor = getDefaultForegroundColor(
-      props.cardBackgroundColor,
-      streamDocument,
-    );
-    const cardTitleColor =
-      !props.cardTitleColor ||
-      props.cardTitleColor.selectedColor === "default"
-        ? cardForeground
-        : getThemeColorCssValue(props.cardTitleColor);
-    const addressPanelForeground = getThemeColorCssValue(
-      props.addressPanelBackgroundColor.contrastingColor,
-    );
+  if ((status !== "success" || !docs.length) && !props.puck.isEditing) {
+    return <></>;
+  }
 
-    if (!enabled && !props.puck.isEditing) {
-      return <></>;
-    }
-
-    if ((status !== "success" || !docs.length) && !props.puck.isEditing) {
-      return <></>;
-    }
-
-    return (
-      <VisibilityWrapper
-        isEditing={props.puck.isEditing}
-        liveVisibility={props.section.visibleOnLivePage}
-      >
-        <style>{`
+  return (
+    <VisibilityWrapper
+      isEditing={props.puck.isEditing}
+      liveVisibility={props.section.visibleOnLivePage}
+    >
+      <style>{`
           .yip-nearby-root p {
             font-family: var(--fontFamily-body-fontFamily);
             font-size: var(--fontSize-body-fontSize);
@@ -647,313 +674,326 @@ const IndividualPracticeNearbyFacilitiesSectionComponent: PuckComponent<Individu
             }
           }
         `}</style>
-        <Background
-          as="section"
-          background={props.section.backgroundColor}
-          className="yip-nearby-root px-4 py-pageSection-verticalPadding"
+      <Background
+        as="section"
+        background={props.section.backgroundColor}
+        className="yip-nearby-root px-4 py-pageSection-verticalPadding"
+        style={{
+          ...getSurfaceColorStyle(
+            props.section.backgroundColor,
+            streamDocument,
+          ),
+        }}
+      >
+        <div
           style={{
-            ...getSurfaceColorStyle(
-              props.section.backgroundColor,
-              streamDocument,
-            ),
+            margin: "0 auto",
+            width: "min(100%, 73rem)",
           }}
         >
           <div
+            className="yip-nearby-layout"
             style={{
-              margin: "0 auto",
-              width: "min(100%, 73rem)",
+              alignItems: "stretch",
+              display: "grid",
+              gap: "4rem",
+              gridTemplateColumns:
+                "minmax(0, 46.9375rem) minmax(20rem, 30.25rem)",
             }}
           >
             <div
-              className="yip-nearby-layout"
+              className="yip-nearby-map"
               style={{
-                alignItems: "stretch",
-                display: "grid",
-                gap: "4rem",
-                gridTemplateColumns: "minmax(0, 46.9375rem) minmax(20rem, 30.25rem)",
+                background: "#d9d9d9",
+                borderRadius: "16px",
+                minHeight: "30rem",
+                overflow: "hidden",
               }}
             >
-              <div
-                className="yip-nearby-map"
-                style={{
-                  background: "#d9d9d9",
-                  borderRadius: "16px",
-                  minHeight: "30rem",
-                  overflow: "hidden",
-                }}
-              >
-                {coordinate ? (
-                  <EntityField
-                    displayName="Map Coordinate"
-                    fieldId={props.map.coordinate.field}
-                    constantValueEnabled={
-                      props.map.coordinate.constantValueEnabled
-                    }
-                  >
-                    <MapboxStaticMapComponent
-                      coordinate={props.map.coordinate}
-                      id={props.id}
-                      mapStyle={props.map.mapStyle}
-                      zoom={props.map.zoom}
-                      height="100%"
-                      puck={props.puck}
-                    />
-                  </EntityField>
-                ) : null}
-              </div>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "16px",
-                }}
-              >
-                <div style={{ textAlign: "center" }}>
-                  <EntityField
-                    displayName="Heading"
-                    fieldId={props.heading.text.field}
-                    constantValueEnabled={props.heading.text.constantValueEnabled}
-                  >
-                    <h2
-                      style={{
-                        color: getThemeColorCssValue(
-                          props.heading.fontColor ??
-                            props.section.backgroundColor.contrastingColor,
-                        ),
-                        fontFamily:
-                          props.heading.styles.fontFamily === "default"
-                            ? undefined
-                            : props.heading.styles.fontFamily,
-                        fontSize:
-                          props.heading.styles.fontSize === "default"
-                            ? "clamp(2rem, 5vw, 3rem)"
-                            : props.heading.styles.fontSize,
-                        fontStyle:
-                          props.heading.styles.fontStyle === "default"
-                            ? undefined
-                            : props.heading.styles.fontStyle,
-                        fontWeight:
-                          props.heading.styles.fontWeight === "default"
-                            ? 500
-                            : props.heading.styles.fontWeight,
-                        letterSpacing: "-0.03em",
-                        lineHeight: 1.25,
-                        margin: 0,
-                        textTransform:
-                          props.heading.styles.textTransform === "default"
-                            ? undefined
-                            : props.heading.styles.textTransform,
-                      }}
-                    >
-                      {heading}
-                    </h2>
-                  </EntityField>
-                </div>
-                {status === "pending" ? (
-                  <p>Loading nearby locations</p>
-                ) : docs.length ? (
-                  <div
+              {coordinate ? (
+                <EntityField
+                  displayName="Map Coordinate"
+                  fieldId={props.map.coordinate.field}
+                  constantValueEnabled={
+                    props.map.coordinate.constantValueEnabled
+                  }
+                >
+                  <MapboxStaticMapComponent
+                    coordinate={props.map.coordinate}
+                    id={props.id}
+                    mapStyle={props.map.mapStyle}
+                    zoom={props.map.zoom}
+                    height="100%"
+                    puck={props.puck}
+                  />
+                </EntityField>
+              ) : null}
+            </div>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                gap: "16px",
+              }}
+            >
+              <div style={{ textAlign: "center" }}>
+                <EntityField
+                  displayName="Heading"
+                  fieldId={props.heading.text.field}
+                  constantValueEnabled={props.heading.text.constantValueEnabled}
+                >
+                  <h2
                     style={{
-                      display: "grid",
-                      gap: "16px",
+                      color: getThemeColorCssValue(
+                        props.heading.fontColor ??
+                          props.section.backgroundColor.contrastingColor,
+                      ),
+                      fontFamily:
+                        props.heading.styles.fontFamily === "default"
+                          ? undefined
+                          : props.heading.styles.fontFamily,
+                      fontSize:
+                        props.heading.styles.fontSize === "default"
+                          ? "clamp(2rem, 5vw, 3rem)"
+                          : props.heading.styles.fontSize,
+                      fontStyle:
+                        props.heading.styles.fontStyle === "default"
+                          ? undefined
+                          : props.heading.styles.fontStyle,
+                      fontWeight:
+                        props.heading.styles.fontWeight === "default"
+                          ? 500
+                          : props.heading.styles.fontWeight,
+                      letterSpacing: "-0.03em",
+                      lineHeight: 1.25,
+                      margin: 0,
+                      textTransform:
+                        props.heading.styles.textTransform === "default"
+                          ? undefined
+                          : props.heading.styles.textTransform,
                     }}
                   >
-                    {docs.map((locationData, index) => {
-                      const resolvedUrl = resolveUrlTemplate(
-                        mergeMeta(locationData, streamDocument),
-                        relativePrefixToRoot ?? "",
-                      );
-                      const address =
-                        props.showAddress && locationData.address
-                          ? locationData.address
-                          : undefined;
-                      const distanceFromFilter = getNearbyLocationDistance(
-                        locationData,
-                        coordinate,
-                      );
-                      const phone = locationData.mainPhone?.trim() ?? "";
-                      const showPhone = props.showPhone && Boolean(phone);
-                      const directionsUrl =
-                        locationData.yextDisplayCoordinate?.latitude !==
-                          undefined &&
-                        locationData.yextDisplayCoordinate?.longitude !==
-                          undefined
-                          ? `https://www.google.com/maps/search/?api=1&query=${locationData.yextDisplayCoordinate.latitude},${locationData.yextDisplayCoordinate.longitude}`
-                          : undefined;
-                      const renderedPrimaryCta = createRenderedCta(
-                        props.primaryCta,
-                        resolvedUrl,
-                      );
-                      const primaryCtaVariant = props.primaryCta.styles.variant;
-                      const primaryCtaColor = props.primaryCta.styles.color;
-                      const renderedPrimaryCtaWithContrast =
-                        primaryCtaVariant === "secondary" &&
-                        (!primaryCtaColor ||
-                          primaryCtaColor.selectedColor === "default") &&
-                        cardCtaForegroundColor
-                          ? {
-                              ...renderedPrimaryCta,
-                              styles: {
-                                ...renderedPrimaryCta.styles,
-                                color: cardCtaForegroundColor,
-                              },
-                            }
-                          : renderedPrimaryCta;
-                      const renderedSecondaryCta = directionsUrl
-                        ? createRenderedCta(props.secondaryCta, directionsUrl)
+                    {heading}
+                  </h2>
+                </EntityField>
+              </div>
+              {status === "pending" ? (
+                <p>{t("loadingNearbyLocations", "Loading nearby locations")}</p>
+              ) : docs.length ? (
+                <div
+                  style={{
+                    display: "grid",
+                    gap: "16px",
+                  }}
+                >
+                  {docs.map((locationData, index) => {
+                    const resolvedUrl = resolveUrlTemplate(
+                      mergeMeta(locationData, streamDocument),
+                      relativePrefixToRoot ?? "",
+                    );
+                    const address =
+                      props.showAddress && locationData.address
+                        ? locationData.address
                         : undefined;
-                      const secondaryCtaVariant = props.secondaryCta.styles.variant;
-                      const secondaryCtaColor = props.secondaryCta.styles.color;
-                      const renderedSecondaryCtaWithContrast =
-                        renderedSecondaryCta &&
-                        secondaryCtaVariant === "secondary" &&
-                        (!secondaryCtaColor ||
-                          secondaryCtaColor.selectedColor === "default") &&
-                        cardCtaForegroundColor
-                          ? {
-                              ...renderedSecondaryCta,
-                              styles: {
-                                ...renderedSecondaryCta.styles,
-                                color: cardCtaForegroundColor,
-                              },
-                            }
-                          : renderedSecondaryCta;
+                    const distanceFromFilter = getNearbyLocationDistance(
+                      locationData,
+                      coordinate,
+                    );
+                    const phone = locationData.mainPhone?.trim() ?? "";
+                    const showPhone = props.showPhone && Boolean(phone);
+                    const directionsUrl =
+                      locationData.yextDisplayCoordinate?.latitude !==
+                        undefined &&
+                      locationData.yextDisplayCoordinate?.longitude !==
+                        undefined
+                        ? `https://www.google.com/maps/search/?api=1&query=${locationData.yextDisplayCoordinate.latitude},${locationData.yextDisplayCoordinate.longitude}`
+                        : undefined;
+                    const renderedPrimaryCta = createRenderedCta(
+                      props.primaryCta,
+                      resolvedUrl,
+                    );
+                    const primaryCtaVariant = props.primaryCta.styles.variant;
+                    const primaryCtaColor = props.primaryCta.styles.color;
+                    const renderedPrimaryCtaWithContrast =
+                      primaryCtaVariant === "secondary" &&
+                      (!primaryCtaColor ||
+                        primaryCtaColor.selectedColor === "default") &&
+                      cardCtaForegroundColor
+                        ? {
+                            ...renderedPrimaryCta,
+                            styles: {
+                              ...renderedPrimaryCta.styles,
+                              color: cardCtaForegroundColor,
+                            },
+                          }
+                        : renderedPrimaryCta;
+                    const renderedSecondaryCta = directionsUrl
+                      ? createRenderedCta(props.secondaryCta, directionsUrl)
+                      : undefined;
+                    const secondaryCtaVariant =
+                      props.secondaryCta.styles.variant;
+                    const secondaryCtaColor = props.secondaryCta.styles.color;
+                    const renderedSecondaryCtaWithContrast =
+                      renderedSecondaryCta &&
+                      secondaryCtaVariant === "secondary" &&
+                      (!secondaryCtaColor ||
+                        secondaryCtaColor.selectedColor === "default") &&
+                      cardCtaForegroundColor
+                        ? {
+                            ...renderedSecondaryCta,
+                            styles: {
+                              ...renderedSecondaryCta.styles,
+                              color: cardCtaForegroundColor,
+                            },
+                          }
+                        : renderedSecondaryCta;
 
-                      return (
-                        <article
-                          key={locationData.id ?? locationData.name ?? index}
-                          style={{
-                            ...getSurfaceColorStyle(
-                              props.cardBackgroundColor,
-                              streamDocument,
-                            ),
-                            border: `1px solid color-mix(in srgb, ${cardForeground} 8%, transparent)`,
-                            borderRadius: "8px",
-                            display: "flex",
-                            flexDirection: "column",
-                            gap: "14px",
-                            padding: "16px",
-                          }}
-                        >
-                          <div style={{ textAlign: "center" }}>
-                            <h3
+                    return (
+                      <article
+                        key={locationData.id ?? locationData.name ?? index}
+                        style={{
+                          ...getSurfaceColorStyle(
+                            props.cardBackgroundColor,
+                            streamDocument,
+                          ),
+                          border: `1px solid color-mix(in srgb, ${cardForeground} 8%, transparent)`,
+                          borderRadius: "8px",
+                          display: "flex",
+                          flexDirection: "column",
+                          gap: "14px",
+                          padding: "16px",
+                        }}
+                      >
+                        <div style={{ textAlign: "center" }}>
+                          <h3
+                            style={{
+                              color: cardTitleColor,
+                              fontSize: "1.2rem",
+                              lineHeight: 1.25,
+                              margin: 0,
+                            }}
+                          >
+                            {locationData.name ??
+                              t("nearbyFacility", "Nearby Facility")}
+                          </h3>
+                          {distanceFromFilter !== undefined ? (
+                            <p
                               style={{
-                                color: cardTitleColor,
-                                fontSize: "1.2rem",
-                                lineHeight: 1.25,
-                                margin: 0,
+                                color: `color-mix(in srgb, ${cardForeground} 68%, transparent)`,
+                                fontSize: "0.95rem",
+                                letterSpacing: "-0.02em",
+                                lineHeight: 1.5,
+                                margin: "6px 0 0",
                               }}
                             >
-                              {locationData.name ?? "Nearby Facility"}
-                            </h3>
-                            {distanceFromFilter !== undefined ? (
+                              {t("milesAway", "{{distance}} miles away", {
+                                distance: distanceFromFilter.toFixed(1),
+                              })}
+                            </p>
+                          ) : null}
+                        </div>
+                        {address || showPhone ? (
+                          <div
+                            style={{
+                              ...getSurfaceColorStyle(
+                                props.addressPanelBackgroundColor,
+                                streamDocument,
+                              ),
+                              color: addressPanelForeground,
+                              padding: "12px",
+                            }}
+                          >
+                            {address ? (
+                              <Address
+                                address={address}
+                                showRegion={props.address.showRegion}
+                                showCountry={props.address.showCountry}
+                              />
+                            ) : null}
+                            {showPhone ? (
                               <p
                                 style={{
-                                  color: `color-mix(in srgb, ${cardForeground} 68%, transparent)`,
-                                  fontSize: "0.95rem",
-                                  letterSpacing: "-0.02em",
-                                  lineHeight: 1.5,
-                                  margin: "6px 0 0",
+                                  margin: address ? "12px 0 0" : 0,
                                 }}
                               >
-                                {distanceFromFilter.toFixed(1)} miles away
+                                {props.phone.includeHyperlink ? (
+                                  <Link
+                                    cta={{
+                                      link: phone,
+                                      linkType: "PHONE",
+                                    }}
+                                    eventName={`phone${index}`}
+                                    className="yip-nearby-text-link"
+                                  >
+                                    {formatPhone(
+                                      phone,
+                                      props.phone.phoneFormat,
+                                    )}
+                                  </Link>
+                                ) : (
+                                  formatPhone(phone, props.phone.phoneFormat)
+                                )}
                               </p>
                             ) : null}
                           </div>
-                          {address || showPhone ? (
-                            <div
-                              style={{
-                                ...getSurfaceColorStyle(
-                                  props.addressPanelBackgroundColor,
-                                  streamDocument,
-                                ),
-                                color: addressPanelForeground,
-                                padding: "12px",
-                              }}
-                            >
-                              {address ? (
-                                <Address
-                                  address={address}
-                                  showRegion={props.address.showRegion}
-                                  showCountry={props.address.showCountry}
-                                />
-                              ) : null}
-                              {showPhone ? (
-                                <p
-                                  style={{
-                                    margin: address ? "12px 0 0" : 0,
-                                  }}
-                                >
-                                  {props.phone.includeHyperlink ? (
-                                    <Link
-                                      cta={{
-                                        link: phone,
-                                        linkType: "PHONE",
-                                      }}
-                                      eventName={`phone${index}`}
-                                      className="yip-nearby-text-link"
-                                    >
-                                      {formatPhone(phone, props.phone.phoneFormat)}
-                                    </Link>
-                                  ) : (
-                                    formatPhone(phone, props.phone.phoneFormat)
-                                  )}
-                                </p>
-                              ) : null}
-                            </div>
-                          ) : null}
+                        ) : null}
+                        <div
+                          className="yip-nearby-actions"
+                          style={{
+                            display: "grid",
+                            gap: "10px",
+                          }}
+                        >
                           <div
-                            className="yip-nearby-actions"
-                            style={{
-                              display: "grid",
-                              gap: "10px",
-                            }}
+                            className={
+                              props.primaryCta.styles.variant === "link"
+                                ? undefined
+                                : "yip-nearby-action--button"
+                            }
                           >
+                            <ComprehensiveCTA
+                              value={
+                                renderedPrimaryCtaWithContrast as Partial<ComprehensiveCTAValue>
+                              }
+                              eventName={`nearbyPrimaryCta-${index}`}
+                            />
+                          </div>
+                          {renderedSecondaryCtaWithContrast ? (
                             <div
                               className={
-                                props.primaryCta.styles.variant === "link"
+                                props.secondaryCta.styles.variant === "link"
                                   ? undefined
                                   : "yip-nearby-action--button"
                               }
                             >
                               <ComprehensiveCTA
                                 value={
-                                  renderedPrimaryCtaWithContrast as Partial<ComprehensiveCTAValue>
+                                  renderedSecondaryCtaWithContrast as Partial<ComprehensiveCTAValue>
                                 }
-                                eventName={`nearbyPrimaryCta-${index}`}
+                                eventName={`nearbySecondaryCta-${index}`}
                               />
                             </div>
-                            {renderedSecondaryCtaWithContrast ? (
-                              <div
-                                className={
-                                  props.secondaryCta.styles.variant === "link"
-                                    ? undefined
-                                    : "yip-nearby-action--button"
-                                }
-                              >
-                                <ComprehensiveCTA
-                                  value={
-                                    renderedSecondaryCtaWithContrast as Partial<ComprehensiveCTAValue>
-                                  }
-                                  eventName={`nearbySecondaryCta-${index}`}
-                                />
-                              </div>
-                            ) : null}
-                          </div>
-                        </article>
-                      );
-                    })}
-                  </div>
-                ) : (
-                  <p>No nearby locations found for this location</p>
-                )}
-              </div>
+                          ) : null}
+                        </div>
+                      </article>
+                    );
+                  })}
+                </div>
+              ) : (
+                <p>
+                  {pt(
+                    "noNearbyLocationsFound",
+                    "No nearby locations found for this location",
+                  )}
+                </p>
+              )}
             </div>
           </div>
-        </Background>
-      </VisibilityWrapper>
-    );
-  };
+        </div>
+      </Background>
+    </VisibilityWrapper>
+  );
+};
 
 export const IndividualPracticeNearbyFacilitiesSection: YextComponentConfig<IndividualPracticeNearbyFacilitiesSectionProps> =
   {
@@ -971,18 +1011,20 @@ export const IndividualPracticeNearbyFacilitiesSection: YextComponentConfig<Indi
           };
         };
       };
-      const secondaryCtaField = fields.secondaryCta as typeof fields.secondaryCta & {
-        objectFields: {
-          label: unknown;
-          styles: {
-            objectFields: {
-              button: { visible?: boolean };
-              link: { visible?: boolean };
+      const secondaryCtaField =
+        fields.secondaryCta as typeof fields.secondaryCta & {
+          objectFields: {
+            label: unknown;
+            styles: {
+              objectFields: {
+                button: { visible?: boolean };
+                link: { visible?: boolean };
+              };
             };
           };
         };
-      };
-      const primaryVariant = data.props.primaryCta?.styles?.variant ?? "secondary";
+      const primaryVariant =
+        data.props.primaryCta?.styles?.variant ?? "secondary";
       const showPrimaryButtonStyles =
         primaryVariant === "primary" || primaryVariant === "secondary";
       const showPrimaryLinkStyles = primaryVariant === "link";

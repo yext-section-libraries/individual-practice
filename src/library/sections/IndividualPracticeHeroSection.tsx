@@ -2,6 +2,7 @@ import type { SectionConfig } from "@yext/visual-editor";
 
 import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
+import { useTranslation } from "react-i18next";
 import {
   AnalyticsScopeProvider,
   HoursStatus,
@@ -11,6 +12,7 @@ import {
   type StatusParams,
 } from "@yext/pages-components";
 import {
+  msg,
   Background,
   ComprehensiveCTA,
   type ComprehensiveCTAValue,
@@ -163,169 +165,170 @@ const IndividualPracticeHeroSectionFields: YextFields<IndividualPracticeHeroSect
   {
     section: sectionField,
     cardBackgroundColor: {
-      label: "Card Background Color",
+      label: msg("fields.cardBackgroundColor", "Card Background Color"),
       type: "basicSelector",
       options: "BACKGROUND_COLOR",
     },
     hoursStatusBackgroundColor: {
-      label: "Hours Status Background Color",
+      label: msg("fields.backgroundColor", "Background Color"),
       type: "basicSelector",
       options: "BACKGROUND_COLOR",
     },
     hours: {
       type: "entityField",
-      label: "Hours",
+      label: msg("fields.hours", "Hours"),
       filter: {
         types: ["type.hours"],
       },
       disableConstantValueToggle: true,
     },
     hoursStyles: {
-      label: "Hours Styles",
+      label: msg("fields.hoursStyles", "Hours Styles"),
       type: "object",
       objectFields: {
         showCurrentStatus: {
-          label: "Show Current Status",
+          label: msg("fields.showCurrentStatus", "Show Current Status"),
           type: "radio",
           options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
+            { label: msg("fields.options.yes", "Yes"), value: true },
+            { label: msg("fields.options.no", "No"), value: false },
           ],
         },
         timeFormat: {
-          label: "Time Format",
+          label: msg("fields.timeFormat", "Time Format"),
           type: "select",
           options: [
-            { label: "12 Hour", value: "12h" },
-            { label: "24 Hour", value: "24h" },
+            { label: msg("fields.options.hour12", "12-hour"), value: "12h" },
+            { label: msg("fields.options.hour24", "24-hour"), value: "24h" },
           ],
         },
         dayOfWeekFormat: {
-          label: "Day Of Week Format",
+          label: msg("fields.dayOfWeekFormat", "Day of Week Format"),
           type: "select",
           options: [
-            { label: "Short", value: "short" },
-            { label: "Long", value: "long" },
+            { label: msg("fields.options.short", "Short"), value: "short" },
+            { label: msg("fields.options.long", "Long"), value: "long" },
           ],
         },
         showDayNames: {
-          label: "Show Day Names",
+          label: msg("fields.showDayNames", "Show Day Names"),
           type: "radio",
           options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
+            { label: msg("fields.options.yes", "Yes"), value: true },
+            { label: msg("fields.options.no", "No"), value: false },
           ],
         },
       },
     },
     heading: {
-      label: "Heading",
+      label: msg("fields.heading", "Heading"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.string"],
           },
         },
         styles: {
-          label: "Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     subheading: {
-      label: "Subheading",
+      label: msg("fields.subheading", "Subheading"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.string"],
           },
         },
         styles: {
-          label: "Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     body: {
-      label: "Body",
+      label: msg("fields.body", "Body"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.rich_text_v2"],
           },
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     heroImage: {
-      label: "Hero Image",
+      label: msg("fields.heroImage", "Hero Image"),
       type: "object",
       objectFields: {
         image: {
           type: "entityField",
-          label: "Image",
+          label: msg("fields.image", "Image"),
           filter: {
             types: ["type.image"],
           },
         },
         aspectRatio: {
-          label: "Aspect Ratio",
+          label: msg("fields.aspectRatio", "Aspect Ratio"),
           type: "basicSelector",
           options: aspectRatioOptions,
         },
         imageConstrain: {
-          label: "Image Constrain",
+          label: msg("fields.imageConstrain", "Image Constrain"),
           type: "select",
           options: [
-            { label: "Fixed", value: "fixed" },
-            { label: "Filled", value: "filled" },
+            { label: msg("fields.options.fixed", "Fixed"), value: "fixed" },
+            { label: msg("fields.options.filled", "Filled"), value: "filled" },
           ],
         },
         styles: {
-          label: "Image Styles",
+          label: msg("fields.imageStyles", "Image Styles"),
           type: "styledImage",
         },
       },
     },
     primaryCta: {
-      label: "Primary CTA",
+      label: msg("fields.primaryCTA", "Primary CTA"),
       type: "comprehensiveCTA",
     },
     secondaryCta: {
-      label: "Secondary CTA",
+      label: msg("fields.secondaryCTA", "Secondary CTA"),
       type: "comprehensiveCTA",
     },
     tertiaryCta: {
-      label: "Tertiary CTA",
+      label: msg("fields.tertiaryCta", "Tertiary CTA"),
       type: "comprehensiveCTA",
     },
   };
 
 const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHeroSectionProps> =
   (props) => {
+    const { t, i18n } = useTranslation();
     const streamDocument = useDocument();
     const locale = streamDocument.locale ?? "en";
     const cardCtaForegroundColor = getDefaultForegroundColor(
@@ -384,21 +387,78 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
       locale,
       streamDocument,
     );
-    const currentStatusTemplate = ({ isOpen }: StatusParams) => (
-      <span
-        style={{
-          ...getSurfaceColorStyle(hoursStatusBackgroundColor, streamDocument),
-          borderRadius: "999px",
-          color: hoursStatusForeground,
-          display: "inline-flex",
-          minHeight: "2.45rem",
-          padding: "0.35rem 1rem",
-        }}
-      >
-        {isOpen ? "Open Now" : "Closed"}
-      </span>
-    );
-    const hideDayOfWeek = () => null;
+    const statusTemplate = (params: StatusParams) => {
+      const isComingSoon = Boolean(params.comingSoon);
+      const isOpen24Hours = Boolean(params.currentInterval?.is24h?.());
+      const isIndefinitelyClosed = !params.futureInterval;
+      const hasFutureStatus = !isOpen24Hours && !isIndefinitelyClosed;
+      const interval = params.isOpen
+        ? params.currentInterval
+        : params.futureInterval;
+      const time = params.isOpen
+        ? (interval?.getEndTime(i18n.language, params.timeOptions) ?? "")
+        : (interval?.getStartTime(i18n.language, params.timeOptions) ?? "");
+      const dayOfWeek = props.hoursStyles.showDayNames
+        ? params.isOpen
+          ? (interval?.end
+              ?.setLocale(i18n.language)
+              .toLocaleString(params.dayOptions) ?? "")
+          : (interval?.start
+              ?.setLocale(i18n.language)
+              .toLocaleString(params.dayOptions) ?? "")
+        : "";
+      const currentStatus = params.comingSoon
+        ? t("comingSoon", "Coming Soon")
+        : isOpen24Hours
+          ? t("open24Hours", "Open 24 Hours")
+          : isIndefinitelyClosed
+            ? t("temporarilyClosed", "Temporarily Closed")
+            : params.isOpen
+              ? t("openNow", "Open Now")
+              : t("closed", "Closed");
+      const futureStatus =
+        !isComingSoon && hasFutureStatus && time
+          ? params.isOpen
+            ? dayOfWeek
+              ? t(
+                  "closesAtTimeWeek",
+                  "Closes at {{time}} {{dayOfWeek}}",
+                  { time, dayOfWeek },
+                )
+              : t("closesAtTime", "Closes at {{time}}", { time })
+            : dayOfWeek
+              ? t(
+                  "opensAtTimeWeek",
+                  "Opens at {{time}} {{dayOfWeek}}",
+                  { time, dayOfWeek },
+                )
+              : t("opensAtTime", "Opens at {{time}}", { time })
+          : "";
+
+      return (
+        <span
+          style={{
+            ...getSurfaceColorStyle(
+              hoursStatusBackgroundColor,
+              streamDocument,
+            ),
+            borderRadius: "999px",
+            color: hoursStatusForeground,
+            display: "inline-flex",
+            minHeight: "2.45rem",
+            padding: "0.35rem 1rem",
+          }}
+        >
+          <span className="HoursStatus-current">{currentStatus}</span>
+          {futureStatus ? (
+            <>
+              <span className="HoursStatus-separator"> • </span>
+              <span className="HoursStatus-future">{futureStatus}</span>
+            </>
+          ) : null}
+        </span>
+      );
+    };
     const heroImage = resolveComponentData(
       props.heroImage.image,
       locale,
@@ -586,12 +646,7 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
                         dayOptions={{
                           weekday: props.hoursStyles.dayOfWeekFormat,
                         }}
-                        currentTemplate={currentStatusTemplate}
-                        dayOfWeekTemplate={
-                          props.hoursStyles.showDayNames
-                            ? undefined
-                            : hideDayOfWeek
-                        }
+                        statusTemplate={statusTemplate}
                       />
                     </EntityField>
                   ) : null}

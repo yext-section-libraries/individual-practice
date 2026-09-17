@@ -1,6 +1,7 @@
 import * as React from "react";
 import type { ComplexImageType, ImageType } from "@yext/pages-components";
 import {
+  msg,
   MaybeRTF,
   getThemeColorCssValue,
   resolveComponentData,
@@ -55,20 +56,20 @@ export const lightTextStyles: StyledTextValue = {
 };
 
 export const sectionField: YextFields<{ section: SectionProps }>["section"] = {
-  label: "Section",
+  label: msg("fields.section", "Section"),
   type: "object",
   objectFields: {
     backgroundColor: {
-      label: "Background Color",
+      label: msg("fields.backgroundColor", "Background Color"),
       type: "basicSelector",
       options: "BACKGROUND_COLOR",
     },
     visibleOnLivePage: {
-      label: "Visible on Live Page",
+      label: msg("fields.visibleOnLivePage", "Visible on Live Page"),
       type: "radio",
       options: [
-        { label: "Yes", value: true },
-        { label: "No", value: false },
+        { label: msg("fields.options.yes", "Yes"), value: true },
+        { label: msg("fields.options.no", "No"), value: false },
       ],
     },
   },
@@ -138,10 +139,7 @@ export const renderRichText = (
       : undefined;
 
   return (
-    <MaybeRTF
-      data={data}
-      richTextStyleOverrides={richTextStyleOverrides}
-    />
+    <MaybeRTF data={data} richTextStyleOverrides={richTextStyleOverrides} />
   );
 };
 

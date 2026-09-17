@@ -3,6 +3,7 @@ import type { SectionConfig } from "@yext/visual-editor";
 import * as React from "react";
 import { AnalyticsScopeProvider, useAnalytics } from "@yext/pages-components";
 import {
+  msg,
   Background,
   createItemSource,
   EntityField,
@@ -72,16 +73,16 @@ const openBackground: ThemeColor = {
 };
 
 const faqItemsSource = createItemSource<FaqItemFields>({
-  label: "FAQs",
+  label: msg("fields.faqs", "FAQs"),
   mappingFields: {
     question: {
       type: "entityField",
-      label: "Question",
+      label: msg("fields.question", "Question"),
       filter: { types: ["type.string"] },
     },
     answer: {
       type: "entityField",
-      label: "Answer",
+      label: msg("fields.answer", "Answer"),
       filter: { types: ["type.rich_text_v2"] },
     },
   },
@@ -193,58 +194,58 @@ const IndividualPracticeFaqSectionFields: YextFields<IndividualPracticeFaqSectio
   {
     section: sectionField,
     closedBackgroundColor: {
-      label: "Closed Background Color",
+      label: msg("fields.backgroundColor", "Background Color"),
       type: "basicSelector",
       options: "BACKGROUND_COLOR",
     },
     openBackgroundColor: {
-      label: "Open Background Color",
+      label: msg("fields.backgroundColor", "Background Color"),
       type: "basicSelector",
       options: "BACKGROUND_COLOR",
     },
     heading: {
-      label: "Heading",
+      label: msg("fields.heading", "Heading"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.string"],
           },
         },
         styles: {
-          label: "Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     questionStyles: {
-      label: "Question Text Styles",
+      label: msg("fields.textStyles", "Text Styles"),
       type: "object",
       objectFields: {
         styles: {
-          label: "Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     answerStyles: {
-      label: "Answer Text Styles",
+      label: msg("fields.textStyles", "Text Styles"),
       type: "object",
       objectFields: {
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },

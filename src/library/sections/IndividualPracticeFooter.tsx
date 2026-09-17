@@ -22,6 +22,7 @@ import {
   type ImageType,
 } from "@yext/pages-components";
 import {
+  msg,
   Background,
   type EnhancedTranslatableCTA,
   EntityField,
@@ -205,63 +206,63 @@ const IndividualPracticeFooterFields: YextFields<IndividualPracticeFooterProps> 
   {
     section: sectionField,
     logoImage: {
-      label: "Logo Image",
+      label: msg("fields.logoImage", "Logo Image"),
       type: "object",
       objectFields: {
         image: {
           type: "entityField",
-          label: "Image",
+          label: msg("fields.image", "Image"),
           filter: {
             types: ["type.image"],
           },
         },
         aspectRatio: {
-          label: "Aspect Ratio",
+          label: msg("fields.aspectRatio", "Aspect Ratio"),
           type: "basicSelector",
           options: aspectRatioOptions,
         },
         imageConstrain: {
-          label: "Image Constrain",
+          label: msg("fields.imageConstrain", "Image Constrain"),
           type: "select",
           options: [
-            { label: "Fixed", value: "fixed" },
-            { label: "Filled", value: "filled" },
+            { label: msg("fields.options.fixed", "Fixed"), value: "fixed" },
+            { label: msg("fields.options.filled", "Filled"), value: "filled" },
           ],
         },
         styles: {
-          label: "Image Styles",
+          label: msg("fields.imageStyles", "Image Styles"),
           type: "styledImage",
         },
       },
     },
     navHeading: {
-      label: "Navigation Heading",
+      label: msg("fields.heading", "Heading"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.string"],
           },
         },
         styles: {
-          label: "Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     navLinks: {
-      label: "Navigation Links",
+      label: msg("fields.links", "Links"),
       type: "array",
       arrayFields: {
         cta: {
-          label: "Link",
+          label: msg("fields.link", "Link"),
           type: "entityField",
           filter: {
             types: ["type.cta"],
@@ -280,44 +281,44 @@ const IndividualPracticeFooterFields: YextFields<IndividualPracticeFooterProps> 
     },
     address: {
       type: "entityField",
-      label: "Address",
+      label: msg("fields.address", "Address"),
       filter: {
         types: ["type.address"],
       },
     },
     showRegion: {
-      label: "Show Region",
+      label: msg("fields.showRegion", "Show Region"),
       type: "radio",
       options: [
-        { label: "Yes", value: true },
-        { label: "No", value: false },
+        { label: msg("fields.options.yes", "Yes"), value: true },
+        { label: msg("fields.options.no", "No"), value: false },
       ],
     },
     showCountry: {
-      label: "Show Country",
+      label: msg("fields.showCountry", "Show Country"),
       type: "radio",
       options: [
-        { label: "Yes", value: true },
-        { label: "No", value: false },
+        { label: msg("fields.options.yes", "Yes"), value: true },
+        { label: msg("fields.options.no", "No"), value: false },
       ],
     },
     phone: {
-      label: "Phone",
+      label: msg("fields.phone", "Phone"),
       type: "object",
       objectFields: {
         items: {
-          label: "Items",
+          label: msg("fields.items", "Items"),
           type: "array",
           arrayFields: {
             number: {
               type: "entityField",
-              label: "Number",
+              label: msg("fields.number", "Number"),
               filter: {
                 types: ["type.phone"],
               },
             },
             label: {
-              label: "Label",
+              label: msg("fields.label", "Label"),
               type: "text",
             },
           },
@@ -333,50 +334,50 @@ const IndividualPracticeFooterFields: YextFields<IndividualPracticeFooterProps> 
             item.label || item.number?.constantValue || item.number?.field || "Phone",
         },
         phoneFormat: {
-          label: "Phone Format",
+          label: msg("fields.phoneFormat", "Phone Format"),
           type: "radio",
           options: [
-            { label: "Domestic", value: "domestic" },
-            { label: "International", value: "international" },
+            { label: msg("fields.options.domestic", "Domestic"), value: "domestic" },
+            { label: msg("fields.options.international", "International"), value: "international" },
           ],
         },
         includeHyperlink: {
-          label: "Include Hyperlink",
+          label: msg("fields.includeHyperlink", "Include Hyperlink"),
           type: "radio",
           options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
+            { label: msg("fields.options.yes", "Yes"), value: true },
+            { label: msg("fields.options.no", "No"), value: false },
           ],
         },
       },
     },
     socialLinks: {
-      label: "Social Links",
+      label: msg("fields.socialLinks", "Social Links"),
       type: "array",
       arrayFields: {
         cta: {
-          label: "Link",
+          label: msg("fields.link", "Link"),
           type: "entityField",
           filter: {
             types: ["type.cta"],
           },
         },
         ariaLabel: {
-          label: "Aria Label",
+          label: msg("fields.ariaLabel", "Aria Label"),
           type: "text",
         },
         icon: {
-          label: "Icon",
+          label: msg("fields.icon", "Icon"),
           type: "select",
           options: [
-            { label: "LinkedIn", value: "linkedin" },
-            { label: "Instagram", value: "instagram" },
-            { label: "YouTube", value: "youtube" },
-            { label: "Facebook", value: "facebook" },
-            { label: "Pinterest", value: "pinterest" },
-            { label: "Snapchat", value: "snapchat" },
-            { label: "TikTok", value: "tiktok" },
-            { label: "Yelp", value: "yelp" },
+            { label: msg("fields.options.linkedin", "LinkedIn"), value: "linkedin" },
+            { label: msg("fields.options.instagram", "Instagram"), value: "instagram" },
+            { label: msg("fields.options.youtube", "YouTube"), value: "youtube" },
+            { label: msg("fields.options.facebook", "Facebook"), value: "facebook" },
+            { label: msg("fields.options.pinterest", "Pinterest"), value: "pinterest" },
+            { label: msg("fields.options.snapchat", "Snapchat"), value: "snapchat" },
+            { label: msg("fields.options.tiktok", "TikTok"), value: "tiktok" },
+            { label: msg("fields.options.yelp", "Yelp"), value: "yelp" },
           ],
         },
       },

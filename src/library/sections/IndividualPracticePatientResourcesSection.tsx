@@ -8,6 +8,7 @@ import {
   type ImageType,
 } from "@yext/pages-components";
 import {
+  msg,
   Background,
   ComprehensiveCTA,
   type ComprehensiveCTAValue,
@@ -133,57 +134,57 @@ const IndividualPracticePatientResourcesSectionFields: YextFields<IndividualPrac
   {
     section: sectionField,
     panelBackgroundColor: {
-      label: "Panel Background Color",
+      label: msg("fields.panelBackgroundColor", "Panel Background Color"),
       type: "basicSelector",
       options: "BACKGROUND_COLOR",
     },
     heading: {
-      label: "Heading",
+      label: msg("fields.heading", "Heading"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.string"],
           },
         },
         styles: {
-          label: "Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     body: {
-      label: "Body",
+      label: msg("fields.body", "Body"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.rich_text_v2"],
           },
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     image: {
-      label: "Image",
+      label: msg("fields.image", "Image"),
       type: "object",
       objectFields: {
         image: {
           type: "entityField",
-          label: "Image",
+          label: msg("fields.image", "Image"),
           filter: {
             types: ["type.image"],
           },
@@ -191,11 +192,11 @@ const IndividualPracticePatientResourcesSectionFields: YextFields<IndividualPrac
       },
     },
     items: {
-      label: "Resources",
+      label: msg("fields.items", "Items"),
       type: "array",
       arrayFields: {
         cta: {
-          label: "Call to Action",
+          label: msg("fields.callToAction", "Call to Action"),
           type: "comprehensiveCTA",
         },
       },
