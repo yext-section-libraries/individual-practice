@@ -2,6 +2,7 @@ import type { SectionConfig } from "@yext/visual-editor";
 
 import * as React from "react";
 import { PuckComponent } from "@puckeditor/core";
+import { useTranslation } from "react-i18next";
 import {
   AnalyticsScopeProvider,
   Link,
@@ -11,6 +12,7 @@ import {
   useAnalytics,
 } from "@yext/pages-components";
 import {
+  msg,
   Background,
   ComprehensiveCTA,
   type ComprehensiveCTAValue,
@@ -30,7 +32,7 @@ import {
   getAnalyticsScopeHash,
   getSurfaceColorStyle,
   getThemeColorCssValue,
-  i18nComponentsInstance,
+  i18nPageInstance,
   normalizeLink,
   normalizeThemeColorToken,
   resolveComponentData,
@@ -99,9 +101,9 @@ type IndividualPracticeHeaderProps = {
 };
 
 const linkTypeOptions: Array<{ label: string; value: LinkType }> = [
-  { label: "URL", value: "URL" },
-  { label: "Phone", value: "PHONE" },
-  { label: "Email", value: "EMAIL" },
+  { label: msg("fields.options.url", "URL"), value: "URL" },
+  { label: msg("fields.options.phone", "Phone"), value: "PHONE" },
+  { label: msg("fields.options.email", "Email"), value: "EMAIL" },
 ];
 const defaultSurfaceColor: ThemeColor = {
   selectedColor: "white",
@@ -185,8 +187,7 @@ const getTextStyles = ({
     color: getThemeColorCssValue(color),
     fontFamily: styles.fontFamily === "default" ? undefined : styles.fontFamily,
     fontSize: styles.fontSize === "default" ? undefined : styles.fontSize,
-    fontWeight:
-      styles.fontWeight === "default" ? undefined : styles.fontWeight,
+    fontWeight: styles.fontWeight === "default" ? undefined : styles.fontWeight,
     fontStyle: styles.fontStyle === "default" ? undefined : styles.fontStyle,
     textTransform:
       styles.textTransform === "default" ? undefined : styles.textTransform,
@@ -208,11 +209,9 @@ const getTranslatableSummary = (
   }
 
   return (
-    resolveComponentData(
-      value,
-      i18nComponentsInstance.language,
-      undefined,
-    ) || value.defaultValue || fallback
+    resolveComponentData(value, i18nPageInstance.language, undefined) ||
+    value.defaultValue ||
+    fallback
   );
 };
 
@@ -285,308 +284,336 @@ const SharedHeaderDefaultUtilityIcon = () => (
   </svg>
 );
 
-const IndividualPracticeHeaderFields: YextFields<IndividualPracticeHeaderProps> = {
-  variant: {
-    label: "Variant",
-    type: "select",
-    options: [
-      { label: "Centered Logo Split Nav", value: "centerLogoSplitNav" },
-      { label: "Logo Left Inline Nav", value: "logoLeftInlineNav" },
-      { label: "Stacked Nav Below", value: "stackedNavBelow" },
-      { label: "Utility Top Row", value: "utilityTopRow" },
-    ],
-  },
-  section: {
-    label: "Section",
-    type: "object",
-    objectFields: {
-      visibleOnLivePage: {
-        label: "Visible on Live Page",
-        type: "radio",
-        options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
-        ],
-      },
-      backgroundColor: {
-        label: "Background Color",
-        type: "basicSelector",
-        options: "BACKGROUND_COLOR",
-      },
-      dividerColor: {
-        label: "Divider Color",
-        type: "basicSelector",
-        options: "SITE_COLOR",
-      },
-    },
-  },
-  navigation: {
-    label: "Navigation",
-    type: "object",
-    objectFields: {
-      show: {
-        label: "Show Navigation",
-        type: "radio",
-        options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
-        ],
-      },
-      links: {
-        label: "Links",
-        type: "array",
-        arrayFields: {
-          label: {
-            label: "Label",
-            type: "translatableString",
-          },
-          link: {
-            label: "Link",
-            type: "translatableString",
-          },
-          linkType: {
-            label: "Link Type",
-            type: "select",
-            options: linkTypeOptions,
-          },
-          normalizeLink: {
-            label: "Normalize Link",
-            type: "radio",
-            options: [
-              { label: "Yes", value: true },
-              { label: "No", value: false },
-            ],
-          },
-          openInNewTab: {
-            label: "Open in New Tab",
-            type: "radio",
-            options: [
-              { label: "Yes", value: true },
-              { label: "No", value: false },
-            ],
-          },
+const IndividualPracticeHeaderFields: YextFields<IndividualPracticeHeaderProps> =
+  {
+    variant: {
+      label: msg("fields.variant", "Variant"),
+      type: "select",
+      options: [
+        {
+          label: msg(
+            "fields.options.centeredLogoSplitNav",
+            "Centered Logo Split Nav",
+          ),
+          value: "centerLogoSplitNav",
         },
-        defaultItemProps: (index: number) => ({
-          label: `Link ${index + 1}`,
-          link: "#",
-          linkType: "URL",
-          normalizeLink: false,
-          openInNewTab: false,
-        }),
-        getItemSummary: (item: SharedHeaderLink, index?: number) =>
-          getTranslatableSummary(item.label, `Link ${index ?? 0}`),
-      },
-      fontColor: {
-        label: "Font Color",
-        type: "basicSelector",
-        options: "SITE_COLOR",
-      },
-      styles: {
-        label: "Link Styles",
-        type: "styledLink",
-        showIncludeCaretField: false,
+        {
+          label: msg(
+            "fields.options.logoLeftInlineNav",
+            "Logo Left Inline Nav",
+          ),
+          value: "logoLeftInlineNav",
+        },
+        {
+          label: msg("fields.options.stackedNavBelow", "Stacked Nav Below"),
+          value: "stackedNavBelow",
+        },
+        {
+          label: msg("fields.options.utilityTopRow", "Utility Top Row"),
+          value: "utilityTopRow",
+        },
+      ],
+    },
+    section: {
+      label: msg("fields.section", "Section"),
+      type: "object",
+      objectFields: {
+        visibleOnLivePage: {
+          label: msg("fields.visibleOnLivePage", "Visible on Live Page"),
+          type: "radio",
+          options: [
+            { label: msg("fields.options.yes", "Yes"), value: true },
+            { label: msg("fields.options.no", "No"), value: false },
+          ],
+        },
+        backgroundColor: {
+          label: msg("fields.backgroundColor", "Background Color"),
+          type: "basicSelector",
+          options: "BACKGROUND_COLOR",
+        },
+        dividerColor: {
+          label: msg("fields.dividerColor", "Divider Color"),
+          type: "basicSelector",
+          options: "SITE_COLOR",
+        },
       },
     },
-  },
-  utilities: {
-    label: "Utility Icons",
-    type: "object",
-    objectFields: {
-      show: {
-        label: "Show Utility Links",
-        type: "radio",
-        options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
-        ],
+    navigation: {
+      label: msg("fields.navigation", "Navigation"),
+      type: "object",
+      objectFields: {
+        show: {
+          label: msg("fields.showNavigation", "Show Navigation"),
+          type: "radio",
+          options: [
+            { label: msg("fields.options.yes", "Yes"), value: true },
+            { label: msg("fields.options.no", "No"), value: false },
+          ],
+        },
+        links: {
+          label: msg("fields.links", "Links"),
+          type: "array",
+          arrayFields: {
+            label: {
+              label: msg("fields.label", "Label"),
+              type: "translatableString",
+            },
+            link: {
+              label: msg("fields.link", "Link"),
+              type: "translatableString",
+            },
+            linkType: {
+              label: msg("fields.linkType", "Link Type"),
+              type: "select",
+              options: linkTypeOptions,
+            },
+            normalizeLink: {
+              label: msg("fields.normalizeLink", "Normalize Link"),
+              type: "radio",
+              options: [
+                { label: msg("fields.options.yes", "Yes"), value: true },
+                { label: msg("fields.options.no", "No"), value: false },
+              ],
+            },
+            openInNewTab: {
+              label: msg("fields.openInNewTab", "Open in New Tab"),
+              type: "radio",
+              options: [
+                { label: msg("fields.options.yes", "Yes"), value: true },
+                { label: msg("fields.options.no", "No"), value: false },
+              ],
+            },
+          },
+          defaultItemProps: (index: number) => ({
+            label: `Link ${index + 1}`,
+            link: "#",
+            linkType: "URL",
+            normalizeLink: false,
+            openInNewTab: false,
+          }),
+          getItemSummary: (item: SharedHeaderLink, index?: number) =>
+            getTranslatableSummary(item.label, `Link ${index ?? 0}`),
+        },
+        fontColor: {
+          label: msg("fields.fontColor", "Font Color"),
+          type: "basicSelector",
+          options: "SITE_COLOR",
+        },
+        styles: {
+          label: msg("fields.linkStyles", "Link Styles"),
+          type: "styledLink",
+          showIncludeCaretField: false,
+        },
       },
-      items: {
-        label: "Items",
-        type: "array",
-        arrayFields: {
-          iconImage: {
-            label: "Icon Image",
-            type: "object",
-            objectFields: {
-              image: {
-                type: "entityField",
-                label: "Image",
-                filter: {
-                  types: ["type.image"],
+    },
+    utilities: {
+      label: msg("fields.utilityIcons", "Utility Icons"),
+      type: "object",
+      objectFields: {
+        show: {
+          label: msg("fields.showUtilityLinks", "Show Utility Links"),
+          type: "radio",
+          options: [
+            { label: msg("fields.options.yes", "Yes"), value: true },
+            { label: msg("fields.options.no", "No"), value: false },
+          ],
+        },
+        items: {
+          label: msg("fields.items", "Items"),
+          type: "array",
+          arrayFields: {
+            iconImage: {
+              label: msg("fields.iconImage", "Icon Image"),
+              type: "object",
+              objectFields: {
+                image: {
+                  type: "entityField",
+                  label: msg("fields.image", "Image"),
+                  filter: {
+                    types: ["type.image"],
+                  },
+                },
+                aspectRatio: {
+                  label: msg("fields.aspectRatio", "Aspect Ratio"),
+                  type: "basicSelector",
+                  options: aspectRatioOptions,
+                },
+                imageConstrain: {
+                  label: msg("fields.imageConstrain", "Image Constrain"),
+                  type: "select",
+                  options: [
+                    {
+                      label: msg("fields.options.fixed", "Fixed"),
+                      value: "fixed",
+                    },
+                    {
+                      label: msg("fields.options.filled", "Filled"),
+                      value: "filled",
+                    },
+                  ],
+                },
+                styles: {
+                  label: msg("fields.imageStyles", "Image Styles"),
+                  type: "styledImage",
                 },
               },
-              aspectRatio: {
-                label: "Aspect Ratio",
-                type: "basicSelector",
-                options: aspectRatioOptions,
-              },
-              imageConstrain: {
-                label: "Image Constrain",
-                type: "select",
-                options: [
-                  { label: "Fixed", value: "fixed" },
-                  { label: "Filled", value: "filled" },
-                ],
+            },
+            label: {
+              label: msg("fields.label", "Label"),
+              type: "translatableString",
+            },
+            link: {
+              label: msg("fields.link", "Link"),
+              type: "translatableString",
+            },
+            linkType: {
+              label: msg("fields.linkType", "Link Type"),
+              type: "select",
+              options: linkTypeOptions,
+            },
+            normalizeLink: {
+              label: msg("fields.normalizeLink", "Normalize Link"),
+              type: "radio",
+              options: [
+                { label: msg("fields.options.yes", "Yes"), value: true },
+                { label: msg("fields.options.no", "No"), value: false },
+              ],
+            },
+            openInNewTab: {
+              label: msg("fields.openInNewTab", "Open in New Tab"),
+              type: "radio",
+              options: [
+                { label: msg("fields.options.yes", "Yes"), value: true },
+                { label: msg("fields.options.no", "No"), value: false },
+              ],
+            },
+          },
+          defaultItemProps: (index: number) => ({
+            iconImage: defaultUtilityIconImage,
+            label: `Item ${index + 1}`,
+            link: "#",
+            linkType: "URL",
+            normalizeLink: false,
+            openInNewTab: false,
+          }),
+          getItemSummary: (item: SharedHeaderAction, index?: number) =>
+            getTranslatableSummary(item.label, `Action ${index ?? 0}`),
+        },
+      },
+    },
+    cta: {
+      label: msg("fields.callToActions", "Call to Actions"),
+      type: "object",
+      objectFields: {
+        show: {
+          label: msg("fields.showCta", "Show CTA"),
+          type: "radio",
+          options: [
+            { label: msg("fields.options.yes", "Yes"), value: true },
+            { label: msg("fields.options.no", "No"), value: false },
+          ],
+        },
+        items: {
+          label: msg("fields.items", "Items"),
+          type: "array",
+          arrayFields: {
+            cta: {
+              label: msg("fields.cta", "CTA"),
+              type: "comprehensiveCTA",
+            },
+          },
+          defaultItemProps: {
+            cta: {
+              data: {
+                actionType: "link",
+                cta: {
+                  field: "",
+                  constantValueEnabled: true,
+                  constantValue: {
+                    ctaType: "textAndLink",
+                    label: { defaultValue: "CTA Label" },
+                    link: { defaultValue: "#" },
+                    linkType: "URL",
+                  },
+                  selectedType: "textAndLink",
+                },
+                openInNewTab: false,
+                buttonText: { defaultValue: "Button" },
+                customId: "",
+                customClass: "",
+                dataAttributes: [],
+                ariaLabel: { defaultValue: "CTA Label" },
               },
               styles: {
-                label: "Image Styles",
-                type: "styledImage",
+                variant: "primary",
+                color: defaultPrimaryCtaColor,
+                button: defaultButtonStyles,
+                link: defaultLinkStyles,
               },
             },
           },
-          label: {
-            label: "Label",
-            type: "translatableString",
-          },
-          link: {
-            label: "Link",
-            type: "translatableString",
-          },
-          linkType: {
-            label: "Link Type",
-            type: "select",
-            options: linkTypeOptions,
-          },
-          normalizeLink: {
-            label: "Normalize Link",
-            type: "radio",
-            options: [
-              { label: "Yes", value: true },
-              { label: "No", value: false },
-            ],
-          },
-          openInNewTab: {
-            label: "Open in New Tab",
-            type: "radio",
-            options: [
-              { label: "Yes", value: true },
-              { label: "No", value: false },
-            ],
-          },
+          getItemSummary: (
+            item: { cta?: ComprehensiveCTAValue },
+            index?: number,
+          ) =>
+            getTranslatableSummary(
+              item.cta?.data?.cta?.constantValue?.label,
+              `CTA ${index ?? 0}`,
+            ),
         },
-        defaultItemProps: (index: number) => ({
-          iconImage: defaultUtilityIconImage,
-          label: `Item ${index + 1}`,
-          link: "#",
-          linkType: "URL",
-          normalizeLink: false,
-          openInNewTab: false,
-        }),
-        getItemSummary: (item: SharedHeaderAction, index?: number) =>
-          getTranslatableSummary(item.label, `Action ${index ?? 0}`),
       },
     },
-  },
-  cta: {
-    label: "Call to Actions",
-    type: "object",
-    objectFields: {
-      show: {
-        label: "Show CTA",
-        type: "radio",
-        options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
-        ],
-      },
-      items: {
-        label: "Items",
-        type: "array",
-        arrayFields: {
-          cta: {
-            label: "CTA",
-            type: "comprehensiveCTA",
+    logoImage: {
+      label: msg("fields.logoImage", "Logo Image"),
+      type: "object",
+      objectFields: {
+        show: {
+          label: msg("fields.showLogo", "Show Logo"),
+          type: "radio",
+          options: [
+            { label: msg("fields.options.yes", "Yes"), value: true },
+            { label: msg("fields.options.no", "No"), value: false },
+          ],
+        },
+        image: {
+          type: "entityField",
+          label: msg("fields.image", "Image"),
+          filter: {
+            types: ["type.image"],
           },
         },
-        defaultItemProps: {
-          cta: {
-            data: {
-              actionType: "link",
-              cta: {
-                field: "",
-                constantValueEnabled: true,
-                constantValue: {
-                  ctaType: "textAndLink",
-                  label: { defaultValue: "CTA Label" },
-                  link: { defaultValue: "#" },
-                  linkType: "URL",
-                },
-                selectedType: "textAndLink",
-              },
-              openInNewTab: false,
-              buttonText: { defaultValue: "Button" },
-              customId: "",
-              customClass: "",
-              dataAttributes: [],
-              ariaLabel: { defaultValue: "CTA Label" },
-            },
-            styles: {
-              variant: "primary",
-              color: defaultPrimaryCtaColor,
-              button: defaultButtonStyles,
-              link: defaultLinkStyles,
-            },
+        url: {
+          label: msg("fields.url", "URL"),
+          type: "entityField",
+          filter: {
+            types: ["type.string"],
           },
         },
-        getItemSummary: (
-          item: { cta?: ComprehensiveCTAValue },
-          index?: number,
-        ) =>
-          getTranslatableSummary(
-            item.cta?.data?.cta?.constantValue?.label,
-            `CTA ${index ?? 0}`,
-          ),
-      },
-    },
-  },
-  logoImage: {
-    label: "Logo Image",
-    type: "object",
-    objectFields: {
-      show: {
-        label: "Show Logo",
-        type: "radio",
-        options: [
-          { label: "Yes", value: true },
-          { label: "No", value: false },
-        ],
-      },
-      image: {
-        type: "entityField",
-        label: "Image",
-        filter: {
-          types: ["type.image"],
+        aspectRatio: {
+          label: msg("fields.aspectRatio", "Aspect Ratio"),
+          type: "basicSelector",
+          options: aspectRatioOptions,
+        },
+        imageConstrain: {
+          label: msg("fields.imageConstrain", "Image Constrain"),
+          type: "select",
+          options: [
+            { label: msg("fields.options.fixed", "Fixed"), value: "fixed" },
+            { label: msg("fields.options.filled", "Filled"), value: "filled" },
+          ],
+        },
+        styles: {
+          label: msg("fields.imageStyles", "Image Styles"),
+          type: "styledImage",
         },
       },
-      url: {
-        label: "URL",
-        type: "entityField",
-        filter: {
-          types: ["type.string"],
-        },
-      },
-      aspectRatio: {
-        label: "Aspect Ratio",
-        type: "basicSelector",
-        options: aspectRatioOptions,
-      },
-      imageConstrain: {
-        label: "Image Constrain",
-        type: "select",
-        options: [
-          { label: "Fixed", value: "fixed" },
-          { label: "Filled", value: "filled" },
-        ],
-      },
-      styles: {
-        label: "Image Styles",
-        type: "styledImage",
-      },
     },
-  },
-};
+  };
 
-const IndividualPracticeHeaderComponent: PuckComponent<IndividualPracticeHeaderProps> = (props) => {
+const IndividualPracticeHeaderComponent: PuckComponent<
+  IndividualPracticeHeaderProps
+> = (props) => {
+  const { t } = useTranslation();
   const analytics = useAnalytics();
   const streamDocument = useDocument<StreamDocument>();
   const locale = streamDocument.locale ?? "en";
@@ -598,11 +625,7 @@ const IndividualPracticeHeaderComponent: PuckComponent<IndividualPracticeHeaderP
     streamDocument,
   ) as ImageType | ComplexImageType | TranslatableAssetImage | undefined;
   const resolvedLogoUrl = (
-    resolveComponentData(
-      props.logoImage.url,
-      locale,
-      streamDocument,
-    ) || ""
+    resolveComponentData(props.logoImage.url, locale, streamDocument) || ""
   )
     .toString()
     .trim();
@@ -720,8 +743,10 @@ const IndividualPracticeHeaderComponent: PuckComponent<IndividualPracticeHeaderP
       );
     }
 
-    const resolvedIconImage =
-      iconImage as ImageType | ComplexImageType | TranslatableAssetImage;
+    const resolvedIconImage = iconImage as
+      | ImageType
+      | ComplexImageType
+      | TranslatableAssetImage;
     const iconHeight = 32;
     const iconAspectRatio =
       iconImageProps.aspectRatio > 0 ? iconImageProps.aspectRatio : 1;
@@ -829,7 +854,7 @@ const IndividualPracticeHeaderComponent: PuckComponent<IndividualPracticeHeaderP
   );
 
   const renderNavigationLinks = (orientation: "row" | "column") => (
-    <nav aria-label="Primary navigation">
+    <nav aria-label={t("primaryNavigation", "Primary navigation")}>
       <ul
         className={
           orientation === "row"
@@ -839,21 +864,21 @@ const IndividualPracticeHeaderComponent: PuckComponent<IndividualPracticeHeaderP
       >
         {showNavigation
           ? navigationLinks.map((item) => (
-          <li key={`${item.eventName}-${item.link}`}>
-            <Link
-              cta={{
-                link: item.link,
-                linkType: item.linkType,
-              }}
-              eventName={item.eventName}
-              target={item.openInNewTab ? "_blank" : undefined}
-              rel={item.openInNewTab ? "noopener noreferrer" : undefined}
-              className="inline-flex items-center gap-2 transition-opacity hover:opacity-80"
-              style={navigationTextStyles}
-            >
-              <span>{item.label}</span>
-            </Link>
-          </li>
+              <li key={`${item.eventName}-${item.link}`}>
+                <Link
+                  cta={{
+                    link: item.link,
+                    linkType: item.linkType,
+                  }}
+                  eventName={item.eventName}
+                  target={item.openInNewTab ? "_blank" : undefined}
+                  rel={item.openInNewTab ? "noopener noreferrer" : undefined}
+                  className="inline-flex items-center gap-2 transition-opacity hover:opacity-80"
+                  style={navigationTextStyles}
+                >
+                  <span>{item.label}</span>
+                </Link>
+              </li>
             ))
           : null}
       </ul>
@@ -899,7 +924,7 @@ const IndividualPracticeHeaderComponent: PuckComponent<IndividualPracticeHeaderP
           }}
           eventName="headerLogo"
           className="inline-flex transition-opacity hover:opacity-80"
-          aria-label="Logo"
+          aria-label={t("logo", "Logo")}
         >
           {logoContent}
         </Link>
@@ -919,7 +944,9 @@ const IndividualPracticeHeaderComponent: PuckComponent<IndividualPracticeHeaderP
             {renderNavigationLinks("row")}
           </div>
           {logoElement ? (
-            <div className="flex items-center justify-center">{logoElement}</div>
+            <div className="flex items-center justify-center">
+              {logoElement}
+            </div>
           ) : null}
           <div>{desktopSharedRightSide}</div>
         </div>
@@ -942,7 +969,9 @@ const IndividualPracticeHeaderComponent: PuckComponent<IndividualPracticeHeaderP
       return (
         <div className="py-4">
           <div className="flex items-center justify-between gap-8 pb-4">
-            {logoElement ? <div className="shrink-0 px-12">{logoElement}</div> : null}
+            {logoElement ? (
+              <div className="shrink-0 px-12">{logoElement}</div>
+            ) : null}
             <div className="min-w-0 w-full max-w-[calc((100%-theme(spacing.16))/2)] px-12">
               {desktopSharedRightSide}
             </div>
@@ -1020,7 +1049,11 @@ const IndividualPracticeHeaderComponent: PuckComponent<IndividualPracticeHeaderP
               setMenuOpen((currentValue) => !currentValue);
             }}
             aria-expanded={menuOpen}
-            aria-label={menuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-label={
+              menuOpen
+                ? t("closeNavigationMenu", "Close navigation menu")
+                : t("openNavigationMenu", "Open navigation menu")
+            }
             className="inline-flex h-10 w-10 items-center justify-center rounded-full"
             style={{
               color: getThemeColorCssValue(navigationColor),
@@ -1052,7 +1085,9 @@ const IndividualPracticeHeaderComponent: PuckComponent<IndividualPracticeHeaderP
             style={headerSurfaceStyle}
           >
             <div className="space-y-6">
-              {navigationLinks.length > 0 ? renderNavigationLinks("column") : null}
+              {navigationLinks.length > 0
+                ? renderNavigationLinks("column")
+                : null}
               {((showUtilities && utilityLinks.length > 0) || showCta) && (
                 <div
                   className="border-t border-current/10 pt-6"
@@ -1117,7 +1152,11 @@ const IndividualPracticeHeaderComponent: PuckComponent<IndividualPracticeHeaderP
                           }}
                           eventName={`${item.eventName}Mobile`}
                           target={item.openInNewTab ? "_blank" : undefined}
-                          rel={item.openInNewTab ? "noopener noreferrer" : undefined}
+                          rel={
+                            item.openInNewTab
+                              ? "noopener noreferrer"
+                              : undefined
+                          }
                           aria-label={item.label}
                           className="inline-flex h-8 shrink-0 items-center justify-center rounded-full transition-opacity hover:opacity-80"
                           style={{
@@ -1144,140 +1183,141 @@ const IndividualPracticeHeaderComponent: PuckComponent<IndividualPracticeHeaderP
   );
 };
 
-export const IndividualPracticeHeader: YextComponentConfig<IndividualPracticeHeaderProps> = {
-  label: "Shared Header",
-  fields: IndividualPracticeHeaderFields,
-  defaultProps: {
-    variant: "logoLeftInlineNav",
-    section: {
-      visibleOnLivePage: true,
-      backgroundColor: defaultSurfaceColor,
-      dividerColor: undefined,
-    },
-    navigation: {
-      show: true,
-      links: [
-        {
-          label: "Specialties",
-          link: "#specialties",
-          linkType: "URL",
-          normalizeLink: false,
-          openInNewTab: false,
-        },
-        {
-          label: "Providers",
-          link: "#providers",
-          linkType: "URL",
-          normalizeLink: false,
-          openInNewTab: false,
-        },
-        {
-          label: "Insurance",
-          link: "#insurance",
-          linkType: "URL",
-          normalizeLink: false,
-          openInNewTab: false,
-        },
-        {
-          label: "Patient Resources",
-          link: "#resources",
-          linkType: "URL",
-          normalizeLink: false,
-          openInNewTab: false,
-        },
-        {
-          label: "Contact",
-          link: "#contact",
-          linkType: "URL",
-          normalizeLink: false,
-          openInNewTab: false,
-        },
-      ],
-      styles: defaultLinkStyles,
-    },
-    utilities: {
-      show: true,
-      items: [
-        {
-          iconImage: defaultUtilityIconImage,
-          label: "Patient Portal",
-          link: "#",
-          linkType: "URL",
-          normalizeLink: false,
-          openInNewTab: false,
-        },
-      ],
-    },
-    cta: {
-      show: true,
-      items: [
-        {
-          cta: {
-            data: {
-              actionType: "link",
-              cta: {
-                field: "",
-                constantValueEnabled: true,
-                constantValue: {
-                  ctaType: "textAndLink",
-                  label: { defaultValue: "Book Appointment" },
-                  link: { defaultValue: "#" },
-                  linkType: "URL",
+export const IndividualPracticeHeader: YextComponentConfig<IndividualPracticeHeaderProps> =
+  {
+    label: "Header",
+    fields: IndividualPracticeHeaderFields,
+    defaultProps: {
+      variant: "logoLeftInlineNav",
+      section: {
+        visibleOnLivePage: true,
+        backgroundColor: defaultSurfaceColor,
+        dividerColor: undefined,
+      },
+      navigation: {
+        show: true,
+        links: [
+          {
+            label: "Specialties",
+            link: "#specialties",
+            linkType: "URL",
+            normalizeLink: false,
+            openInNewTab: false,
+          },
+          {
+            label: "Providers",
+            link: "#providers",
+            linkType: "URL",
+            normalizeLink: false,
+            openInNewTab: false,
+          },
+          {
+            label: "Insurance",
+            link: "#insurance",
+            linkType: "URL",
+            normalizeLink: false,
+            openInNewTab: false,
+          },
+          {
+            label: "Patient Resources",
+            link: "#resources",
+            linkType: "URL",
+            normalizeLink: false,
+            openInNewTab: false,
+          },
+          {
+            label: "Contact",
+            link: "#contact",
+            linkType: "URL",
+            normalizeLink: false,
+            openInNewTab: false,
+          },
+        ],
+        styles: defaultLinkStyles,
+      },
+      utilities: {
+        show: true,
+        items: [
+          {
+            iconImage: defaultUtilityIconImage,
+            label: "Patient Portal",
+            link: "#",
+            linkType: "URL",
+            normalizeLink: false,
+            openInNewTab: false,
+          },
+        ],
+      },
+      cta: {
+        show: true,
+        items: [
+          {
+            cta: {
+              data: {
+                actionType: "link",
+                cta: {
+                  field: "",
+                  constantValueEnabled: true,
+                  constantValue: {
+                    ctaType: "textAndLink",
+                    label: { defaultValue: "Book Appointment" },
+                    link: { defaultValue: "#" },
+                    linkType: "URL",
+                  },
+                  selectedType: "textAndLink",
                 },
-                selectedType: "textAndLink",
+                openInNewTab: false,
+                buttonText: { defaultValue: "Book Appointment" },
+                customId: "",
+                customClass: "",
+                dataAttributes: [],
+                ariaLabel: { defaultValue: "Book Appointment" },
               },
-              openInNewTab: false,
-              buttonText: { defaultValue: "Book Appointment" },
-              customId: "",
-              customClass: "",
-              dataAttributes: [],
-              ariaLabel: { defaultValue: "Book Appointment" },
-            },
-            styles: {
-              variant: "primary",
-              color: defaultPrimaryCtaColor,
-              button: defaultButtonStyles,
-              link: defaultLinkStyles,
+              styles: {
+                variant: "primary",
+                color: defaultPrimaryCtaColor,
+                button: defaultButtonStyles,
+                link: defaultLinkStyles,
+              },
             },
           },
-        },
-      ],
-    },
-    logoImage: {
-      show: true,
-      image: {
-        field: "",
-        constantValueEnabled: true,
-        constantValue: {
-          url: "https://a.mktgcdn.com/p/OLT2KExDEKhKlCmIobyRRHN6MFUS77fVs5gIt_FTnBI/450x450.jpg",
-          width: 450,
-          height: 450,
-        },
+        ],
       },
-      url: {
-        field: "",
-        constantValue: {
-          defaultValue: "",
+      logoImage: {
+        show: true,
+        image: {
+          field: "",
+          constantValueEnabled: true,
+          constantValue: {
+            url: "https://a.mktgcdn.com/p/OLT2KExDEKhKlCmIobyRRHN6MFUS77fVs5gIt_FTnBI/450x450.jpg",
+            width: 450,
+            height: 450,
+          },
         },
-        constantValueEnabled: true,
+        url: {
+          field: "",
+          constantValue: {
+            defaultValue: "",
+          },
+          constantValueEnabled: true,
+        },
+        aspectRatio: 1,
+        imageConstrain: "fixed",
+        styles: defaultImageStyles,
       },
-      aspectRatio: 1,
-      imageConstrain: "fixed",
-      styles: defaultImageStyles,
     },
-  },
-  render: (props) => (
-    <AnalyticsScopeProvider
-      name={`IndividualPracticeHeader${getAnalyticsScopeHash(props.id)}`}
-    >
-      <IndividualPracticeHeaderComponent {...props} />
-    </AnalyticsScopeProvider>
-  ),
-};
+    render: (props) => (
+      <AnalyticsScopeProvider
+        name={`IndividualPracticeHeader${getAnalyticsScopeHash(props.id)}`}
+      >
+        <IndividualPracticeHeaderComponent {...props} />
+      </AnalyticsScopeProvider>
+    ),
+  };
 
 export const config: SectionConfig = {
   id: "IndividualPracticeHeader",
-  displayName: "Shared Header",
-  description: "Shared Header",
+  displayName: "Header",
+  description: "Header",
   pageSetTypes: ["ENTITY", "DIRECTORY", "LOCATOR"],
 };

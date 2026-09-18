@@ -1,17 +1,19 @@
 import type { SectionConfig } from "@yext/visual-editor";
-
 import * as React from "react";
 import { parsePhoneNumber } from "awesome-phonenumber";
 import type { PuckComponent } from "@puckeditor/core";
+import { useTranslation } from "react-i18next";
 import {
   Address,
   AnalyticsScopeProvider,
   HoursTable,
   Link,
   type AddressType,
+  type DayOfWeekNames,
   type HoursType,
 } from "@yext/pages-components";
 import {
+  msg,
   Background,
   ComprehensiveCTA,
   type ComprehensiveCTAValue,
@@ -170,44 +172,44 @@ const IndividualPracticeFacilitySummarySectionFields: YextFields<IndividualPract
   {
     section: sectionField,
     heading: {
-      label: "Heading",
+      label: msg("fields.heading", "Heading"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.string"],
           },
         },
         styles: {
-          label: "Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     contactHeading: {
-      label: "Contact Heading",
+      label: msg("fields.contactHeading", "Contact Heading"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.string"],
           },
         },
         styles: {
-          label: "Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
@@ -215,52 +217,52 @@ const IndividualPracticeFacilitySummarySectionFields: YextFields<IndividualPract
     },
     address: {
       type: "entityField",
-      label: "Address",
+      label: msg("fields.address", "Address"),
       filter: {
         types: ["type.address"],
       },
     },
     showRegion: {
-      label: "Show Region",
+      label: msg("fields.showRegion", "Show Region"),
       type: "radio",
       options: [
-        { label: "Yes", value: true },
-        { label: "No", value: false },
+        { label: msg("fields.options.yes", "Yes"), value: true },
+        { label: msg("fields.options.no", "No"), value: false },
       ],
     },
     showCountry: {
-      label: "Show Country",
+      label: msg("fields.showCountry", "Show Country"),
       type: "radio",
       options: [
-        { label: "Yes", value: true },
-        { label: "No", value: false },
+        { label: msg("fields.options.yes", "Yes"), value: true },
+        { label: msg("fields.options.no", "No"), value: false },
       ],
     },
     showTextLinkUnderline: {
-      label: "Show Text Link Underline",
+      label: msg("fields.showTextLinkUnderline", "Show Text Link Underline"),
       type: "radio",
       options: [
-        { label: "Yes", value: true },
-        { label: "No", value: false },
+        { label: msg("fields.options.yes", "Yes"), value: true },
+        { label: msg("fields.options.no", "No"), value: false },
       ],
     },
     phones: {
-      label: "Phones",
+      label: msg("fields.phones", "Phones"),
       type: "object",
       objectFields: {
         items: {
-          label: "Items",
+          label: msg("fields.items", "Items"),
           type: "array",
           arrayFields: {
             number: {
               type: "entityField",
-              label: "Number",
+              label: msg("fields.number", "Number"),
               filter: {
                 types: ["type.phone"],
               },
             },
             label: {
-              label: "Label",
+              label: msg("fields.label", "Label"),
               type: "text",
             },
           },
@@ -275,88 +277,88 @@ const IndividualPracticeFacilitySummarySectionFields: YextFields<IndividualPract
           getItemSummary: (_item, index?: number) => `Phone ${index ?? 0}`,
         },
         phoneFormat: {
-          label: "Phone Format",
+          label: msg("fields.phoneFormat", "Phone Format"),
           type: "radio",
           options: [
-            { label: "Domestic", value: "domestic" },
-            { label: "International", value: "international" },
+            { label: msg("fields.options.domestic", "Domestic"), value: "domestic" },
+            { label: msg("fields.options.international", "International"), value: "international" },
           ],
         },
         includeHyperlink: {
-          label: "Include Hyperlink",
+          label: msg("fields.includeHyperlink", "Include Hyperlink"),
           type: "radio",
           options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
+            { label: msg("fields.options.yes", "Yes"), value: true },
+            { label: msg("fields.options.no", "No"), value: false },
           ],
         },
       },
     },
     directionsLink: {
-      label: "Directions Link",
+      label: msg("fields.directionsLink", "Directions Link"),
       type: "comprehensiveCTA",
     },
     appointmentLink: {
-      label: "Appointment Link",
+      label: msg("fields.link", "Link"),
       type: "comprehensiveCTA",
     },
     accessibilityHeading: {
-      label: "Accessibility Heading",
+      label: msg("fields.accessibilityHeading", "Accessibility Heading"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.string"],
           },
         },
         styles: {
-          label: "Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     accessibilityBody: {
-      label: "Accessibility Body",
+      label: msg("fields.accessibilityBody", "Accessibility Body"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.rich_text_v2"],
           },
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     hoursHeading: {
-      label: "Hours Heading",
+      label: msg("fields.hoursHeading", "Hours Heading"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.string"],
           },
         },
         styles: {
-          label: "Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
@@ -364,53 +366,53 @@ const IndividualPracticeFacilitySummarySectionFields: YextFields<IndividualPract
     },
     hours: {
       type: "entityField",
-      label: "Hours",
+      label: msg("fields.hours", "Hours"),
       filter: {
         types: ["type.hours"],
       },
       disableConstantValueToggle: true,
     },
     hoursStyles: {
-      label: "Hours Styles",
+      label: msg("fields.hoursStyles", "Hours Styles"),
       type: "object",
       objectFields: {
         startOfWeek: {
-          label: "Start Of Week",
+          label: msg("fields.startOfWeek", "Start Of Week"),
           type: "select",
           options: [
-            { label: "Monday", value: "monday" },
-            { label: "Tuesday", value: "tuesday" },
-            { label: "Wednesday", value: "wednesday" },
-            { label: "Thursday", value: "thursday" },
-            { label: "Friday", value: "friday" },
-            { label: "Saturday", value: "saturday" },
-            { label: "Sunday", value: "sunday" },
-            { label: "Today", value: "today" },
+            { label: msg("fields.options.monday", "Monday"), value: "monday" },
+            { label: msg("fields.options.tuesday", "Tuesday"), value: "tuesday" },
+            { label: msg("fields.options.wednesday", "Wednesday"), value: "wednesday" },
+            { label: msg("fields.options.thursday", "Thursday"), value: "thursday" },
+            { label: msg("fields.options.friday", "Friday"), value: "friday" },
+            { label: msg("fields.options.saturday", "Saturday"), value: "saturday" },
+            { label: msg("fields.options.sunday", "Sunday"), value: "sunday" },
+            { label: msg("fields.options.today", "Today"), value: "today" },
           ],
         },
         collapseDays: {
-          label: "Collapse Days",
+          label: msg("fields.collapseDays", "Collapse Days"),
           type: "radio",
           options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
+            { label: msg("fields.options.yes", "Yes"), value: true },
+            { label: msg("fields.options.no", "No"), value: false },
           ],
         },
         showAdditionalHoursText: {
-          label: "Show Additional Hours Text",
+          label: msg("fields.showAdditionalHoursText", "Show Additional Hours Text"),
           type: "radio",
           options: [
-            { label: "Yes", value: true },
-            { label: "No", value: false },
+            { label: msg("fields.options.yes", "Yes"), value: true },
+            { label: msg("fields.options.no", "No"), value: false },
           ],
         },
         alignment: {
-          label: "Alignment",
+          label: msg("fields.alignment", "Alignment"),
           type: "select",
           options: [
-            { label: "Start", value: "items-start" },
-            { label: "Center", value: "items-center" },
-            { label: "End", value: "items-end" },
+            { label: msg("fields.options.start", "Start"), value: "items-start" },
+            { label: msg("fields.options.center", "Center"), value: "items-center" },
+            { label: msg("fields.options.end", "End"), value: "items-end" },
           ],
         },
       },
@@ -420,6 +422,25 @@ const IndividualPracticeFacilitySummarySectionFields: YextFields<IndividualPract
 const IndividualPracticeFacilitySummarySectionComponent: PuckComponent<IndividualPracticeFacilitySummarySectionProps> =
   (props) => {
     const streamDocument = useDocument();
+    const { t, i18n } = useTranslation();
+    const dayOfWeekNames = React.useMemo<DayOfWeekNames>(() => {
+      const formatter = new Intl.DateTimeFormat(i18n.language, {
+        timeZone: "UTC",
+        weekday: "long",
+      });
+      const formatWeekday = (day: number) =>
+        formatter.format(new Date(Date.UTC(2024, 0, day)));
+
+      return {
+        sunday: formatWeekday(7),
+        monday: formatWeekday(8),
+        tuesday: formatWeekday(9),
+        wednesday: formatWeekday(10),
+        thursday: formatWeekday(11),
+        friday: formatWeekday(12),
+        saturday: formatWeekday(13),
+      };
+    }, [i18n.language]);
     const locale = streamDocument.locale ?? "en";
     const sectionCtaForegroundColor = getDefaultForegroundColor(
       props.section.backgroundColor,
@@ -932,8 +953,15 @@ const IndividualPracticeFacilitySummarySectionComponent: PuckComponent<Individua
                         <HoursTable
                           hours={resolvedHours}
                           comingSoon={Boolean(streamDocument.comingSoon)}
+                          dayOfWeekNames={dayOfWeekNames}
                           startOfWeek={props.hoursStyles.startOfWeek}
                           collapseDays={props.hoursStyles.collapseDays}
+                          intervalTranslations={{
+                            isClosed: t("closed", "Closed"),
+                            open24Hours: t("open24Hours", "Open 24 Hours"),
+                            reopenDate: t("reopenDate", "Reopen Date"),
+                            timeFormatLocale: i18n.language,
+                          }}
                         />
                         {props.hoursStyles.showAdditionalHoursText &&
                         typeof streamDocument.additionalHoursText === "string" &&

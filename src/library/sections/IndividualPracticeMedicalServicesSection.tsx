@@ -8,6 +8,7 @@ import {
   type ImageType,
 } from "@yext/pages-components";
 import {
+  msg,
   Background,
   ComprehensiveCTA,
   createItemSource,
@@ -172,36 +173,36 @@ const createTextCtaStyles = (): MedicalServicesCtaStyles => ({
 });
 
 const serviceItemsSource = createItemSource<ServiceItem>({
-  label: "Services",
+  label: msg("fields.services", "Services"),
   mappingFields: {
     title: {
-      label: "Title",
+      label: msg("fields.title", "Title"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: { types: ["type.string"] },
         },
       },
     },
     description: {
-      label: "Description",
+      label: msg("fields.description", "Description"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: { types: ["type.rich_text_v2"] },
         },
       },
     },
     image: {
       type: "entityField",
-      label: "Image",
+      label: msg("fields.image", "Image"),
       filter: { types: ["type.image"] },
     },
-    cta: { label: "Call to Action", type: "ctaSelector" },
+    cta: { label: msg("fields.callToAction", "Call to Action"), type: "ctaSelector" },
   },
   defaultValues: [
     {
@@ -259,91 +260,91 @@ const IndividualPracticeMedicalServicesSectionFields: YextFields<IndividualPract
   {
     section: sectionField,
     heading: {
-      label: "Heading",
+      label: msg("fields.heading", "Heading"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.string"],
           },
         },
         styles: {
-          label: "Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     cardStyles: {
-      label: "Card Styles",
+      label: msg("fields.cardStyles", "Card Styles"),
       type: "object",
       objectFields: {
         cardBackgroundColor: {
-          label: "Card Background Color",
+          label: msg("fields.cardBackgroundColor", "Card Background Color"),
           type: "basicSelector",
           options: "BACKGROUND_COLOR",
         },
         titleTextStyles: {
-          label: "Title Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         titleFontColor: {
-          label: "Title Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
         descriptionFontColor: {
-          label: "Description Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
         imageStyles: {
-          label: "Image Styles",
+          label: msg("fields.imageStyles", "Image Styles"),
           type: "styledImage",
         },
         imageAspectRatio: {
-          label: "Image Aspect Ratio",
+          label: msg("fields.aspectRatio", "Aspect Ratio"),
           type: "basicSelector",
           options: aspectRatioOptions,
         },
         imageConstrain: {
-          label: "Image Constrain",
+          label: msg("fields.imageConstrain", "Image Constrain"),
           type: "select",
           options: [
-            { label: "Fixed", value: "fixed" },
-            { label: "Filled", value: "filled" },
+            { label: msg("fields.options.fixed", "Fixed"), value: "fixed" },
+            { label: msg("fields.options.filled", "Filled"), value: "filled" },
           ],
         },
         ctaStyles: {
-          label: "Call to Action Styles",
+          label: msg("fields.callToActionStyles", "Call to Action Styles"),
           type: "object",
           objectFields: {
             variant: {
-              label: "Variant",
+              label: msg("fields.variant", "Variant"),
               type: "radio",
               options: [
-                { label: "Solid", value: "primary" },
-                { label: "Outline", value: "secondary" },
-                { label: "Link", value: "link" },
+                { label: msg("fields.options.solid", "Solid"), value: "primary" },
+                { label: msg("fields.options.outline", "Outline"), value: "secondary" },
+                { label: msg("fields.options.link", "Link"), value: "link" },
               ],
             },
             color: {
-              label: "Color",
+              label: msg("fields.color", "Color"),
               type: "basicSelector",
               options: "SITE_COLOR",
             },
             button: {
-              label: "Button Styles",
+              label: msg("fields.buttonStyles", "Button Styles"),
               type: "styledButton",
             },
             link: {
-              label: "Link Styles",
+              label: msg("fields.linkStyles", "Link Styles"),
               type: "styledLink",
               showIncludeCaretField: true,
             },

@@ -8,6 +8,7 @@ import {
   type ImageType,
 } from "@yext/pages-components";
 import {
+  msg,
   Background,
   createItemSource,
   EntityField,
@@ -138,65 +139,65 @@ const createTextListField = (
 const resolveText = resolvePlainText;
 
 const providerItemsSource = createItemSource<ProviderItem>({
-  label: "Providers",
+  label: msg("fields.items", "Items"),
   mappingFields: {
     name: {
-      label: "Name",
+      label: msg("fields.name", "Name"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: { types: ["type.string"] },
         },
       },
     },
     role: {
-      label: "Role",
+      label: msg("fields.role", "Role"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: { types: ["type.string"] },
         },
       },
     },
     credentialsLabel: {
       type: "entityField",
-      label: "Board Certification Label",
+      label: msg("fields.label", "Label"),
       filter: { types: ["type.string"] },
     },
     credentials: {
-      label: "Credentials",
+      label: msg("fields.credentials", "Credentials"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: { types: ["type.string"] },
         },
       },
     },
     specialtiesLabel: {
       type: "entityField",
-      label: "Specialties Label",
+      label: msg("fields.specialtiesLabel", "Specialties Label"),
       filter: { types: ["type.string"] },
     },
     specialties: {
-      label: "Specialties",
+      label: msg("fields.specialties", "Specialties"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text List",
+          label: msg("fields.textList", "Text List"),
           filter: { types: ["type.string"], includeListsOnly: true },
         },
       },
     },
     image: {
       type: "entityField",
-      label: "Image",
+      label: msg("fields.image", "Image"),
       filter: { types: ["type.image"] },
     },
   },
@@ -279,87 +280,87 @@ const IndividualPracticeProvidersSectionFields: YextFields<IndividualPracticePro
   {
     section: sectionField,
     heading: {
-      label: "Heading",
+      label: msg("fields.heading", "Heading"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.string"],
           },
         },
         styles: {
-          label: "Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     cardStyles: {
-      label: "Card Styles",
+      label: msg("fields.cardStyles", "Card Styles"),
       type: "object",
       objectFields: {
         cardBackgroundColor: {
-          label: "Card Background Color",
+          label: msg("fields.cardBackgroundColor", "Card Background Color"),
           type: "basicSelector",
           options: "BACKGROUND_COLOR",
         },
         nameTextStyles: {
-          label: "Name Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         nameFontColor: {
-          label: "Name Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
         roleTextStyles: {
-          label: "Role Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         roleFontColor: {
-          label: "Role Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
         credentialsTextStyles: {
-          label: "Credentials Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         credentialsFontColor: {
-          label: "Credentials Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
         specialtiesTextStyles: {
-          label: "Specialties Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         specialtiesFontColor: {
-          label: "Specialties Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
         imageStyles: {
-          label: "Image Styles",
+          label: msg("fields.imageStyles", "Image Styles"),
           type: "styledImage",
         },
         imageAspectRatio: {
-          label: "Image Aspect Ratio",
+          label: msg("fields.aspectRatio", "Aspect Ratio"),
           type: "basicSelector",
           options: aspectRatioOptions,
         },
         imageConstrain: {
-          label: "Image Constrain",
+          label: msg("fields.imageConstrain", "Image Constrain"),
           type: "select",
           options: [
-            { label: "Fixed", value: "fixed" },
-            { label: "Filled", value: "filled" },
+            { label: msg("fields.options.fixed", "Fixed"), value: "fixed" },
+            { label: msg("fields.options.filled", "Filled"), value: "filled" },
           ],
         },
       },

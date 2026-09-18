@@ -4,6 +4,7 @@ import * as React from "react";
 import type { PuckComponent } from "@puckeditor/core";
 import { AnalyticsScopeProvider } from "@yext/pages-components";
 import {
+  msg,
   Background,
   createItemSource,
   EntityField,
@@ -118,20 +119,20 @@ const createTextListField = (
 });
 
 const insuranceGroupsSource = createItemSource<InsuranceGroupFields>({
-  label: "Insurance Groups",
+  label: msg("fields.items", "Items"),
   mappingFields: {
     title: {
       type: "entityField",
-      label: "Title",
+      label: msg("fields.title", "Title"),
       filter: { types: ["type.string"] },
     },
     items: {
       type: "entityField",
-      label: "Items",
+      label: msg("fields.items", "Items"),
       filter: { types: ["type.string"], includeListsOnly: true },
     },
     backgroundColor: {
-      label: "Background Color",
+      label: msg("fields.backgroundColor", "Background Color"),
       type: "basicSelector",
       options: "BACKGROUND_COLOR",
     },
@@ -175,40 +176,40 @@ const IndividualPracticeInsuranceAcceptedSectionFields: YextFields<IndividualPra
   {
     section: sectionField,
     heading: {
-      label: "Heading",
+      label: msg("fields.heading", "Heading"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.string"],
           },
         },
         styles: {
-          label: "Text Styles",
+          label: msg("fields.textStyles", "Text Styles"),
           type: "styledText",
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
       },
     },
     subtitle: {
-      label: "Subtitle",
+      label: msg("fields.subheading", "Subheading"),
       type: "object",
       objectFields: {
         text: {
           type: "entityField",
-          label: "Text",
+          label: msg("fields.text", "Text"),
           filter: {
             types: ["type.rich_text_v2"],
           },
         },
         fontColor: {
-          label: "Font Color",
+          label: msg("fields.fontColor", "Font Color"),
           type: "basicSelector",
           options: "SITE_COLOR",
         },
@@ -216,28 +217,28 @@ const IndividualPracticeInsuranceAcceptedSectionFields: YextFields<IndividualPra
     },
     groups: insuranceGroupsSource.field,
     groupStyles: {
-      label: "Insurance Group Styles",
+      label: msg("fields.styles", "Styles"),
       type: "object",
       objectFields: {
         title: {
-          label: "Title",
+          label: msg("fields.title", "Title"),
           type: "object",
           objectFields: {
-            styles: { label: "Text Styles", type: "styledText" },
+            styles: { label: msg("fields.textStyles", "Text Styles"), type: "styledText" },
             fontColor: {
-              label: "Font Color",
+              label: msg("fields.fontColor", "Font Color"),
               type: "basicSelector",
               options: "SITE_COLOR",
             },
           },
         },
         items: {
-          label: "Items",
+          label: msg("fields.items", "Items"),
           type: "object",
           objectFields: {
-            styles: { label: "Text Styles", type: "styledText" },
+            styles: { label: msg("fields.textStyles", "Text Styles"), type: "styledText" },
             fontColor: {
-              label: "Font Color",
+              label: msg("fields.fontColor", "Font Color"),
               type: "basicSelector",
               options: "SITE_COLOR",
             },
