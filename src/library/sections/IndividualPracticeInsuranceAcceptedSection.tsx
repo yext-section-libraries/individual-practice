@@ -1,3 +1,4 @@
+import "../shared/typography.css";
 import type { SectionConfig } from "@yext/visual-editor";
 
 import * as React from "react";
@@ -26,7 +27,7 @@ import {
 import {
   createTextField as createEntityTextField,
   defaultTextStyles,
-  primaryColor,
+  getExplicitTextColorCssValue,
   renderRichText,
   sectionField,
   whiteBackground,
@@ -74,11 +75,6 @@ type IndividualPracticeInsuranceAcceptedSectionProps = {
 const featuredBackground: ThemeColor = {
   selectedColor: "palette-quaternary-light",
   contrastingColor: "black",
-};
-
-const bodyTextColor: ThemeColor = {
-  selectedColor: "#6f594c",
-  contrastingColor: "white",
 };
 
 const createTextField = (
@@ -264,7 +260,7 @@ const IndividualPracticeInsuranceAcceptedSectionComponent: PuckComponent<
   );
   const subtitleStyleOverrides = {
     color: props.subtitle.fontColor
-      ? getThemeColorCssValue(props.subtitle.fontColor)
+      ? getExplicitTextColorCssValue(props.subtitle.fontColor)
       : sectionForeground,
   };
   const subtitle = resolveComponentData(
@@ -379,7 +375,7 @@ const IndividualPracticeInsuranceAcceptedSectionComponent: PuckComponent<
         <div
           style={{
             margin: "0 auto",
-            width: "min(100%, 73rem)",
+            width: "min(100%, var(--maxWidth-pageSection-contentWidth))",
           }}
         >
           <div
@@ -395,17 +391,15 @@ const IndividualPracticeInsuranceAcceptedSectionComponent: PuckComponent<
             >
               <h2
                 style={{
-                  color: getThemeColorCssValue(
-                    props.heading.fontColor ??
-                      props.section.backgroundColor.contrastingColor,
-                  ),
+                  color: getExplicitTextColorCssValue(props.heading.fontColor) ??
+                    getThemeColorCssValue(props.section.backgroundColor.contrastingColor),
                   fontFamily:
                     props.heading.styles.fontFamily === "default"
                       ? undefined
                       : props.heading.styles.fontFamily,
                   fontSize:
                     props.heading.styles.fontSize === "default"
-                      ? "clamp(2rem, 5vw, 3rem)"
+                      ? undefined
                       : props.heading.styles.fontSize,
                   fontStyle:
                     props.heading.styles.fontStyle === "default"
@@ -413,9 +407,8 @@ const IndividualPracticeInsuranceAcceptedSectionComponent: PuckComponent<
                       : props.heading.styles.fontStyle,
                   fontWeight:
                     props.heading.styles.fontWeight === "default"
-                      ? 500
+                      ? undefined
                       : props.heading.styles.fontWeight,
-                  letterSpacing: "-0.03em",
                   lineHeight: 1.25,
                   margin: 0,
                   textTransform:
@@ -471,10 +464,8 @@ const IndividualPracticeInsuranceAcceptedSectionComponent: PuckComponent<
                   group.backgroundColor.contrastingColor,
                 );
                 const itemTextStyle: React.CSSProperties = {
-                  color: getThemeColorCssValue(
-                    props.groupStyles.items.fontColor ??
-                      group.backgroundColor.contrastingColor,
-                  ),
+                  color: getExplicitTextColorCssValue(props.groupStyles.items.fontColor) ??
+                    getThemeColorCssValue(group.backgroundColor.contrastingColor),
                   fontFamily:
                     props.groupStyles.items.styles.fontFamily === "default"
                       ? undefined
@@ -513,10 +504,8 @@ const IndividualPracticeInsuranceAcceptedSectionComponent: PuckComponent<
                   >
                     <h3
                       style={{
-                        color: getThemeColorCssValue(
-                          props.groupStyles.title.fontColor ??
-                            group.backgroundColor.contrastingColor,
-                        ),
+                        color: getExplicitTextColorCssValue(props.groupStyles.title.fontColor) ??
+                    getThemeColorCssValue(group.backgroundColor.contrastingColor),
                         fontFamily:
                           props.groupStyles.title.styles.fontFamily ===
                           "default"
@@ -524,7 +513,7 @@ const IndividualPracticeInsuranceAcceptedSectionComponent: PuckComponent<
                             : props.groupStyles.title.styles.fontFamily,
                         fontSize:
                           props.groupStyles.title.styles.fontSize === "default"
-                            ? "1.05rem"
+                            ? undefined
                             : props.groupStyles.title.styles.fontSize,
                         fontStyle:
                           props.groupStyles.title.styles.fontStyle === "default"
@@ -575,22 +564,21 @@ const IndividualPracticeInsuranceAcceptedSectionComponent: PuckComponent<
 
 export const IndividualPracticeInsuranceAcceptedSection: YextComponentConfig<IndividualPracticeInsuranceAcceptedSectionProps> =
   {
-    label: "Insurance Accepted Section",
+    label: msg("components.insuranceAccepted", "Insurance Accepted"),
     fields: IndividualPracticeInsuranceAcceptedSectionFields,
     defaultProps: {
       section: {
         backgroundColor: whiteBackground,
         visibleOnLivePage: true,
       },
-      heading: createTextField("Insurance Accepted", primaryColor),
+      heading: createTextField("Insurance Accepted"),
       subtitle: createRtfField(
         "[[name]] is proud to be an in-network provider for a wide range of insurance carriers, as well as the following plans.",
-        bodyTextColor,
       ),
       groups: insuranceGroupsSource.defaultValue,
       groupStyles: {
-        title: { styles: defaultTextStyles, fontColor: primaryColor },
-        items: { styles: defaultTextStyles, fontColor: bodyTextColor },
+        title: { styles: defaultTextStyles, fontColor: undefined },
+        items: { styles: defaultTextStyles, fontColor: undefined },
       },
     },
     render: (props) => (
@@ -604,7 +592,7 @@ export const IndividualPracticeInsuranceAcceptedSection: YextComponentConfig<Ind
 
 export const config: SectionConfig = {
   id: "IndividualPracticeInsuranceAcceptedSection",
-  displayName: "Insurance Accepted Section",
-  description: "Insurance Accepted Section",
+  displayName: "Insurance Accepted",
+  description: "Insurance Accepted",
   pageSetTypes: ["ENTITY"],
 };

@@ -1,3 +1,4 @@
+import "../shared/typography.css";
 import type { SectionConfig } from "@yext/visual-editor";
 
 import type { PuckComponent } from "@puckeditor/core";
@@ -23,6 +24,7 @@ import {
 import {
   lightTextStyles as defaultTextStyles,
   getScopedTypographyStyles,
+  getExplicitTextColorCssValue,
   renderRichText,
   sectionField,
   whiteBackground,
@@ -50,7 +52,7 @@ type IndividualPracticeAboutLocationSectionProps = {
 
 const aboutLocationBodyDefaultValue = {
   html:
-    '<p dir="ltr" style="font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;"><span>[[name]] is [[address.city]]’s premier destination for integrated medical services. Located conveniently on Meridian Ave, we bridge the gap between a standard doctor’s office and a hospital emergency room.</span></p><p dir="ltr" style="font-size: 14.67px; font-weight: 400; line-height: 18.67px; margin: 0; padding: 3px 2px 3px 2px; position: relative;"><span>Our facility is designed for efficiency and patient comfort. By housing advanced imaging, a high-complexity lab, and a diverse team of specialists under one roof, we ensure that diagnosis and treatment happen in hours, not days. We are committed to reducing ER wait times and providing the [[address.city]] community with a higher standard of local healthcare.</span></p>',
+    '<p dir="ltr"><span>[[name]] is [[address.city]]’s premier destination for integrated medical services. Located conveniently on Meridian Ave, we bridge the gap between a standard doctor’s office and a hospital emergency room.</span></p><p dir="ltr"><span>Our facility is designed for efficiency and patient comfort. By housing advanced imaging, a high-complexity lab, and a diverse team of specialists under one roof, we ensure that diagnosis and treatment happen in hours, not days. We are committed to reducing ER wait times and providing the [[address.city]] community with a higher standard of local healthcare.</span></p>',
   json: "{\"root\":{\"children\":[{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"[[name]] is [[address.city]]’s premier destination for integrated medical services. Located conveniently on Meridian Ave, we bridge the gap between a standard doctor’s office and a hospital emergency room.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1},{\"children\":[{\"detail\":0,\"format\":0,\"mode\":\"normal\",\"style\":\"\",\"text\":\"Our facility is designed for efficiency and patient comfort. By housing advanced imaging, a high-complexity lab, and a diverse team of specialists under one roof, we ensure that diagnosis and treatment happen in hours, not days. We are committed to reducing ER wait times and providing the [[address.city]] community with a higher standard of local healthcare.\",\"type\":\"text\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"paragraph\",\"version\":1}],\"direction\":\"ltr\",\"format\":\"\",\"indent\":0,\"type\":\"root\",\"version\":1}}",
 };
 
@@ -115,7 +117,7 @@ const IndividualPracticeAboutLocationSectionComponent: PuckComponent<IndividualP
     );
     const bodyStyleOverrides = {
       color: props.body.fontColor
-        ? getThemeColorCssValue(props.body.fontColor)
+        ? getExplicitTextColorCssValue(props.body.fontColor)
         : sectionForeground,
     };
     const body = resolveComponentData(props.body.text, locale, streamDocument);
@@ -158,7 +160,7 @@ const IndividualPracticeAboutLocationSectionComponent: PuckComponent<IndividualP
               gap: "clamp(1.5rem, 4vw, 3rem)",
               gridTemplateColumns: "minmax(14rem, 18rem) minmax(0, 1fr)",
               margin: "0 auto",
-              width: "min(100%, 73rem)",
+              width: "min(100%, var(--maxWidth-pageSection-contentWidth))",
             }}
           >
             <div className="yip-about-heading">
@@ -170,7 +172,7 @@ const IndividualPracticeAboutLocationSectionComponent: PuckComponent<IndividualP
                 <h2
                   style={{
                     color: props.heading.fontColor
-                      ? getThemeColorCssValue(props.heading.fontColor)
+                      ? getExplicitTextColorCssValue(props.heading.fontColor)
                       : sectionForeground,
                     fontFamily:
                       props.heading.styles.fontFamily === "default"
@@ -178,7 +180,7 @@ const IndividualPracticeAboutLocationSectionComponent: PuckComponent<IndividualP
                         : props.heading.styles.fontFamily,
                     fontSize:
                       props.heading.styles.fontSize === "default"
-                        ? "clamp(2rem, 5vw, 3rem)"
+                        ? undefined
                         : props.heading.styles.fontSize,
                     fontStyle:
                       props.heading.styles.fontStyle === "default"
@@ -186,9 +188,8 @@ const IndividualPracticeAboutLocationSectionComponent: PuckComponent<IndividualP
                         : props.heading.styles.fontStyle,
                     fontWeight:
                       props.heading.styles.fontWeight === "default"
-                        ? 500
+                        ? undefined
                         : props.heading.styles.fontWeight,
-                    letterSpacing: "-0.03em",
                     lineHeight: 1.25,
                     margin: 0,
                     textTransform:
@@ -225,7 +226,7 @@ const IndividualPracticeAboutLocationSectionComponent: PuckComponent<IndividualP
 
 export const IndividualPracticeAboutLocationSection: YextComponentConfig<IndividualPracticeAboutLocationSectionProps> =
   {
-    label: "About Location Section",
+    label: msg("components.aboutLocation", "About Location"),
     fields: IndividualPracticeAboutLocationSectionFields,
     defaultProps: {
       section: {
@@ -267,7 +268,7 @@ export const IndividualPracticeAboutLocationSection: YextComponentConfig<Individ
 
 export const config: SectionConfig = {
   id: "IndividualPracticeAboutLocationSection",
-  displayName: "About Location Section",
-  description: "About Location Section",
+  displayName: "About Location",
+  description: "About Location",
   pageSetTypes: ["ENTITY"],
 };

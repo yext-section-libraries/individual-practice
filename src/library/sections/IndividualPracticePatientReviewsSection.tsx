@@ -1,3 +1,4 @@
+import "../shared/typography.css";
 import type { SectionConfig } from "@yext/visual-editor";
 
 import type { PuckComponent } from "@puckeditor/core";
@@ -27,6 +28,7 @@ import {
   getScopedTypographyStyles,
   lightTextStyles as defaultTextStyles,
   primaryColor,
+  getExplicitTextColorCssValue,
   sectionField,
   whiteBackground,
 } from "../shared/sectionHelpers";
@@ -159,7 +161,7 @@ const IndividualPracticePatientReviewsSectionComponent: PuckComponent<
         <div
           style={{
             margin: "0 auto",
-            width: "min(100%, 52.5rem)",
+            width: "min(100%, var(--maxWidth-pageSection-contentWidth))",
           }}
         >
           <div
@@ -192,17 +194,15 @@ const IndividualPracticePatientReviewsSectionComponent: PuckComponent<
             >
               <h2
                 style={{
-                  color: getThemeColorCssValue(
-                    props.heading.fontColor ??
-                      props.section.backgroundColor.contrastingColor,
-                  ),
+                  color: getExplicitTextColorCssValue(props.heading.fontColor) ??
+                    getThemeColorCssValue(props.section.backgroundColor.contrastingColor),
                   fontFamily:
                     props.heading.styles.fontFamily === "default"
                       ? undefined
                       : props.heading.styles.fontFamily,
                   fontSize:
                     props.heading.styles.fontSize === "default"
-                      ? "clamp(2rem, 5vw, 3rem)"
+                      ? undefined
                       : props.heading.styles.fontSize,
                   fontStyle:
                     props.heading.styles.fontStyle === "default"
@@ -210,9 +210,8 @@ const IndividualPracticePatientReviewsSectionComponent: PuckComponent<
                       : props.heading.styles.fontStyle,
                   fontWeight:
                     props.heading.styles.fontWeight === "default"
-                      ? 500
+                      ? undefined
                       : props.heading.styles.fontWeight,
-                  letterSpacing: "-0.03em",
                   lineHeight: 1.25,
                   margin: "8px 0 0",
                   textTransform:
@@ -343,7 +342,7 @@ const IndividualPracticePatientReviewsSectionComponent: PuckComponent<
 
 export const IndividualPracticePatientReviewsSection: YextComponentConfig<IndividualPracticePatientReviewsSectionProps> =
   {
-    label: "Patient Reviews Section",
+    label: msg("components.patientReviews", "Patient Reviews"),
     fields: IndividualPracticePatientReviewsSectionFields,
     defaultProps: {
       section: {
@@ -375,7 +374,7 @@ export const IndividualPracticePatientReviewsSection: YextComponentConfig<Indivi
 
 export const config: SectionConfig = {
   id: "IndividualPracticePatientReviewsSection",
-  displayName: "Patient Reviews Section",
-  description: "Patient Reviews Section",
+  displayName: "Patient Reviews",
+  description: "Patient Reviews",
   pageSetTypes: ["ENTITY"],
 };

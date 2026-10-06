@@ -1,3 +1,4 @@
+import "../shared/typography.css";
 import type { SectionConfig } from "@yext/visual-editor";
 
 import * as React from "react";
@@ -24,7 +25,7 @@ import {
   pt,
 } from "@yext/visual-editor";
 import {
-  primaryColor,
+  getExplicitTextColorCssValue,
   sectionField,
   whiteBackground,
 } from "../shared/sectionHelpers";
@@ -61,10 +62,10 @@ type IndividualPracticeBreadcrumbsSectionProps = {
 
 const defaultTextStyles: StyledTextValue = {
   fontFamily: "default",
-  fontSize: "0.8125rem",
-  fontWeight: "500",
+  fontSize: "default",
+  fontWeight: "default",
   fontStyle: "default",
-  textTransform: "uppercase",
+  textTransform: "default",
 };
 
 const IndividualPracticeBreadcrumbsSectionFields: YextFields<IndividualPracticeBreadcrumbsSectionProps> =
@@ -147,22 +148,21 @@ const IndividualPracticeBreadcrumbsSectionComponent: PuckComponent<
       )?.toString() ?? "";
     const currentPageLabel =
       streamDocument.name || streamDocument.address?.line1 || "";
-    const linkColor = getThemeColorCssValue(
-      props.rootLabel.fontColor ?? props.section.backgroundColor.contrastingColor,
-    );
+    const linkColor = getExplicitTextColorCssValue(props.rootLabel.fontColor) ??
+                    getThemeColorCssValue(props.section.backgroundColor.contrastingColor);
     const currentPageColor = getThemeColorCssValue(
       props.section.backgroundColor.contrastingColor,
     );
-    const separatorColor = `color-mix(in srgb, ${currentPageColor} 48%, transparent)`;
+    const separatorColor = currentPageColor;
     const linkTextStyle: React.CSSProperties = {
       color: linkColor,
       fontFamily:
         props.rootLabel.styles.fontFamily === "default"
-          ? "var(--fontFamily-body-fontFamily)"
+          ? undefined
           : props.rootLabel.styles.fontFamily,
       fontSize:
         props.rootLabel.styles.fontSize === "default"
-          ? "0.8125rem"
+          ? undefined
           : props.rootLabel.styles.fontSize,
       fontStyle:
         props.rootLabel.styles.fontStyle === "default"
@@ -170,9 +170,8 @@ const IndividualPracticeBreadcrumbsSectionComponent: PuckComponent<
           : props.rootLabel.styles.fontStyle,
       fontWeight:
         props.rootLabel.styles.fontWeight === "default"
-          ? 500
+          ? undefined
           : props.rootLabel.styles.fontWeight,
-      letterSpacing: "0.08em",
       lineHeight: 1.4,
       textDecoration: "none",
       textTransform:
@@ -201,7 +200,7 @@ const IndividualPracticeBreadcrumbsSectionComponent: PuckComponent<
           <div
             style={{
               margin: "0 auto",
-              width: "min(100%, 73rem)",
+              width: "min(100%, var(--maxWidth-pageSection-contentWidth))",
             }}
           >
             <ol
@@ -255,8 +254,6 @@ const IndividualPracticeBreadcrumbsSectionComponent: PuckComponent<
                         style={{
                           ...linkTextStyle,
                           color: currentPageColor,
-                          letterSpacing: "0.04em",
-                          textTransform: "none",
                         }}
                       >
                         {label}
@@ -290,7 +287,7 @@ const IndividualPracticeBreadcrumbsSectionComponent: PuckComponent<
 
 export const IndividualPracticeBreadcrumbsSection: YextComponentConfig<IndividualPracticeBreadcrumbsSectionProps> =
   {
-    label: "Breadcrumbs",
+    label: msg("components.breadcrumbs", "Breadcrumbs"),
     fields: IndividualPracticeBreadcrumbsSectionFields,
     defaultProps: {
       section: {
@@ -307,7 +304,7 @@ export const IndividualPracticeBreadcrumbsSection: YextComponentConfig<Individua
           constantValueEnabled: true,
         },
         styles: defaultTextStyles,
-        fontColor: primaryColor,
+        fontColor: undefined,
       },
       includeCurrentLocation: true,
       separator: "/",

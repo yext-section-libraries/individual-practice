@@ -218,7 +218,6 @@ export const LocatorMap: React.FC<MapProps> = ({
       allowUpdates={!!iframe?.contentDocument}
       onPinClick={scrollToResult}
       markerOptionsOverride={markerOptionsOverride}
-      excludeMapFromTabOrder={true}
     />
   );
 };

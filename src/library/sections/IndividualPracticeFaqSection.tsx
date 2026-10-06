@@ -1,3 +1,4 @@
+import "../shared/typography.css";
 import type { SectionConfig } from "@yext/visual-editor";
 
 import * as React from "react";
@@ -24,6 +25,7 @@ import {
 } from "@yext/visual-editor";
 import {
   defaultTextStyles,
+  getExplicitTextColorCssValue,
   renderRichText,
   resolvePlainText,
   sectionField,
@@ -391,7 +393,7 @@ const IndividualPracticeFaqSectionComponent: React.FC<
         <div
           style={{
             margin: "0 auto",
-            width: "min(100%, 73rem)",
+            width: "min(100%, var(--maxWidth-pageSection-contentWidth))",
           }}
         >
           <div
@@ -408,7 +410,7 @@ const IndividualPracticeFaqSectionComponent: React.FC<
               <h2
                 style={{
                   color: props.heading.fontColor
-                    ? getThemeColorCssValue(props.heading.fontColor)
+                    ? getExplicitTextColorCssValue(props.heading.fontColor)
                     : sectionForeground,
                   fontFamily:
                     props.heading.styles.fontFamily === "default"
@@ -416,7 +418,7 @@ const IndividualPracticeFaqSectionComponent: React.FC<
                       : props.heading.styles.fontFamily,
                   fontSize:
                     props.heading.styles.fontSize === "default"
-                      ? "clamp(2rem, 5vw, 3rem)"
+                      ? undefined
                       : props.heading.styles.fontSize,
                   fontStyle:
                     props.heading.styles.fontStyle === "default"
@@ -424,9 +426,8 @@ const IndividualPracticeFaqSectionComponent: React.FC<
                       : props.heading.styles.fontStyle,
                   fontWeight:
                     props.heading.styles.fontWeight === "default"
-                      ? 500
+                      ? undefined
                       : props.heading.styles.fontWeight,
-                  letterSpacing: "-0.03em",
                   lineHeight: 1.25,
                   margin: 0,
                   textTransform:
@@ -468,7 +469,7 @@ const IndividualPracticeFaqSectionComponent: React.FC<
                 );
                 const answerStyleOverrides = {
                   color: props.answerStyles.fontColor
-                    ? getThemeColorCssValue(props.answerStyles.fontColor)
+                    ? getExplicitTextColorCssValue(props.answerStyles.fontColor)
                     : currentForeground,
                 };
                 const resolvedAnswer = item.answer
@@ -508,9 +509,7 @@ const IndividualPracticeFaqSectionComponent: React.FC<
                       <span
                         style={{
                           color: props.questionStyles.fontColor
-                            ? getThemeColorCssValue(
-                                props.questionStyles.fontColor,
-                              )
+                            ? getExplicitTextColorCssValue(props.questionStyles.fontColor)
                             : currentForeground,
                           flex: 1,
                           fontFamily:
@@ -519,7 +518,7 @@ const IndividualPracticeFaqSectionComponent: React.FC<
                               : props.questionStyles.styles.fontFamily,
                           fontSize:
                             props.questionStyles.styles.fontSize === "default"
-                              ? "clamp(1.15rem, 1.8vw, 1.35rem)"
+                              ? undefined
                               : props.questionStyles.styles.fontSize,
                           fontStyle:
                             props.questionStyles.styles.fontStyle === "default"
@@ -527,7 +526,7 @@ const IndividualPracticeFaqSectionComponent: React.FC<
                               : props.questionStyles.styles.fontStyle,
                           fontWeight:
                             props.questionStyles.styles.fontWeight === "default"
-                              ? 500
+                              ? undefined
                               : props.questionStyles.styles.fontWeight,
                           lineHeight: 1.3,
                           textTransform:
@@ -573,7 +572,7 @@ const IndividualPracticeFaqSectionComponent: React.FC<
 
 export const IndividualPracticeFaqSection: YextComponentConfig<IndividualPracticeFaqSectionProps> =
   {
-    label: "FAQ Section",
+    label: msg("components.faq", "FAQ"),
     fields: IndividualPracticeFaqSectionFields,
     defaultProps: {
       section: {
@@ -614,7 +613,7 @@ export const IndividualPracticeFaqSection: YextComponentConfig<IndividualPractic
 
 export const config: SectionConfig = {
   id: "IndividualPracticeFaqSection",
-  displayName: "FAQ Section",
-  description: "FAQ Section",
+  displayName: "FAQ",
+  description: "FAQ",
   pageSetTypes: ["ENTITY"],
 };

@@ -1,3 +1,4 @@
+import "../shared/typography.css";
 import type { SectionConfig } from "@yext/visual-editor";
 
 import * as React from "react";
@@ -42,6 +43,7 @@ import {
   createTextField as createEntityTextField,
   defaultTextStyles,
   renderRichText,
+  getExplicitTextColorCssValue,
   sectionField,
   whiteBackground,
 } from "../shared/sectionHelpers";
@@ -159,7 +161,7 @@ const createTextCtaStyles = (): MedicalServicesCtaStyles => ({
     fontStyle: "default",
     textTransform: "default",
     letterSpacing: "default",
-    borderRadius: "9999px",
+    borderRadius: "default",
   },
   link: {
     fontFamily: "default",
@@ -527,7 +529,7 @@ const IndividualPracticeMedicalServicesSectionComponent: PuckComponent<
         <div
           style={{
             margin: "0 auto",
-            width: "min(100%, 73rem)",
+            width: "min(100%, var(--maxWidth-pageSection-contentWidth))",
           }}
         >
           <div
@@ -543,17 +545,15 @@ const IndividualPracticeMedicalServicesSectionComponent: PuckComponent<
             >
               <h2
                 style={{
-                  color: getThemeColorCssValue(
-                    props.heading.fontColor ??
-                      props.section.backgroundColor.contrastingColor,
-                  ),
+                  color: getExplicitTextColorCssValue(props.heading.fontColor) ??
+                    getThemeColorCssValue(props.section.backgroundColor.contrastingColor),
                   fontFamily:
                     props.heading.styles.fontFamily === "default"
                       ? undefined
                       : props.heading.styles.fontFamily,
                   fontSize:
                     props.heading.styles.fontSize === "default"
-                      ? "clamp(2rem, 5vw, 3rem)"
+                      ? undefined
                       : props.heading.styles.fontSize,
                   fontStyle:
                     props.heading.styles.fontStyle === "default"
@@ -561,9 +561,8 @@ const IndividualPracticeMedicalServicesSectionComponent: PuckComponent<
                       : props.heading.styles.fontStyle,
                   fontWeight:
                     props.heading.styles.fontWeight === "default"
-                      ? 500
+                      ? undefined
                       : props.heading.styles.fontWeight,
-                  letterSpacing: "-0.03em",
                   lineHeight: 1.25,
                   margin: 0,
                   textTransform:
@@ -598,9 +597,7 @@ const IndividualPracticeMedicalServicesSectionComponent: PuckComponent<
                 );
                 const descriptionStyleOverrides = {
                   color: props.cardStyles.descriptionFontColor
-                    ? getThemeColorCssValue(
-                        props.cardStyles.descriptionFontColor,
-                      )
+                    ? getExplicitTextColorCssValue(props.cardStyles.descriptionFontColor)
                     : cardForeground,
                 };
                 const description = item.description.text
@@ -616,9 +613,9 @@ const IndividualPracticeMedicalServicesSectionComponent: PuckComponent<
                   | TranslatableAssetImage
                   | undefined;
                 const imageBorderRadius =
-                  props.cardStyles.imageStyles?.borderRadius === "default"
-                    ? "16px"
-                    : props.cardStyles.imageStyles?.borderRadius;
+                  props.cardStyles.imageStyles?.borderRadius && props.cardStyles.imageStyles?.borderRadius !== "default"
+                    ? props.cardStyles.imageStyles?.borderRadius
+                    : "var(--borderRadius-image-borderRadius)";
                 const sharedCtaStyles = props.cardStyles.ctaStyles;
                 const ctaVariant = sharedCtaStyles?.variant;
                 const ctaColor = sharedCtaStyles?.color;
@@ -656,18 +653,15 @@ const IndividualPracticeMedicalServicesSectionComponent: PuckComponent<
                     >
                       <h3
                         style={{
-                          color: getThemeColorCssValue(
-                            props.cardStyles.titleFontColor ??
-                              props.cardStyles.cardBackgroundColor
-                                .contrastingColor,
-                          ),
+                          color: getExplicitTextColorCssValue(props.cardStyles.titleFontColor) ??
+                    getThemeColorCssValue(props.cardStyles.cardBackgroundColor.contrastingColor),
                           fontFamily:
                             titleStyles.fontFamily === "default"
                               ? undefined
                               : titleStyles.fontFamily,
                           fontSize:
                             titleStyles.fontSize === "default"
-                              ? "1.5rem"
+                              ? undefined
                               : titleStyles.fontSize,
                           fontStyle:
                             titleStyles.fontStyle === "default"
@@ -678,8 +672,7 @@ const IndividualPracticeMedicalServicesSectionComponent: PuckComponent<
                               ? undefined
                               : titleStyles.fontWeight,
                           lineHeight: 1.2,
-                          letterSpacing: "-0.03em",
-                          margin: 0,
+                                                    margin: 0,
                           textTransform:
                             titleStyles.textTransform === "default"
                               ? undefined
@@ -766,7 +759,7 @@ const IndividualPracticeMedicalServicesSectionComponent: PuckComponent<
 
 export const IndividualPracticeMedicalServicesSection: YextComponentConfig<IndividualPracticeMedicalServicesSectionProps> =
   {
-    label: "Medical Services Section",
+    label: msg("components.medicalServices", "Medical Services"),
     fields: IndividualPracticeMedicalServicesSectionFields,
     resolveFields: (data, { fields }) => {
       const cardStylesField = fields.cardStyles as typeof fields.cardStyles & {
@@ -834,7 +827,7 @@ export const IndividualPracticeMedicalServicesSection: YextComponentConfig<Indiv
 
 export const config: SectionConfig = {
   id: "IndividualPracticeMedicalServicesSection",
-  displayName: "Medical Services Section",
-  description: "Medical Services Section",
+  displayName: "Medical Services",
+  description: "Medical Services",
   pageSetTypes: ["ENTITY"],
 };

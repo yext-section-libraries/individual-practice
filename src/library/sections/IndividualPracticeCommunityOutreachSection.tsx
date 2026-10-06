@@ -1,3 +1,4 @@
+import "../shared/typography.css";
 import type { SectionConfig } from "@yext/visual-editor";
 
 import * as React from "react";
@@ -17,7 +18,6 @@ import {
   getDefaultRTF,
   getAnalyticsScopeHash,
   getSurfaceColorStyle,
-  getThemeColorCssValue,
   Image,
   resolveComponentData,
   type StyledImageValue,
@@ -35,6 +35,7 @@ import {
 import {
   aspectRatioOptions,
   defaultTextStyles,
+  getExplicitTextColorCssValue,
   renderRichText,
   sectionField,
   whiteBackground,
@@ -67,16 +68,6 @@ type IndividualPracticeCommunityOutreachSectionProps = {
   body: StyledRtfProps;
   image: OutreachImage;
   cta: Partial<ComprehensiveCTAValue>;
-};
-
-const primaryTextColor: ThemeColor = {
-  selectedColor: "palette-primary",
-  contrastingColor: "palette-primary-contrast",
-};
-
-const bodyTextColor: ThemeColor = {
-  selectedColor: "#260e01",
-  contrastingColor: "white",
 };
 
 const defaultImageStyles: StyledImageValue = {
@@ -128,7 +119,7 @@ const createOutlineCta = (): Partial<ComprehensiveCTAValue> => ({
       fontStyle: "default",
       textTransform: "default",
       letterSpacing: "default",
-      borderRadius: "9999px",
+      borderRadius: "default",
     },
     link: {
       fontFamily: "default",
@@ -252,7 +243,7 @@ const IndividualPracticeCommunityOutreachSectionComponent: PuckComponent<Individ
       )?.toString() ?? "";
     const bodyStyleOverrides = {
       color: props.body.fontColor
-        ? getThemeColorCssValue(props.body.fontColor)
+        ? getExplicitTextColorCssValue(props.body.fontColor)
         : sectionForeground,
     };
     const body = resolveComponentData(props.body.text, locale, streamDocument);
@@ -262,9 +253,9 @@ const IndividualPracticeCommunityOutreachSectionComponent: PuckComponent<Individ
       streamDocument,
     ) as ImageType | ComplexImageType | TranslatableAssetImage | undefined;
     const imageBorderRadius =
-      props.image.styles?.borderRadius === "default"
-        ? undefined
-        : props.image.styles?.borderRadius;
+                  props.image.styles?.borderRadius && props.image.styles?.borderRadius !== "default"
+                    ? props.image.styles?.borderRadius
+                    : "var(--borderRadius-image-borderRadius)";
     const imageWrapperStyle: React.CSSProperties = {
       aspectRatio:
         props.image.aspectRatio > 0 ? props.image.aspectRatio : undefined,
@@ -393,7 +384,7 @@ const IndividualPracticeCommunityOutreachSectionComponent: PuckComponent<Individ
           <div
             style={{
               margin: "0 auto",
-              width: "min(100%, 73rem)",
+              width: "min(100%, var(--maxWidth-pageSection-contentWidth))",
             }}
           >
             <div style={{ textAlign: "center" }}>
@@ -405,7 +396,7 @@ const IndividualPracticeCommunityOutreachSectionComponent: PuckComponent<Individ
                 <h2
                   style={{
                     color: props.heading.fontColor
-                      ? getThemeColorCssValue(props.heading.fontColor)
+                      ? getExplicitTextColorCssValue(props.heading.fontColor)
                       : sectionForeground,
                     fontFamily:
                       props.heading.styles.fontFamily === "default"
@@ -413,7 +404,7 @@ const IndividualPracticeCommunityOutreachSectionComponent: PuckComponent<Individ
                         : props.heading.styles.fontFamily,
                     fontSize:
                       props.heading.styles.fontSize === "default"
-                        ? "clamp(2rem, 5vw, 3rem)"
+                        ? undefined
                         : props.heading.styles.fontSize,
                     fontStyle:
                       props.heading.styles.fontStyle === "default"
@@ -421,9 +412,8 @@ const IndividualPracticeCommunityOutreachSectionComponent: PuckComponent<Individ
                         : props.heading.styles.fontStyle,
                     fontWeight:
                       props.heading.styles.fontWeight === "default"
-                        ? 500
+                        ? undefined
                         : props.heading.styles.fontWeight,
-                    letterSpacing: "-0.03em",
                     lineHeight: 1.25,
                     margin: 0,
                     textTransform:
@@ -506,7 +496,7 @@ const IndividualPracticeCommunityOutreachSectionComponent: PuckComponent<Individ
 
 export const IndividualPracticeCommunityOutreachSection: YextComponentConfig<IndividualPracticeCommunityOutreachSectionProps> =
   {
-    label: "Community Outreach Section",
+    label: msg("components.communityOutreach", "Community Outreach"),
     fields: IndividualPracticeCommunityOutreachSectionFields,
     defaultProps: {
       section: {
@@ -523,7 +513,7 @@ export const IndividualPracticeCommunityOutreachSection: YextComponentConfig<Ind
           constantValueEnabled: true,
         },
         styles: defaultTextStyles,
-        fontColor: primaryTextColor,
+        fontColor: undefined,
       },
       body: {
         text: {
@@ -536,7 +526,7 @@ export const IndividualPracticeCommunityOutreachSection: YextComponentConfig<Ind
           },
           constantValueEnabled: true,
         },
-        fontColor: bodyTextColor,
+        fontColor: undefined,
       },
       image: createImageField(),
       cta: createOutlineCta(),
@@ -552,7 +542,7 @@ export const IndividualPracticeCommunityOutreachSection: YextComponentConfig<Ind
 
 export const config: SectionConfig = {
   id: "IndividualPracticeCommunityOutreachSection",
-  displayName: "Community Outreach Section",
-  description: "Community Outreach Section",
+  displayName: "Community Outreach",
+  description: "Community Outreach",
   pageSetTypes: ["ENTITY"],
 };

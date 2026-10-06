@@ -1,3 +1,4 @@
+import "../shared/typography.css";
 import type { SectionConfig } from "@yext/visual-editor";
 
 import * as React from "react";
@@ -40,6 +41,7 @@ import {
   aspectRatioOptions,
   defaultTextStyles,
   primaryColor,
+  getExplicitTextColorCssValue,
   renderRichText,
   sectionField,
   whiteBackground,
@@ -147,7 +149,7 @@ const createHeroCta = (
       fontStyle: "default",
       textTransform: "default",
       letterSpacing: "default",
-      borderRadius: "9999px",
+      borderRadius: "default",
     },
     link: {
       fontFamily: "default",
@@ -374,7 +376,7 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
     );
     const heroBodyStyleOverrides = {
       color: props.body.fontColor
-        ? getThemeColorCssValue(props.body.fontColor)
+        ? getExplicitTextColorCssValue(props.body.fontColor)
         : cardForeground,
     };
     const heading =
@@ -465,9 +467,9 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
       streamDocument,
     ) as ImageType | ComplexImageType | TranslatableAssetImage | undefined;
     const heroImageBorderRadius =
-      props.heroImage.styles?.borderRadius === "default"
-        ? "16px"
-        : props.heroImage.styles?.borderRadius;
+                  props.heroImage.styles?.borderRadius && props.heroImage.styles?.borderRadius !== "default"
+                    ? props.heroImage.styles?.borderRadius
+                    : "var(--borderRadius-image-borderRadius)";
 
     return (
       <VisibilityWrapper
@@ -593,7 +595,7 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
           <div
             style={{
               margin: "0 auto",
-              width: "min(100%, 73rem)",
+              width: "min(100%, var(--maxWidth-pageSection-contentWidth))",
             }}
           >
             <div
@@ -660,7 +662,7 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
                     <h1
                       style={{
                         color: props.heading.fontColor
-                          ? getThemeColorCssValue(props.heading.fontColor)
+                          ? getExplicitTextColorCssValue(props.heading.fontColor)
                           : cardForeground,
                         fontFamily:
                           props.heading.styles.fontFamily === "default"
@@ -668,7 +670,7 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
                             : props.heading.styles.fontFamily,
                         fontSize:
                           props.heading.styles.fontSize === "default"
-                            ? "clamp(2.4rem, 4.6vw, 4rem)"
+                            ? undefined
                             : props.heading.styles.fontSize,
                         fontStyle:
                           props.heading.styles.fontStyle === "default"
@@ -678,7 +680,6 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
                           props.heading.styles.fontWeight === "default"
                             ? undefined
                             : props.heading.styles.fontWeight,
-                        letterSpacing: "-0.05em",
                         lineHeight: 1.06,
                         margin: 0,
                         maxWidth: "15ch",
@@ -699,7 +700,7 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
                     <h2
                       style={{
                         color: props.subheading.fontColor
-                          ? getThemeColorCssValue(props.subheading.fontColor)
+                          ? getExplicitTextColorCssValue(props.subheading.fontColor)
                           : cardForeground,
                         fontFamily:
                           props.subheading.styles.fontFamily === "default"
@@ -707,7 +708,7 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
                             : props.subheading.styles.fontFamily,
                         fontSize:
                           props.subheading.styles.fontSize === "default"
-                            ? "clamp(1.25rem, 2.2vw, 1.9rem)"
+                            ? undefined
                             : props.subheading.styles.fontSize,
                         fontStyle:
                           props.subheading.styles.fontStyle === "default"
@@ -715,7 +716,7 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
                             : props.subheading.styles.fontStyle,
                         fontWeight:
                           props.subheading.styles.fontWeight === "default"
-                            ? 500
+                            ? undefined
                             : props.subheading.styles.fontWeight,
                         margin: "14px 0 0",
                         textTransform:
@@ -846,7 +847,7 @@ const IndividualPracticeHeroSectionComponent: PuckComponent<IndividualPracticeHe
 
 export const IndividualPracticeHeroSection: YextComponentConfig<IndividualPracticeHeroSectionProps> =
   {
-    label: "Hero Section",
+    label: msg("components.hero", "Hero"),
     fields: IndividualPracticeHeroSectionFields,
     defaultProps: {
       section: {
@@ -886,7 +887,7 @@ export const IndividualPracticeHeroSection: YextComponentConfig<IndividualPracti
           constantValueEnabled: false,
         },
         styles: defaultTextStyles,
-        fontColor: primaryColor,
+        fontColor: undefined,
       },
       body: {
         text: {
@@ -921,7 +922,7 @@ export const IndividualPracticeHeroSection: YextComponentConfig<IndividualPracti
 
 export const config: SectionConfig = {
   id: "IndividualPracticeHeroSection",
-  displayName: "Hero Section",
-  description: "Hero Section",
+  displayName: "Hero",
+  description: "Hero",
   pageSetTypes: ["ENTITY"],
 };

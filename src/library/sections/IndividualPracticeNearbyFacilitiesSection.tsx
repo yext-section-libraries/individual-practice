@@ -1,3 +1,4 @@
+import "../shared/typography.css";
 import type { SectionConfig } from "@yext/visual-editor";
 
 import * as React from "react";
@@ -41,6 +42,7 @@ import {
 } from "@yext/visual-editor";
 import {
   defaultTextStyles,
+  getExplicitTextColorCssValue,
   sectionField,
   whiteBackground,
 } from "../shared/sectionHelpers";
@@ -114,11 +116,6 @@ type IndividualPracticeNearbyFacilitiesSectionProps = {
   secondaryCta: NearbyConfiguredCtaProps;
 };
 
-const titleColor: ThemeColor = {
-  selectedColor: "palette-primary",
-  contrastingColor: "palette-primary-contrast",
-};
-
 const lightPanelBackground: ThemeColor = {
   selectedColor: "palette-quaternary-light",
   contrastingColor: "black",
@@ -189,7 +186,7 @@ const createNearbyCtaStyles = (): NearbyCtaStyles => ({
     fontStyle: "default",
     textTransform: "default",
     letterSpacing: "default",
-    borderRadius: "9999px",
+    borderRadius: "default",
   },
   link: {
     fontFamily: "default",
@@ -688,7 +685,7 @@ const IndividualPracticeNearbyFacilitiesSectionComponent: PuckComponent<
         <div
           style={{
             margin: "0 auto",
-            width: "min(100%, 73rem)",
+            width: "min(100%, var(--maxWidth-pageSection-contentWidth))",
           }}
         >
           <div
@@ -744,17 +741,15 @@ const IndividualPracticeNearbyFacilitiesSectionComponent: PuckComponent<
                 >
                   <h2
                     style={{
-                      color: getThemeColorCssValue(
-                        props.heading.fontColor ??
-                          props.section.backgroundColor.contrastingColor,
-                      ),
+                      color: getExplicitTextColorCssValue(props.heading.fontColor) ??
+                    getThemeColorCssValue(props.section.backgroundColor.contrastingColor),
                       fontFamily:
                         props.heading.styles.fontFamily === "default"
                           ? undefined
                           : props.heading.styles.fontFamily,
                       fontSize:
                         props.heading.styles.fontSize === "default"
-                          ? "clamp(2rem, 5vw, 3rem)"
+                          ? undefined
                           : props.heading.styles.fontSize,
                       fontStyle:
                         props.heading.styles.fontStyle === "default"
@@ -762,9 +757,8 @@ const IndividualPracticeNearbyFacilitiesSectionComponent: PuckComponent<
                           : props.heading.styles.fontStyle,
                       fontWeight:
                         props.heading.styles.fontWeight === "default"
-                          ? 500
+                          ? undefined
                           : props.heading.styles.fontWeight,
-                      letterSpacing: "-0.03em",
                       lineHeight: 1.25,
                       margin: 0,
                       textTransform:
@@ -868,7 +862,6 @@ const IndividualPracticeNearbyFacilitiesSectionComponent: PuckComponent<
                           <h3
                             style={{
                               color: cardTitleColor,
-                              fontSize: "1.2rem",
                               lineHeight: 1.25,
                               margin: 0,
                             }}
@@ -879,9 +872,7 @@ const IndividualPracticeNearbyFacilitiesSectionComponent: PuckComponent<
                           {distanceFromFilter !== undefined ? (
                             <p
                               style={{
-                                color: `color-mix(in srgb, ${cardForeground} 68%, transparent)`,
-                                fontSize: "0.95rem",
-                                letterSpacing: "-0.02em",
+                                color: cardForeground,
                                 lineHeight: 1.5,
                                 margin: "6px 0 0",
                               }}
@@ -997,7 +988,7 @@ const IndividualPracticeNearbyFacilitiesSectionComponent: PuckComponent<
 
 export const IndividualPracticeNearbyFacilitiesSection: YextComponentConfig<IndividualPracticeNearbyFacilitiesSectionProps> =
   {
-    label: "Nearby Facilities Section",
+    label: msg("components.nearbyFacilities", "Nearby Facilities"),
     fields: IndividualPracticeNearbyFacilitiesSectionFields,
     resolveFields: (data, { fields }) => {
       const primaryCtaField = fields.primaryCta as typeof fields.primaryCta & {
@@ -1095,7 +1086,7 @@ export const IndividualPracticeNearbyFacilitiesSection: YextComponentConfig<Indi
           constantValueEnabled: true,
         },
         styles: defaultTextStyles,
-        fontColor: titleColor,
+        fontColor: undefined,
       },
       map: {
         coordinate: {
@@ -1137,7 +1128,7 @@ export const IndividualPracticeNearbyFacilitiesSection: YextComponentConfig<Indi
 
 export const config: SectionConfig = {
   id: "IndividualPracticeNearbyFacilitiesSection",
-  displayName: "Nearby Facilities Section",
-  description: "Nearby Facilities Section",
+  displayName: "Nearby Facilities",
+  description: "Nearby Facilities",
   pageSetTypes: ["ENTITY"],
 };

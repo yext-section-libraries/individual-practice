@@ -1,3 +1,4 @@
+import "../shared/typography.css";
 import type { SectionConfig } from "@yext/visual-editor";
 
 import { PuckComponent } from "@puckeditor/core";
@@ -107,7 +108,7 @@ const IndividualPracticeBannerComponent: PuckComponent<
       <PageSection
         background={section.backgroundColor}
         className="flex items-center justify-center"
-        verticalPadding="sm"
+        verticalPadding="default"
       >
         <div className="relative flex h-20 w-full flex-row items-center justify-center gap-3 rounded-lg border border-gray-200 bg-gray-100 px-4">
           <CircleSlash2 className="h-10 w-10 flex-shrink-0 text-gray-400" />
@@ -148,7 +149,7 @@ const IndividualPracticeBannerComponent: PuckComponent<
           right: "justify-end text-right",
         }[styles.textAlignment]
       }`}
-      verticalPadding="sm"
+      verticalPadding="default"
     >
       <EntityField
         constantValueEnabled={data.text.constantValueEnabled}
@@ -166,7 +167,7 @@ const IndividualPracticeBannerComponent: PuckComponent<
  */
 export const IndividualPracticeBanner: YextComponentConfig<IndividualPracticeBannerProps> =
   {
-    label: "Banner",
+    label: msg("components.banner", "Banner"),
     fields: IndividualPracticeBannerFields,
     defaultProps: {
       data: {

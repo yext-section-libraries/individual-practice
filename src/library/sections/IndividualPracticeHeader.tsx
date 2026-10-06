@@ -1,3 +1,4 @@
+import "../shared/typography.css";
 import type { SectionConfig } from "@yext/visual-editor";
 
 import * as React from "react";
@@ -32,13 +33,12 @@ import {
   getAnalyticsScopeHash,
   getSurfaceColorStyle,
   getThemeColorCssValue,
-  i18nPageInstance,
   normalizeLink,
   normalizeThemeColorToken,
   resolveComponentData,
   useDocument,
 } from "@yext/visual-editor";
-import { aspectRatioOptions } from "../shared/sectionHelpers";
+import { aspectRatioOptions, getExplicitTextColorCssValue } from "../shared/sectionHelpers";
 
 type SharedHeaderVariant =
   | "centerLogoSplitNav"
@@ -132,7 +132,7 @@ const defaultButtonStyles: StyledButtonValue = {
   fontStyle: "default",
   textTransform: "default",
   letterSpacing: "default",
-  borderRadius: "9999px",
+  borderRadius: "default",
 };
 
 const defaultImageStyles: StyledImageValue = {
@@ -162,7 +162,7 @@ const hasExplicitThemeColor = (color?: ThemeColor): color is ThemeColor => {
 
 const resolveBorderRadius = (value?: string): string | undefined => {
   if (!value || value === "default") {
-    return undefined;
+    return "var(--borderRadius-image-borderRadius)";
   }
 
   return value;
@@ -184,7 +184,7 @@ const getTextStyles = ({
   >;
 }): React.CSSProperties => {
   return {
-    color: getThemeColorCssValue(color),
+    color: getExplicitTextColorCssValue(color),
     fontFamily: styles.fontFamily === "default" ? undefined : styles.fontFamily,
     fontSize: styles.fontSize === "default" ? undefined : styles.fontSize,
     fontWeight: styles.fontWeight === "default" ? undefined : styles.fontWeight,
@@ -209,7 +209,7 @@ const getTranslatableSummary = (
   }
 
   return (
-    resolveComponentData(value, i18nPageInstance.language, undefined) ||
+    resolveComponentData(value, "en", undefined) ||
     value.defaultValue ||
     fallback
   );
@@ -1185,7 +1185,7 @@ const IndividualPracticeHeaderComponent: PuckComponent<
 
 export const IndividualPracticeHeader: YextComponentConfig<IndividualPracticeHeaderProps> =
   {
-    label: "Header",
+    label: msg("components.header", "Header"),
     fields: IndividualPracticeHeaderFields,
     defaultProps: {
       variant: "logoLeftInlineNav",

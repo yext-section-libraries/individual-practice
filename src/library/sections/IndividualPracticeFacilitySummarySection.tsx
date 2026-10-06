@@ -1,3 +1,4 @@
+import "../shared/typography.css";
 import type { SectionConfig } from "@yext/visual-editor";
 import * as React from "react";
 import { parsePhoneNumber } from "awesome-phonenumber";
@@ -22,7 +23,6 @@ import {
   getDefaultRTF,
   getAnalyticsScopeHash,
   getSurfaceColorStyle,
-  getThemeColorCssValue,
   resolveComponentData,
   type StyledTextValue,
   type ThemeColor,
@@ -36,6 +36,7 @@ import {
 } from "@yext/visual-editor";
 import {
   defaultTextStyles,
+  getExplicitTextColorCssValue,
   renderRichText,
   resolvePlainText,
   sectionField,
@@ -98,16 +99,6 @@ type IndividualPracticeFacilitySummarySectionProps = {
   hoursStyles: SummaryHoursStyles;
 };
 
-const primaryTextColor: ThemeColor = {
-  selectedColor: "palette-primary",
-  contrastingColor: "palette-primary-contrast",
-};
-
-const bodyTextColor: ThemeColor = {
-  selectedColor: "#6f594c",
-  contrastingColor: "black",
-};
-
 const formatPhone = (
   phoneNumber: string,
   format: "international" | "domestic",
@@ -154,7 +145,7 @@ const createTextCta = (label: string): Partial<ComprehensiveCTAValue> => ({
       fontStyle: "default",
       textTransform: "default",
       letterSpacing: "default",
-      borderRadius: "9999px",
+      borderRadius: "default",
     },
     link: {
       fontFamily: "default",
@@ -513,7 +504,7 @@ const IndividualPracticeFacilitySummarySectionComponent: PuckComponent<Individua
     );
     const accessibilityBodyStyleOverrides = {
       color: props.accessibilityBody.fontColor
-        ? getThemeColorCssValue(props.accessibilityBody.fontColor)
+        ? getExplicitTextColorCssValue(props.accessibilityBody.fontColor)
         : sectionForeground,
     };
     const resolvedAccessibilityBody = resolveComponentData(
@@ -665,7 +656,7 @@ const IndividualPracticeFacilitySummarySectionComponent: PuckComponent<Individua
           <div
             style={{
               margin: "0 auto",
-              width: "min(100%, 73rem)",
+              width: "min(100%, var(--maxWidth-pageSection-contentWidth))",
             }}
           >
             <div style={{ padding: "40px 0" }}>
@@ -677,7 +668,7 @@ const IndividualPracticeFacilitySummarySectionComponent: PuckComponent<Individua
                 <h2
                   style={{
                     color: props.heading.fontColor
-                      ? getThemeColorCssValue(props.heading.fontColor)
+                      ? getExplicitTextColorCssValue(props.heading.fontColor)
                       : sectionForeground,
                     fontFamily:
                       props.heading.styles.fontFamily === "default"
@@ -724,7 +715,7 @@ const IndividualPracticeFacilitySummarySectionComponent: PuckComponent<Individua
                     <h3
                       style={{
                         color: props.contactHeading.fontColor
-                          ? getThemeColorCssValue(props.contactHeading.fontColor)
+                          ? getExplicitTextColorCssValue(props.contactHeading.fontColor)
                           : sectionForeground,
                         fontFamily:
                           props.contactHeading.styles.fontFamily === "default"
@@ -844,9 +835,7 @@ const IndividualPracticeFacilitySummarySectionComponent: PuckComponent<Individua
                     <h3
                       style={{
                         color: props.accessibilityHeading.fontColor
-                          ? getThemeColorCssValue(
-                              props.accessibilityHeading.fontColor,
-                            )
+                          ? getExplicitTextColorCssValue(props.accessibilityHeading.fontColor)
                           : sectionForeground,
                         fontFamily:
                           props.accessibilityHeading.styles.fontFamily ===
@@ -911,7 +900,7 @@ const IndividualPracticeFacilitySummarySectionComponent: PuckComponent<Individua
                     <h3
                       style={{
                         color: props.hoursHeading.fontColor
-                          ? getThemeColorCssValue(props.hoursHeading.fontColor)
+                          ? getExplicitTextColorCssValue(props.hoursHeading.fontColor)
                           : sectionForeground,
                         fontFamily:
                           props.hoursHeading.styles.fontFamily === "default"
@@ -984,7 +973,7 @@ const IndividualPracticeFacilitySummarySectionComponent: PuckComponent<Individua
 
 export const IndividualPracticeFacilitySummarySection: YextComponentConfig<IndividualPracticeFacilitySummarySectionProps> =
   {
-    label: "Facility Summary Section",
+    label: msg("components.facilitySummary", "Facility Summary"),
     fields: IndividualPracticeFacilitySummarySectionFields,
     defaultProps: {
       section: {
@@ -1001,7 +990,7 @@ export const IndividualPracticeFacilitySummarySection: YextComponentConfig<Indiv
           constantValueEnabled: true,
         },
         styles: defaultTextStyles,
-        fontColor: primaryTextColor,
+        fontColor: undefined,
       },
       contactHeading: {
         text: {
@@ -1068,7 +1057,7 @@ export const IndividualPracticeFacilitySummarySection: YextComponentConfig<Indiv
           },
           constantValueEnabled: true,
         },
-        fontColor: bodyTextColor,
+        fontColor: undefined,
       },
       hoursHeading: {
         text: {
@@ -1105,7 +1094,7 @@ export const IndividualPracticeFacilitySummarySection: YextComponentConfig<Indiv
 
 export const config: SectionConfig = {
   id: "IndividualPracticeFacilitySummarySection",
-  displayName: "Facility Summary Section",
-  description: "Facility Summary Section",
+  displayName: "Facility Summary",
+  description: "Facility Summary",
   pageSetTypes: ["ENTITY"],
 };
