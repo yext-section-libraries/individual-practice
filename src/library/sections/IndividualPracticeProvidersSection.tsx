@@ -1,3 +1,4 @@
+import "../shared/typography.css";
 import type { SectionConfig } from "@yext/visual-editor";
 
 import * as React from "react";
@@ -33,6 +34,7 @@ import {
   createTextField as createEntityTextField,
   defaultTextStyles,
   resolvePlainText,
+  getExplicitTextColorCssValue,
   sectionField,
   whiteBackground,
 } from "../shared/sectionHelpers";
@@ -84,11 +86,6 @@ type IndividualPracticeProvidersSectionProps = {
   heading: StyledTextProps;
   cardStyles: ProvidersCardStyles;
   items: typeof providerItemsSource.value;
-};
-
-const bodyTextColor: ThemeColor = {
-  selectedColor: "#6f594c",
-  contrastingColor: "white",
 };
 
 const defaultImageStyles: StyledImageValue = {
@@ -505,7 +502,7 @@ const IndividualPracticeProvidersSectionComponent: PuckComponent<
         <div
           style={{
             margin: "0 auto",
-            width: "min(100%, 73rem)",
+            width: "min(100%, var(--maxWidth-pageSection-contentWidth))",
           }}
         >
           <div
@@ -521,17 +518,15 @@ const IndividualPracticeProvidersSectionComponent: PuckComponent<
             >
               <h2
                 style={{
-                  color: getThemeColorCssValue(
-                    props.heading.fontColor ??
-                      props.section.backgroundColor.contrastingColor,
-                  ),
+                  color: getExplicitTextColorCssValue(props.heading.fontColor) ??
+                    getThemeColorCssValue(props.section.backgroundColor.contrastingColor),
                   fontFamily:
                     props.heading.styles.fontFamily === "default"
                       ? undefined
                       : props.heading.styles.fontFamily,
                   fontSize:
                     props.heading.styles.fontSize === "default"
-                      ? "clamp(2rem, 5vw, 3rem)"
+                      ? undefined
                       : props.heading.styles.fontSize,
                   fontStyle:
                     props.heading.styles.fontStyle === "default"
@@ -539,9 +534,8 @@ const IndividualPracticeProvidersSectionComponent: PuckComponent<
                       : props.heading.styles.fontStyle,
                   fontWeight:
                     props.heading.styles.fontWeight === "default"
-                      ? 500
+                      ? undefined
                       : props.heading.styles.fontWeight,
-                  letterSpacing: "-0.03em",
                   lineHeight: 1.25,
                   margin: 0,
                   textTransform:
@@ -605,12 +599,11 @@ const IndividualPracticeProvidersSectionComponent: PuckComponent<
                   | TranslatableAssetImage
                   | undefined;
                 const imageBorderRadius =
-                  props.cardStyles.imageStyles?.borderRadius === "default"
-                    ? "12px"
-                    : props.cardStyles.imageStyles?.borderRadius;
+                  props.cardStyles.imageStyles?.borderRadius && props.cardStyles.imageStyles?.borderRadius !== "default"
+                    ? props.cardStyles.imageStyles?.borderRadius
+                    : "var(--borderRadius-image-borderRadius)";
                 const providerSubheadingStyle: React.CSSProperties = {
                   color: cardForeground,
-                  fontWeight: 700,
                 };
                 const providerMetadataRowStyle: React.CSSProperties = {
                   alignItems: "baseline",
@@ -651,18 +644,15 @@ const IndividualPracticeProvidersSectionComponent: PuckComponent<
                     >
                       <h3
                         style={{
-                          color: getThemeColorCssValue(
-                            props.cardStyles.nameFontColor ??
-                              props.cardStyles.cardBackgroundColor
-                                .contrastingColor,
-                          ),
+                          color: getExplicitTextColorCssValue(props.cardStyles.nameFontColor) ??
+                    getThemeColorCssValue(props.cardStyles.cardBackgroundColor.contrastingColor),
                           fontFamily:
                             nameTextStyles.fontFamily === "default"
                               ? undefined
                               : nameTextStyles.fontFamily,
                           fontSize:
                             nameTextStyles.fontSize === "default"
-                              ? "1.5rem"
+                              ? undefined
                               : nameTextStyles.fontSize,
                           fontStyle:
                             nameTextStyles.fontStyle === "default"
@@ -684,18 +674,15 @@ const IndividualPracticeProvidersSectionComponent: PuckComponent<
                       </h3>
                       <p
                         style={{
-                          color: getThemeColorCssValue(
-                            props.cardStyles.roleFontColor ??
-                              props.cardStyles.cardBackgroundColor
-                                .contrastingColor,
-                          ),
+                          color: getExplicitTextColorCssValue(props.cardStyles.roleFontColor) ??
+                    getThemeColorCssValue(props.cardStyles.cardBackgroundColor.contrastingColor),
                           fontFamily:
                             roleTextStyles.fontFamily === "default"
                               ? undefined
                               : roleTextStyles.fontFamily,
                           fontSize:
                             roleTextStyles.fontSize === "default"
-                              ? "1.12rem"
+                              ? undefined
                               : roleTextStyles.fontSize,
                           fontStyle:
                             roleTextStyles.fontStyle === "default"
@@ -703,7 +690,7 @@ const IndividualPracticeProvidersSectionComponent: PuckComponent<
                               : roleTextStyles.fontStyle,
                           fontWeight:
                             roleTextStyles.fontWeight === "default"
-                              ? 500
+                              ? undefined
                               : roleTextStyles.fontWeight,
                           margin: 0,
                           textTransform:
@@ -720,11 +707,8 @@ const IndividualPracticeProvidersSectionComponent: PuckComponent<
                         </strong>
                         <span
                           style={{
-                            color: getThemeColorCssValue(
-                              props.cardStyles.credentialsFontColor ??
-                                props.cardStyles.cardBackgroundColor
-                                  .contrastingColor,
-                            ),
+                            color: getExplicitTextColorCssValue(props.cardStyles.credentialsFontColor) ??
+                    getThemeColorCssValue(props.cardStyles.cardBackgroundColor.contrastingColor),
                             fontFamily:
                               credentialsTextStyles.fontFamily === "default"
                                 ? undefined
@@ -756,11 +740,8 @@ const IndividualPracticeProvidersSectionComponent: PuckComponent<
                         </strong>
                         <span
                           style={{
-                            color: getThemeColorCssValue(
-                              props.cardStyles.specialtiesFontColor ??
-                                props.cardStyles.cardBackgroundColor
-                                  .contrastingColor,
-                            ),
+                            color: getExplicitTextColorCssValue(props.cardStyles.specialtiesFontColor) ??
+                    getThemeColorCssValue(props.cardStyles.cardBackgroundColor.contrastingColor),
                             fontFamily:
                               specialtiesTextStyles.fontFamily === "default"
                                 ? undefined
@@ -852,7 +833,7 @@ const IndividualPracticeProvidersSectionComponent: PuckComponent<
 
 export const IndividualPracticeProvidersSection: YextComponentConfig<IndividualPracticeProvidersSectionProps> =
   {
-    label: "Providers Section",
+    label: msg("components.providers", "Providers"),
     fields: IndividualPracticeProvidersSectionFields,
     defaultProps: {
       section: {
@@ -865,9 +846,9 @@ export const IndividualPracticeProvidersSection: YextComponentConfig<IndividualP
         nameTextStyles: defaultTextStyles,
         roleTextStyles: defaultTextStyles,
         credentialsTextStyles: defaultTextStyles,
-        credentialsFontColor: bodyTextColor,
+        credentialsFontColor: undefined,
         specialtiesTextStyles: defaultTextStyles,
-        specialtiesFontColor: bodyTextColor,
+        specialtiesFontColor: undefined,
         imageStyles: defaultImageStyles,
         imageAspectRatio: 1.5,
         imageConstrain: "filled",
@@ -885,7 +866,7 @@ export const IndividualPracticeProvidersSection: YextComponentConfig<IndividualP
 
 export const config: SectionConfig = {
   id: "IndividualPracticeProvidersSection",
-  displayName: "Providers Section",
-  description: "Providers Section",
+  displayName: "Providers",
+  description: "Providers",
   pageSetTypes: ["ENTITY"],
 };

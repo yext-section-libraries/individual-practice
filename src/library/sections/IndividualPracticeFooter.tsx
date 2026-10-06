@@ -1,3 +1,4 @@
+import "../shared/typography.css";
 import type { SectionConfig } from "@yext/visual-editor";
 
 import * as React from "react";
@@ -47,6 +48,7 @@ import {
   aspectRatioOptions,
   createTextField as createEntityTextField,
   defaultTextStyles,
+  getExplicitTextColorCssValue,
   sectionField,
   whiteBackground,
 } from "../shared/sectionHelpers";
@@ -412,9 +414,9 @@ const IndividualPracticeFooterComponent: PuckComponent<IndividualPracticeFooterP
       streamDocument,
     ) as ImageType | ComplexImageType | TranslatableAssetImage | undefined;
     const logoImageBorderRadius =
-      props.logoImage.styles?.borderRadius === "default"
-        ? undefined
-        : props.logoImage.styles?.borderRadius;
+                  props.logoImage.styles?.borderRadius && props.logoImage.styles?.borderRadius !== "default"
+                    ? props.logoImage.styles?.borderRadius
+                    : "var(--borderRadius-image-borderRadius)";
     const address = resolveComponentData(props.address, locale, streamDocument);
     const phoneItems = (props.phone.items ?? [])
       .map((item) => {
@@ -639,7 +641,7 @@ const IndividualPracticeFooterComponent: PuckComponent<IndividualPracticeFooterP
           <div
             style={{
               margin: "0 auto",
-              width: "min(100% - 2rem, 91rem)",
+              width: "min(100% - 2rem, var(--maxWidth-pageSection-contentWidth))",
             }}
           >
             <div
@@ -708,10 +710,8 @@ const IndividualPracticeFooterComponent: PuckComponent<IndividualPracticeFooterP
                   >
                     <h3
                       style={{
-                        color: getThemeColorCssValue(
-                          props.navHeading.fontColor ??
-                            props.section.backgroundColor.contrastingColor,
-                        ),
+                        color: getExplicitTextColorCssValue(props.navHeading.fontColor) ??
+                    getThemeColorCssValue(props.section.backgroundColor.contrastingColor),
                         fontFamily:
                           props.navHeading.styles.fontFamily === "default"
                             ? undefined
@@ -892,7 +892,7 @@ const IndividualPracticeFooterComponent: PuckComponent<IndividualPracticeFooterP
 
 export const IndividualPracticeFooter: YextComponentConfig<IndividualPracticeFooterProps> =
   {
-    label: "Footer",
+    label: msg("components.footer", "Footer"),
     fields: IndividualPracticeFooterFields,
     defaultProps: {
       section: {

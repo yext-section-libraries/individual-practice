@@ -1,3 +1,4 @@
+import "../shared/typography.css";
 import type { SectionConfig } from "@yext/visual-editor";
 
 import * as React from "react";
@@ -33,6 +34,7 @@ import {
 import {
   getImageData,
   lightTextStyles as defaultTextStyles,
+  getExplicitTextColorCssValue,
   renderRichText,
   sectionField,
   whiteBackground,
@@ -227,7 +229,7 @@ const IndividualPracticePatientResourcesSectionComponent: PuckComponent<Individu
     );
     const bodyStyleOverrides = {
       color: props.body.fontColor
-        ? getThemeColorCssValue(props.body.fontColor)
+        ? getExplicitTextColorCssValue(props.body.fontColor)
         : panelForeground,
     };
     const body = resolveComponentData(props.body.text, locale, streamDocument);
@@ -395,7 +397,7 @@ const IndividualPracticePatientResourcesSectionComponent: PuckComponent<Individu
           <div
             style={{
               margin: "0 auto",
-              width: "min(100%, 73rem)",
+              width: "min(100%, var(--maxWidth-pageSection-contentWidth))",
             }}
           >
             <div
@@ -447,7 +449,7 @@ const IndividualPracticePatientResourcesSectionComponent: PuckComponent<Individu
                   <h2
                     style={{
                       color: props.heading.fontColor
-                        ? getThemeColorCssValue(props.heading.fontColor)
+                        ? getExplicitTextColorCssValue(props.heading.fontColor)
                         : panelForeground,
                       fontFamily:
                         props.heading.styles.fontFamily === "default"
@@ -455,7 +457,7 @@ const IndividualPracticePatientResourcesSectionComponent: PuckComponent<Individu
                           : props.heading.styles.fontFamily,
                       fontSize:
                         props.heading.styles.fontSize === "default"
-                          ? "clamp(1.8rem, 4vw, 2.6rem)"
+                          ? undefined
                           : props.heading.styles.fontSize,
                       fontStyle:
                         props.heading.styles.fontStyle === "default"
@@ -463,9 +465,8 @@ const IndividualPracticePatientResourcesSectionComponent: PuckComponent<Individu
                           : props.heading.styles.fontStyle,
                       fontWeight:
                         props.heading.styles.fontWeight === "default"
-                          ? 500
+                          ? undefined
                           : props.heading.styles.fontWeight,
-                      letterSpacing: "-0.03em",
                       lineHeight: 1.2,
                       margin: 0,
                       textTransform:
@@ -544,7 +545,7 @@ const IndividualPracticePatientResourcesSectionComponent: PuckComponent<Individu
 
 export const IndividualPracticePatientResourcesSection: YextComponentConfig<IndividualPracticePatientResourcesSectionProps> =
   {
-    label: "Patient Resources Section",
+    label: msg("components.patientResources", "Patient Resources"),
     fields: IndividualPracticePatientResourcesSectionFields,
     defaultProps: {
       section: {
@@ -595,7 +596,7 @@ export const IndividualPracticePatientResourcesSection: YextComponentConfig<Indi
 
 export const config: SectionConfig = {
   id: "IndividualPracticePatientResourcesSection",
-  displayName: "Patient Resources Section",
-  description: "Patient Resources Section",
+  displayName: "Patient Resources",
+  description: "Patient Resources",
   pageSetTypes: ["ENTITY"],
 };
