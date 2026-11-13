@@ -56,6 +56,7 @@
     "answer": "Respuesta",
     "ariaLabel": "Etiqueta ARIA",
     "aspectRatio": "Relación de aspecto",
+    "autoSearchOnMapMove": "Buscar automáticamente en el movimiento del mapa",
     "backgroundColor": "Color de fondo",
     "bannerText": "Texto del banner",
     "body": "Cuerpo",
