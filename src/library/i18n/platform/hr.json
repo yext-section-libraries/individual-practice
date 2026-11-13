@@ -56,6 +56,7 @@
     "answer": "Odgovor",
     "ariaLabel": "ARIA oznaka",
     "aspectRatio": "Omjer slike",
+    "autoSearchOnMapMove": "Automatsko pretraživanje po kretanju karte",
     "backgroundColor": "Boja pozadine",
     "bannerText": "Tekst natpisa",
     "body": "Tijelo",
